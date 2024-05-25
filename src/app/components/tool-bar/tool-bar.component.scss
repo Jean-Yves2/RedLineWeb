@@ -17,10 +17,13 @@
     color: white;
     text-decoration: none;
   }
+  .cart {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
 
   .active {
     color: $secondary-color;
-    font-weight: bold;
   }
 
   .toolbar__logo {
