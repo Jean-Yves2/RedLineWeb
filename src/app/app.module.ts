@@ -7,9 +7,15 @@ import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgIconsModule } from '@ng-icons/core';
 import { bootstrapCart3 } from '@ng-icons/bootstrap-icons';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 @NgModule({
-  declarations: [AppComponent, ToolBarComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    ToolBarComponent,
+    FooterComponent,
+    SignInComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
