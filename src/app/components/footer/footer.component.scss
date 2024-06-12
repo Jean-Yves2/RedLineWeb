@@ -1,73 +1,25 @@
 @import '../../../styles/theme.scss';
 .footer{
-  background-color: $primary-color;
   color: #fff;
   text-align: center;
   position: fixed;
   bottom: 0;
   width: 100%;
   font-size: 12px;
-  a{
-    decoration: none;
-    color: #fff;
-  }
 
-  &-info{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+  footer{
+    padding: 10px;
+    background-color: $primary-color;
 
-    &_information{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 20%;
+    input{
+      border-radius: 0;
+      border: none
     }
+    button{
+      background-color: $secondary-color;
+      border-radius: 0;
 
-    &_apropos{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 20%;
-    }
-
-    &__produits{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 20%;
-    }
-    &_newsletter{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      width: 35%;
-
-      &_input{
-        display: flex;
-        flex-direction : row;
-
-      }
     }
 
   }
-
-  hr{
-    width: 90%;
-    margin: 0 auto;
-    border-bottom: 1px;
-  }
-
-
-  &-links{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-
 }
