@@ -1,0 +1,25 @@
+@import '../../../styles/theme.scss';
+.footer{
+  color: #fff;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 12px;
+
+  footer{
+    padding: 10px;
+    background-color: $primary-color;
+
+    input{
+      border-radius: 0;
+      border: none
+    }
+    button{
+      background-color: $secondary-color;
+      border-radius: 0;
+
+    }
+
+  }
+}

@@ -1,6 +1,8 @@
 @import '/src/styles/theme.scss';
+@import 'dist/tailwind.css';
 body {
-
   background-color: $background-color;
-
+  display: flex;
+  flex-direction: column;
+  margin: 0;
 }
