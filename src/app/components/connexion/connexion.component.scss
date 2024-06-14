@@ -1,0 +1,12 @@
+@import '../../../styles/theme.scss';
+
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+
+.btn-inscription{
+  background-color: $secondary-color;
+}

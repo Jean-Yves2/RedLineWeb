@@ -21,4 +21,15 @@
     }
 
   }
+  form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .checkbox-description{
+      font-family:$font-family-regular;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
 }
