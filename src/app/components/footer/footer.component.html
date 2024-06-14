@@ -28,9 +28,7 @@
           <h4 class="font-semibold text-white mb-4">
             S'INSCRIRE AUX NEWSLETTERS
           </h4>
-          <p class="text-gray-400 mb-4">
-            The latest news, articles, and resources, sent to your inbox weekly.
-          </p>
+
           <form>
             <div class="flex">
               <input
@@ -43,6 +41,27 @@
               >
                 Envoyé
               </button>
+            </div>
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input
+                  id="newsletter-checkbox"
+                  aria-describedby="newsletter-checkbox"
+                  type="checkbox"
+                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                  required=""
+                />
+              </div>
+              <div class="ml-3 text-sm">
+                <label
+                  for="newsletter-checkbox"
+                  class="checkbox-description font-light"
+                >
+                  En validant votre inscription, vous acceptez que MetalFactory
+                  utilise votre adresse email dans le but de vous envoyer notre
+                  lettre d’informations.
+                </label>
+              </div>
             </div>
           </form>
         </div>
