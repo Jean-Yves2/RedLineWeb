@@ -5,9 +5,11 @@ import { ConnexionComponent } from './components/connexion/connexion.component';
 import { AproposComponent } from './components/apropos/apropos.component';
 import { MatiereComponent } from './components/matiere/matiere.component';
 import { OffresComponent } from './components/offres/offres.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'accueil', component: AccueilComponent },
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'apropos', component: AproposComponent },
