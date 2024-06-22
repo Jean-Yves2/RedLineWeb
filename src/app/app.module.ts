@@ -12,9 +12,10 @@ import { ConnexionComponent } from './components/connexion/connexion.component';
 import { AproposComponent } from './components/apropos/apropos.component';
 import { MatiereComponent } from './components/matiere/matiere.component';
 import { OffresComponent } from './components/offres/offres.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
 
 @NgModule({
-  declarations: [AppComponent, ToolBarComponent, FooterComponent, InscriptionComponent, ConnexionComponent, AproposComponent, MatiereComponent, OffresComponent],
+  declarations: [AppComponent, ToolBarComponent, FooterComponent, InscriptionComponent, ConnexionComponent, AproposComponent, MatiereComponent, OffresComponent, AccueilComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
