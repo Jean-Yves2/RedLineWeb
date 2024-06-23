@@ -13,9 +13,10 @@ import { AproposComponent } from './components/apropos/apropos.component';
 import { MatiereComponent } from './components/matiere/matiere.component';
 import { OffresComponent } from './components/offres/offres.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
+import { PieceConfigurationComponent } from './components/piece-configuration/piece-configuration.component';
 
 @NgModule({
-  declarations: [AppComponent, ToolBarComponent, FooterComponent, InscriptionComponent, ConnexionComponent, AproposComponent, MatiereComponent, OffresComponent, AccueilComponent],
+  declarations: [AppComponent, ToolBarComponent, FooterComponent, InscriptionComponent, ConnexionComponent, AproposComponent, MatiereComponent, OffresComponent, AccueilComponent, PieceConfigurationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
