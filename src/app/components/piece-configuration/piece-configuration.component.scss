@@ -1,0 +1,81 @@
+@import '../../../styles/theme.scss';
+
+.page-content{
+  display: flex;
+  flex-direction: column;
+  border : 2px solid #A1A1A1;
+  align-items: center;
+  padding: 20px;
+  margin: 20px;
+  font-family: $font-family-inter;
+  row-gap: 15px;
+
+  h1{
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  &_configuration{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    &_card{
+      color:white;
+      background-color: $secondary-color;
+      font-family: $font-family-bevan;
+
+      &_img{
+        border: 1px solid #A1A1A1;
+      }
+      &_btn{
+        padding: 10px;
+      }
+
+    }
+  }
+  hr{
+    width: 100%;
+    border: 1px solid #A1A1A1;
+    margin: 20px 0;
+  }
+  &_description{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    h2{
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    ul{
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+      font-family: $font-family-inter;
+      font-size: 1.2rem;
+      li{
+        .circle-button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 25px;
+          height: 25px;
+          background-color:$secondary-color;
+          border-radius: 50%;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .circle-button .arrow {
+          color: white;
+          font-size: 1.5rem;
+          font-weight: bold;
+          font-family: $font-family-bevan;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
