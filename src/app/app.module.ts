@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToolBarComponent } from './components/tool-bar/tool-bar.component';
@@ -16,10 +19,23 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 import { PieceConfigurationComponent } from './components/piece-configuration/piece-configuration.component';
 
 @NgModule({
-  declarations: [AppComponent, ToolBarComponent, FooterComponent, InscriptionComponent, ConnexionComponent, AproposComponent, MatiereComponent, OffresComponent, AccueilComponent, PieceConfigurationComponent],
+  declarations: [
+    AppComponent,
+    ToolBarComponent,
+    FooterComponent,
+    InscriptionComponent,
+    ConnexionComponent,
+    AproposComponent,
+    MatiereComponent,
+    OffresComponent,
+    AccueilComponent,
+    PieceConfigurationComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
     NgIconsModule.withIcons({ bootstrapCart3 }),
   ],
   providers: [],
