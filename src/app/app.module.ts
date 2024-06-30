@@ -17,6 +17,7 @@ import { MatiereComponent } from './components/matiere/matiere.component';
 import { OffresComponent } from './components/offres/offres.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { PieceConfigurationComponent } from './components/piece-configuration/piece-configuration.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PieceConfigurationComponent } from './components/piece-configuration/pi
     FormsModule,
     HttpClientModule,
     NgIconsModule.withIcons({ bootstrapCart3 }),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

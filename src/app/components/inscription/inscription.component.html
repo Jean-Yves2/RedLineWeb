@@ -1,149 +1,213 @@
-<section class="inscription-content">
-  <div
-    class="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0"
+<section class="container">
+  <h1>Inscrivez-vous</h1>
+
+  <form
+    class="container_form"
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
   >
-    <div
-      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 md:p-12 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
-    >
-      <div class="p-6 space-y-4 md:space-y-6 sm:p-16">
-        <h1
-          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
-        >
-          Inscrivez-vous
-        </h1>
-        <form (ngSubmit)="onSubmit()" class="space-y-4 md:space-y-6">
-          <div>
-            <label
-              for="name"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Nom</label
-            >
-            <input
-              type="string"
-              name="name"
-              id="name"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Jean"
-              required=""
-            />
-          </div>
-          <div>
-            <label
-              for="lastname"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Prénom</label
-            >
-            <input
-              type="string"
-              name="lastname"
-              id="lastname"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Sylvain"
-              required=""
-            />
-          </div>
-          <div>
-            <label
-              for="email"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Votre email</label
-            >
-            <input
-              type="email"
-              name="email"
-              id="email"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Entrez ici votre adresse mail"
-              required=""
-            />
-          </div>
-          <div>
-            <label
-              for="password"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Mot de Passe
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="••••••••"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required=""
-            />
-          </div>
-          <div>
-            <label
-              for="confirm-password"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >Confirmez votre mot de Passe</label
-            >
-            <input
-              type="confirm-password"
-              name="confirm-password"
-              id="confirm-password"
-              placeholder="••••••••"
-              class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required=""
-            />
-          </div>
-          <div class="flex items-start">
-            <div class="flex items-center h-5">
-              <input
-                id="terms"
-                aria-describedby="terms"
-                type="checkbox"
-                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                required=""
-              />
-            </div>
-            <div class="ml-3 text-sm">
-              <label
-                for="terms"
-                class="font-light text-gray-500 dark:text-gray-300"
-                >J’accepte
-                <a
-                  class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                  href="#"
-                  >les conditions d’utilisation</a
-                ></label
-              >
-            </div>
-          </div>
-          <div class="flex items-start">
-            <div class="flex items-center h-5">
-              <input
-                id="newsletter"
-                aria-describedby="newsletter"
-                type="checkbox"
-                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                required=""
-              />
-            </div>
-            <div class="ml-3 text-sm">
-              <label
-                for="newsletter"
-                class="font-light text-gray-500 dark:text-gray-300"
-                >M’inscris à la newsletter Métalfactory</label
-              >
-            </div>
-          </div>
-          <button
-            type="submit"
-            class="btn-inscription w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-          >
-            S’inscrire
-          </button>
-          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-            Already have an account?
-            <a
-              href="#"
-              class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-              >Login here</a
-            >
-          </p>
-        </form>
+    <div class="container_form_lastName">
+      <label for="lastName">Nom : </label>
+      <input
+        id="lastName"
+        formControlName="lastName"
+        placeholder="Montgomery"
+      />
+      <div
+        class="form_error"
+        *ngIf="
+          registerForm.get('lastName')?.invalid &&
+          registerForm.get('lastName')?.touched
+        "
+      >
+        <div *ngIf="registerForm.get('lastName')?.errors?.['required']">
+          Le nom de famille est requis.
+        </div>
+        <div *ngIf="registerForm.get('lastName')?.errors?.['minlength']">
+          Le nom de famille doit comporter au moins 2 caractères.
+        </div>
       </div>
     </div>
-  </div>
+    <div class="container_form_firstName">
+      <label for="firstName">Prénom :</label>
+      <input id="firstName" formControlName="firstName" placeholder="Palmer" />
+      <div
+        class="form_error"
+        *ngIf="
+          registerForm.get('firstName')?.invalid &&
+          registerForm.get('firstName')?.touched
+        "
+      >
+        <div *ngIf="registerForm.get('firstName')?.errors?.['required']">
+          Le prénom est requis.
+        </div>
+        <div *ngIf="registerForm.get('firstName')?.errors?.['minlength']">
+          le prénom doit comporter au moins 2 caractères.
+        </div>
+      </div>
+    </div>
+
+    <div class="container_form_email">
+      <label for="email">Email :</label>
+      <input id="email" formControlName="email" placeholder="huco@gmail.com" />
+      <div
+        class="form_error"
+        *ngIf="
+          registerForm.get('email')?.invalid &&
+          registerForm.get('email')?.touched
+        "
+      >
+        <div *ngIf="registerForm.get('email')?.errors?.['required']">
+          L'email est requis.
+        </div>
+        <div *ngIf="registerForm.get('email')?.errors?.['email']">
+          L'email est invalide.
+        </div>
+      </div>
+    </div>
+    <div class="container_form_password">
+      <label for="password">Mot de passe :</label>
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        placeholder="************"
+      />
+      <div
+        class="form_error"
+        *ngIf="
+          registerForm.get('password')?.invalid &&
+          registerForm.get('password')?.touched
+        "
+      >
+        <div *ngIf="registerForm.get('password')?.errors?.['required']">
+          Le mot de passe est requis.
+        </div>
+        <div *ngIf="registerForm.get('password')?.errors?.['minlength']">
+          Le mot de passe doit comporter au moins 12 caractères.
+        </div>
+      </div>
+    </div>
+    <div class="container_form_companyName">
+      <label for="companyName">Nom de l'entreprise :</label>
+      <input
+        id="companyName"
+        formControlName="companyName"
+        placeholder="TerraForma"
+      />
+      <div
+        class="form_error"
+        *ngIf="
+          registerForm.get('companyName')?.invalid &&
+          registerForm.get('companyName')?.touched
+        "
+      >
+        <div *ngIf="registerForm.get('companyName')?.errors?.['required']">
+          Nom de l'entreprise est requis.
+        </div>
+      </div>
+    </div>
+    <div class="container_form_phone">
+      <label for="phone">Téléphone :</label>
+      <input
+        id="phone"
+        formControlName="phone"
+        placeholder="+1 (779) 159-6214"
+      />
+      <div
+        class="form_error"
+        *ngIf="
+          registerForm.get('phone')?.invalid &&
+          registerForm.get('phone')?.touched
+        "
+      >
+        <div *ngIf="registerForm.get('phone')?.errors?.['required']">
+          Le numéro de téléphone est requis.
+        </div>
+        <div *ngIf="registerForm.get('phone')?.errors?.['pattern']">
+          le numéro de téléphone est invalide.
+        </div>
+      </div>
+    </div>
+
+    <!--Formulaire de l'address -->
+    <div class="container_form_address" formGroupName="address">
+      <div class="container_form_address_street">
+        <label for="street">Rue :</label>
+        <input
+          id="street"
+          formControlName="street"
+          placeholder="39 rue Elise Union"
+        />
+        <div
+          class="form_error"
+          *ngIf="
+            registerForm.get('address.street')?.invalid &&
+            registerForm.get('address.street')?.touched
+          "
+        >
+          <div *ngIf="registerForm.get('address.street')?.errors?.['required']">
+            La rue est requise.
+          </div>
+        </div>
+      </div>
+      <div class="container_form_address_postalCode">
+        <label for="postalCode">Code Postal :</label>
+        <input
+          id="postalCode"
+          formControlName="postalCode"
+          placeholder="93430"
+        />
+        <div
+          class="form_error"
+          *ngIf="
+            registerForm.get('address.postalCode')?.invalid &&
+            registerForm.get('address.postalCode')?.touched
+          "
+        >
+          <div
+            *ngIf="registerForm.get('address.postalCode')?.errors?.['required']"
+          >
+            Le code postal est requis.
+          </div>
+        </div>
+      </div>
+      <div class="container_form_address_city">
+        <label for="city">Ville :</label>
+        <input id="city" formControlName="city" placeholder="Villetaneuse" />
+        <div
+          class="form_error"
+          *ngIf="
+            registerForm.get('address.city')?.invalid &&
+            registerForm.get('address.city')?.touched
+          "
+        >
+          <div *ngIf="registerForm.get('address.city')?.errors?.['required']">
+            La ville est requise.
+          </div>
+        </div>
+      </div>
+      <div class="container_form_address_conutry">
+        <label for="country">Pays</label>
+        <input id="country" formControlName="country" placeholder="Paraguay" />
+        <div
+          class="form_error"
+          *ngIf="
+            registerForm.get('address.country')?.invalid &&
+            registerForm.get('address.country')?.touched
+          "
+        >
+          <div
+            *ngIf="registerForm.get('address.country')?.errors?.['required']"
+          >
+            Le pays est requis.
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn-inscription" type="submit">S’inscrire</button>
+    <div *ngIf="errorMessage" class="form_error">
+      {{ errorMessage }}
+    </div>
+  </form>
 </section>
