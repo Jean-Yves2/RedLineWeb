@@ -205,7 +205,9 @@
         </div>
       </div>
     </div>
-    <button class="btn-inscription" type="submit">S’inscrire</button>
+    <button class="btn-inscription" type="submit" [disabled]="loading">
+      S’inscrire
+    </button>
     <div *ngIf="errorMessage" class="form_error">
       {{ errorMessage }}
     </div>

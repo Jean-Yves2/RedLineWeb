@@ -10,22 +10,23 @@ import { Router } from '@angular/router';
 })
 export class InscriptionComponent implements OnInit {
   registerForm!: FormGroup;
+  loading = false;
   errorMessage: string | null = null;
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.registerForm = this.fb.group({
+    this.registerForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(12)]],
       companyName: ['', [Validators.required]],
-      address: this.fb.group({
+      address: this.formBuilder.group({
         street: ['', [Validators.required]],
         postalCode: ['', [Validators.required]],
         city: ['', [Validators.required]],
