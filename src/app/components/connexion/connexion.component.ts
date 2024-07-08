@@ -50,7 +50,7 @@ export class ConnexionComponent {
         next: () => {
           this.router.navigate(['/']);
         },
-        error: (error) => {
+        error: () => {
           this.errorMessage = 'Email ou mot de passe incorrect.';
           this.loading = false;
         },
