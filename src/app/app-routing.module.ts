@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'matiere', component: MatiereComponent },
   { path: 'offres', component: OffresComponent },
   { path: 'piece-configuration', component: PieceConfigurationComponent },
-  { path: 'forme-matiere', component: FormeMatiereComponent },
+  { path: 'matiere/:category', component: FormeMatiereComponent },
 ];
 
 @NgModule({

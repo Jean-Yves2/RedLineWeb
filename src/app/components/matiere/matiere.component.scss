@@ -31,6 +31,12 @@
       align-items: center;
       justify-content: center;
     }
+
+    &_inox {
+      &_link{
+        border: 1px solid #000;
+      }
+    }
   }
 }
 

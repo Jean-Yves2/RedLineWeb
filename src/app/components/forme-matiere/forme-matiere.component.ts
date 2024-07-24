@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Produit } from '../forme-matiere/interface/produit.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-forme-matiere',
   templateUrl: './forme-matiere.component.html',
   styleUrls: ['./forme-matiere.component.scss'],
 })
-export class FormeMatiereComponent {
-  selectedCategory: string = 'inox';
+export class FormeMatiereComponent implements OnInit {
+  selectedCategory: string = '';
 
   produits: { [key: string]: Produit[] } = {
     aluminium: [
@@ -160,7 +161,13 @@ export class FormeMatiereComponent {
       },
     ],
   };
+  constructor(private route: ActivatedRoute) {}
 
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.selectedCategory = params.get('category') || 'aluminium';
+    });
+  }
   showCategory(category: string): void {
     this.selectedCategory = category;
   }
