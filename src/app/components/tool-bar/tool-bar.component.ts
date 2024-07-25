@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
-import Cookies from 'js-cookie';
 
 @Component({
   selector: 'app-tool-bar',
@@ -9,10 +8,16 @@ import Cookies from 'js-cookie';
   styleUrls: ['./tool-bar.component.scss'],
 })
 export class ToolBarComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+  currentUser: any;
+
+  constructor(private authService: AuthService, private router: Router) {
+    this.authService.currentUser.subscribe((user) => {
+      this.currentUser = user;
+    });
+  }
 
   isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
+    return !!this.currentUser;
   }
 
   logout() {
