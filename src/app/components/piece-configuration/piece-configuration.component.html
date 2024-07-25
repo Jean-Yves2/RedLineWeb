@@ -4,14 +4,16 @@
 
   <section class="page-content_configuration">
     <div class="page-content_configuration_card">
-      <img
-        class="page-content_configuration_card_img"
-        src="assets/images/piece-configuration/decoupe.png"
-        alt="configuration de découpe"
-      />
-      <button class="page-content_configuration_card_btn">
-        NOS CONFIGURATIONS
-      </button>
+      <a [routerLink]="['/matiere', 'aluminium']"
+        ><img
+          class="page-content_configuration_card_img"
+          src="assets/images/piece-configuration/decoupe.png"
+          alt="configuration de découpe"
+        />
+        <button class="page-content_configuration_card_btn">
+          NOS CONFIGURATIONS
+        </button></a
+      >
     </div>
 
     <div class="page-content_configuration_card">
