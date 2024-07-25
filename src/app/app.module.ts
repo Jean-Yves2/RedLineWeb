@@ -18,6 +18,7 @@ import { OffresComponent } from './components/offres/offres.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { PieceConfigurationComponent } from './components/piece-configuration/piece-configuration.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormeMatiereComponent } from './components/forme-matiere/forme-matiere.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     OffresComponent,
     AccueilComponent,
     PieceConfigurationComponent,
+    FormeMatiereComponent,
   ],
   imports: [
     BrowserModule,

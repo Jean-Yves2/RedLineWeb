@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import Cookies from 'js-cookie';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -35,11 +36,17 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post<any>(
-      `${this.apiUrl}/auth/login`,
-      { email, password },
-      { withCredentials: true }
-    );
+    return this.http
+      .post<any>(
+        `${this.apiUrl}/auth/login`,
+        { email, password },
+        { withCredentials: true }
+      )
+      .pipe(
+        tap((response) => {
+          this.currentUserSubject.next(response.user);
+        })
+      );
   }
 
   setSession(authResult: any) {
@@ -47,6 +54,8 @@ export class AuthService {
   }
 
   logout(): void {
+    this.currentUserSubject.next(null);
+
     this.http
       .post(`${this.apiUrl}/auth/logout`, {}, { withCredentials: true })
       .subscribe({
