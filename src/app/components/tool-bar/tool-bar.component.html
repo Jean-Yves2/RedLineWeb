@@ -76,6 +76,7 @@
                 >A Propos</a
               >
               <a
+                *ngIf="isLoggedIn()"
                 routerLink="/connexion"
                 class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                 >Connexion</a
@@ -86,6 +87,7 @@
                 >Inscrivez-vous</a
               >
               <button
+                *ngIf="!isLoggedIn()"
                 (click)="logout()"
                 class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
               >
@@ -119,7 +121,6 @@
             </svg>
           </button>
 
-          <!-- Profile dropdown -->
           <div class="relative ml-3">
             <div>
               <button
@@ -138,17 +139,7 @@
                 />
               </button>
             </div>
-
-            <!--
-            Dropdown menu, show/hide based on menu state.
-
-            Entering: "transition ease-out duration-100"
-              From: "transform opacity-0 scale-95"
-              To: "transform opacity-100 scale-100"
-            Leaving: "transition ease-in duration-75"
-              From: "transform opacity-100 scale-100"
-              To: "transform opacity-0 scale-95"
-          --></div>
+          </div>
         </div>
       </div>
     </div>
