@@ -19,6 +19,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 import { PieceConfigurationComponent } from './components/piece-configuration/piece-configuration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormeMatiereComponent } from './components/forme-matiere/forme-matiere.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FormeMatiereComponent } from './components/forme-matiere/forme-matiere.
     AccueilComponent,
     PieceConfigurationComponent,
     FormeMatiereComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
