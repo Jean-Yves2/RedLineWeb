@@ -1,1 +1,81 @@
-<p>product works!</p>
+<div class="container">
+  <div class="container-title">
+    <p class="container-title_p">FER EN T INOX 304L</p>
+  </div>
+  <div class="container-card">
+    <section class="container-card_selector">
+      <div class="container-card_selector_image">
+        <section class="container-card_selector_image_visuel">
+          <img
+            class="container-card_selector_image_visuel_schema"
+            src="assets/images/matiere/inox/corniere_egale/cornieres_egales.gif"
+            alt="Product Image"
+          />
+          <img
+            class="container-card_selector_image_visuel_illustration"
+            src="assets/images/matiere/inox/corniere_egale/cornieres_egales_img.gif"
+            alt="Product Image"
+          />
+        </section>
+        <section class="container-card_selector_image_data">
+          <div class="container-card_selector_image_data_with">
+            <p>Longueur de votre Fer en T INOX 304l en cm :</p>
+            <input
+              id="longueur"
+              type="number"
+              [(ngModel)]="longueur"
+              min="1"
+              (ngModelChange)="calcule()"
+              class="container-card_selector_image_data_with_input"
+            />
+          </div>
+          <div class="container-card_selector_image_data_quantity">
+            <p>Quantité</p>
+            <input
+              id="quantite"
+              type="number"
+              [(ngModel)]="quantite"
+              min="1"
+              (ngModelChange)="calcule()"
+              class="container-card_selector_image_data_quantity_input"
+            />
+          </div>
+          <div class="container-card_selector_image_data_total">
+            <p>PRIX* TTC DE 1 FER(S) PLAT(S) DE 1 CM :</p>
+            <span> {{ resultat }} €</span>
+          </div>
+        </section>
+      </div>
+      <div class="container-card_selector_tab">
+        <table class="container-card_selector_tab_data">
+          <thead>
+            <tr>
+              <th>Choix</th>
+              <th>A<br />Épaisseur</th>
+              <th>B<br />Hauteur</th>
+              <th>C<br />Largeur</th>
+              <th>Masse<br />(Kg/m)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ligne of lignes; let i = index">
+              <td>
+                <input
+                  type="radio"
+                  name="selection"
+                  [value]="i"
+                  (click)="setupdateSelection(ligne)"
+                />
+              </td>
+              <td>{{ ligne.epaisseur }}</td>
+              <td>{{ ligne.hauteur }}</td>
+              <td>{{ ligne.largeur }}</td>
+              <td>{{ ligne.masse }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <button class="container-card_button">AJOUTER AU PANIER</button>
+  </div>
+</div>

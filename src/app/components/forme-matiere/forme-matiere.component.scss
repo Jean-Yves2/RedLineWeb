@@ -42,23 +42,27 @@
     border: 1px solid $background-color;
 
     .product-item{
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      border: 1px solid #F88A0A;
-      border-radius: 5px;
-      width: 98%;
-      margin: 5px;
-      padding: 5px;
-      justify-content: space-between;
+      width: 100%;
 
-      .product-description{
+      a{
         display: flex;
-        column-gap: 50%;
-        width: 68%;
+        flex-direction: row;
+        align-items: center;
+        border: 1px solid #F88A0A;
+        border-radius: 5px;
+        width: 98%;
+        margin: 5px;
+        padding: 5px;
+        justify-content: space-between;
+
+        .product-description{
+          display: flex;
+          column-gap: 50%;
+          width: 68%;
+        }
+
+
       }
-
-
     }
     img{
       border: 1px solid black;

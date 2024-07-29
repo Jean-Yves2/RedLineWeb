@@ -8,6 +8,7 @@ import { OffresComponent } from './components/offres/offres.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { PieceConfigurationComponent } from './components/piece-configuration/piece-configuration.component';
 import { FormeMatiereComponent } from './components/forme-matiere/forme-matiere.component';
+import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'offres', component: OffresComponent },
   { path: 'piece-configuration', component: PieceConfigurationComponent },
   { path: 'matiere/:category', component: FormeMatiereComponent },
+  { path: 'product/:id', component: ProductComponent },
 ];
 
 @NgModule({
