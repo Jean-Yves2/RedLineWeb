@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -7,12 +7,20 @@ import { Router } from '@angular/router';
   templateUrl: './tool-bar.component.html',
   styleUrls: ['./tool-bar.component.scss'],
 })
-export class ToolBarComponent {
+export class ToolBarComponent implements OnInit {
+  isCommercialUser: boolean = false;
   currentUser: any;
 
   constructor(private authService: AuthService, private router: Router) {
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
+    });
+  }
+
+  ngOnInit() {
+    this.authService.currentUser.subscribe((user) => {
+      this.currentUser = user;
+      this.isCommercialUser = this.authService.isCommercial();
     });
   }
 

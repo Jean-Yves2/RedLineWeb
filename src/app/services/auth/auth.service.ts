@@ -78,4 +78,9 @@ export class AuthService {
   public getToken(): string | undefined {
     return Cookies.get('access_token');
   }
+
+  public isCommercial(): boolean {
+    const user = this.currentUserSubject.value;
+    return user && user.role === 'INTERNAL_USER';
+  }
 }
