@@ -16,6 +16,10 @@ export class ToolBarComponent {
     });
   }
 
+  isCommercial(): boolean {
+    return this.currentUser?.user.role === 'INTERNAL_USER';
+  }
+
   isLoggedIn(): boolean {
     return !!this.currentUser;
   }

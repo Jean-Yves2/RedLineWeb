@@ -9,6 +9,7 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 import { PieceConfigurationComponent } from './components/piece-configuration/piece-configuration.component';
 import { FormeMatiereComponent } from './components/forme-matiere/forme-matiere.component';
 import { ProductComponent } from './components/product/product.component';
+import { CommercialServiceComponent } from './components/commercial-service/commercial-service.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'piece-configuration', component: PieceConfigurationComponent },
   { path: 'matiere/:category', component: FormeMatiereComponent },
   { path: 'product/:id', component: ProductComponent },
+  { path: 'commercial', component: CommercialServiceComponent },
 ];
 
 @NgModule({

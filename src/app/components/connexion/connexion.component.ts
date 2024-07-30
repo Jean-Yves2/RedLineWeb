@@ -47,8 +47,12 @@ export class ConnexionComponent {
         this.formControls['password'].value
       )
       .subscribe({
-        next: () => {
-          this.router.navigate(['/']);
+        next: (user) => {
+          if (user.user.role == 'INTERNAL_USER') {
+            this.router.navigate(['/commercial']);
+          } else {
+            this.router.navigate(['/']);
+          }
         },
         error: () => {
           this.errorMessage = 'Email ou mot de passe incorrect.';

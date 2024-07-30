@@ -44,6 +44,7 @@ export class AuthService {
       )
       .pipe(
         tap((response) => {
+          localStorage.setItem('currentUser', JSON.stringify(response.user));
           this.currentUserSubject.next(response.user);
         })
       );
@@ -54,7 +55,9 @@ export class AuthService {
   }
 
   logout(): void {
+    localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    Cookies.remove('access_token');
 
     this.http
       .post(`${this.apiUrl}/auth/logout`, {}, { withCredentials: true })
