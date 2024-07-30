@@ -20,6 +20,7 @@ import { PieceConfigurationComponent } from './components/piece-configuration/pi
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormeMatiereComponent } from './components/forme-matiere/forme-matiere.component';
 import { ProductComponent } from './components/product/product.component';
+import { CommercialServiceComponent } from './components/commercial-service/commercial-service.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ProductComponent } from './components/product/product.component';
     PieceConfigurationComponent,
     FormeMatiereComponent,
     ProductComponent,
+    CommercialServiceComponent,
   ],
   imports: [
     BrowserModule,
