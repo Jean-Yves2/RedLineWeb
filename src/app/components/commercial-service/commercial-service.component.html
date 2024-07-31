@@ -11,7 +11,7 @@
     <hr />
     <div class="container-menu-user">
       <div class="container-menu-user_cercle">
-        <span class="container-menu-user_cercle_span">{{ fistLetter }}</span>
+        <span class="container-menu-user_cercle_span">{{ firstLetter }}</span>
       </div>
       <span class="menu-span">{{ currentUserName }} </span>
     </div>
@@ -91,11 +91,38 @@
   </div>
 </section>
 <section class="container-data">
-  <h1>Mes client</h1>
-  <p>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas possimus
-    minima est placeat sint consequuntur mollitia accusamus, qui voluptatum
-    cumque ea quibusdam, delectus unde culpa iste animi ipsum corporis
-    asperiores!
-  </p>
+  <span class="container-data_title">Mes clients</span>
+  <div class="container-data_order"><span> Nom</span> <span>Type</span></div>
+  <div class="container-data_list">
+    <div class="container-data_list_card">
+      <section class="container-data_list_card_left">
+        <div class="container-data_list_card_cercle">
+          <span class="container-data_list_card_cercle_span">{{
+            firstLetter
+          }}</span>
+        </div>
+        <span class="container-data_list_card_name">{{ currentUserName }}</span>
+      </section>
+      <section class="container-data_list_card_right">
+        <button class="container-data_list_card_button">
+          Voir ce dossier client
+        </button>
+        <span class="container-data_list_card_type">Particulier</span>
+      </section>
+    </div>
+    <div class="container-data_list_card">
+      <section class="container-data_list_card_left">
+        <div class="container-data_list_card_cercle">
+          <span class="container-data_list_card_cercle_span">L</span>
+        </div>
+        <span class="container-data_list_card_name">L Im Back</span>
+      </section>
+      <section class="container-data_list_card_right">
+        <button class="container-data_list_card_button">
+          Voir ce dossier client
+        </button>
+        <span class="container-data_list_card_type">Professionnel</span>
+      </section>
+    </div>
+  </div>
 </section>

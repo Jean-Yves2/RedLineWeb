@@ -42,14 +42,6 @@
 
   }
   &-user_cercle{
-    display: flex;
-    border: solid 1px $secondary-color;
-    height: 40px;
-    width: 40px;
-    border-radius: 20px;
-    background-color: white;
-    align-items: center;
-    justify-content: center;
 
     &_span{
       font-family: bevan;
@@ -68,9 +60,12 @@
     padding-bottom: 20px;
     padding-top: 20px;
   }
+  &-clients,&-devis,&-deconnexion,&-reduit,&-profil{
+    background-color: rgb(1 36 81 / 42%);;
+  }
   &-clients:hover ,&-devis:hover ,
   &-deconnexion:hover ,&-reduit:hover ,&-profil:hover {
-    background-color: #f8890a32; //#f8890a1f
+    background-color: #f8890a32;
     cursor: pointer;
   }
 
@@ -85,6 +80,43 @@
   flex: 1;
   height: 100%;
   width: 100%;
+  flex-direction: column;
+  row-gap: 2rem;
+  padding: 2rem;
+
+  &_title{
+    font-family: inter , sans-serif;
+    font-size: 2rem;
+
+    font-weight: bold;
+  }
+  &_order{
+    display: flex;
+    flex-direction: row;
+
+  }
+  &_list{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    width: 100%;
+    border: solid 1px $background-color;
+    padding: 1rem;
+
+    &_card{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &_cercle{
+
+        margin-right: 8%;
+        margin-left: 2%;
+      }
+    }
+
+  }
+
 }
 
 .icon{
@@ -113,3 +145,53 @@
 
 }
 
+.container-menu-user_cercle ,.container-data_list_card_cercle {
+  display: flex;
+  border: solid 1px $secondary-color;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+}
+.container-data_list_card_cercle_span{
+  font-family: bevan;
+  font-size: 2rem;
+  font-weight: bold;
+  color: $secondary-color;
+}
+.container-data_list_card_name{
+  font-family: inter , sans-serif;
+  font-size: 1.5rem;
+}
+
+.container-data_list_card_button{
+  font-family: inter , sans-serif;
+  font-weight: bold;
+  background-color: $background-color;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 5px;
+  margin-right: 35%;
+}
+
+.container-data_list_card_type{
+  font-family: inter , sans-serif;
+  font-weight: bold;
+  padding-right: 1rem;
+}
+.container-data_list_card_right , .container-data_list_card_left{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+.container-data_list_card_right{
+  width: 55%;}
+
+.container-data_list_card_left{
+  justify-content: flex-start;
+  width: 40%;
+}

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class CommercialServiceComponent {
   currentUser: any;
   currentUserName: string | undefined;
-  fistLetter: string | undefined;
+  firstLetter: string | undefined;
   isRotated = false;
 
   constructor(private authService: AuthService, private router: Router) {
@@ -28,7 +28,7 @@ export class CommercialServiceComponent {
 
   getFirstLetter() {
     if (this.currentUserName) {
-      this.fistLetter = this.currentUserName.charAt(0);
+      this.firstLetter = this.currentUserName.charAt(0);
     }
   }
 
