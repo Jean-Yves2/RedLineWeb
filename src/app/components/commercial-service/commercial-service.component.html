@@ -92,36 +92,22 @@
 </section>
 <section class="container-data">
   <span class="container-data_title">Mes clients</span>
-  <div class="container-data_order"><span> Nom</span> <span>Type</span></div>
+  <div class="container-data_order"><span> Nom </span> <span>Type</span></div>
   <div class="container-data_list">
-    <div class="container-data_list_card">
+    <div *ngFor="let user of users" class="container-data_list_card">
       <section class="container-data_list_card_left">
         <div class="container-data_list_card_cercle">
           <span class="container-data_list_card_cercle_span">{{
-            firstLetter
+            user.firstName.charAt(0).toUpperCase()
           }}</span>
         </div>
-        <span class="container-data_list_card_name">{{ currentUserName }}</span>
+        <span class="container-data_list_card_name">{{ user.firstName }}</span>
       </section>
       <section class="container-data_list_card_right">
         <button class="container-data_list_card_button">
           Voir ce dossier client
         </button>
-        <span class="container-data_list_card_type">Particulier</span>
-      </section>
-    </div>
-    <div class="container-data_list_card">
-      <section class="container-data_list_card_left">
-        <div class="container-data_list_card_cercle">
-          <span class="container-data_list_card_cercle_span">L</span>
-        </div>
-        <span class="container-data_list_card_name">L Im Back</span>
-      </section>
-      <section class="container-data_list_card_right">
-        <button class="container-data_list_card_button">
-          Voir ce dossier client
-        </button>
-        <span class="container-data_list_card_type">Professionnel</span>
+        <span class="container-data_list_card_type">{{ user.userType }}</span>
       </section>
     </div>
   </div>
