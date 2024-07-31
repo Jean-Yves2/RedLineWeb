@@ -92,9 +92,14 @@
 </section>
 <section class="container-data">
   <span class="container-data_title">Mes clients</span>
-  <div class="container-data_order"><span> Nom </span> <span>Type</span></div>
+  <div class="container-data_order">
+    <button (click)="toggleSortDirection()">
+      Trier par nom ({{ sortDirection === "asc" ? "A-Z" : "Z-A" }})
+    </button>
+    <span>Type</span>
+  </div>
   <div class="container-data_list">
-    <div *ngFor="let user of users" class="container-data_list_card">
+    <div *ngFor="let user of paginatedUsers" class="container-data_list_card">
       <section class="container-data_list_card_left">
         <div class="container-data_list_card_cercle">
           <span class="container-data_list_card_cercle_span">{{
@@ -110,5 +115,17 @@
         <span class="container-data_list_card_type">{{ user.userType }}</span>
       </section>
     </div>
+  </div>
+  <div class="pagination-controls">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+      Précédent
+    </button>
+    <span>Page {{ currentPage }} sur {{ totalPages }}</span>
+    <button
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      Suivant
+    </button>
   </div>
 </section>
