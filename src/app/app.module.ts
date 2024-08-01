@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormeMatiereComponent } from './components/forme-matiere/forme-matiere.component';
 import { ProductComponent } from './components/product/product.component';
 import { CommercialServiceComponent } from './components/commercial-service/commercial-service.component';
+import { ApprovisionnementComponent } from './components/approvisionnement/approvisionnement.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { CommercialServiceComponent } from './components/commercial-service/comm
     FormeMatiereComponent,
     ProductComponent,
     CommercialServiceComponent,
+    ApprovisionnementComponent,
   ],
   imports: [
     BrowserModule,
