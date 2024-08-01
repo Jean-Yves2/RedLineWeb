@@ -113,3 +113,106 @@
 .buttonToActivePage{
   width: 100%;
 }
+
+
+/**
+  * * Container Fournisseur
+*/
+
+
+.container-fournisseur{
+
+  display : flex;
+  flex-direction: column;
+  width: 87%;
+  padding: 2rem;
+
+  &_allbutton{
+    display: flex;
+    color: $secondary-color;
+    font-family: bevan;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    &_one{
+      padding: 1rem;
+      border: solid 1px $background-color;
+      margin-right: 1rem;
+    }
+
+  }
+  &_section{
+    display: flex;
+    border: solid 1px $background-color;
+    flex-direction: column;
+    &_add{
+      background-color: $primary-color;
+      color: white;
+      margin: 1rem;
+      width: 200px;
+      padding: 0.80rem;
+      border-radius: 10px;
+      font-family: inter, "sans-serif";
+      font-weight: bold;
+    }
+    &_card{
+
+      margin-right: 20px;
+
+      &_data{
+        display: flex;
+        border: solid 1px $secondary-color;
+        height: 40px;
+        width: 40px;
+        border-radius: 20px;
+        background-color: rgb(0, 0, 0);
+        align-items: center;
+        justify-content: center;
+
+        &_letter{
+          font-family: bevan;
+          font-size: 2rem;
+          font-weight: bold;
+          color: $secondary-color;
+        }
+      }
+      &_span{
+        font-family: inter, "sans-serif";
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: $primary-color;
+      }
+    }
+
+
+  }
+
+
+}
+
+.container-fourniddeur_name{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.fournisseur_card{
+  display: flex;
+  flex-direction: column;
+  border: solid 1px black;
+  background-color: rgb(230, 230, 230);
+  border-radius: 10px;
+  gap: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+}
+.fournisseur_info{
+  font-family: inter, "sans-serif";
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.regulator{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+}

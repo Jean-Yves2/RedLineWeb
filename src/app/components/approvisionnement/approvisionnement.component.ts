@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user-service.service';
@@ -8,7 +8,7 @@ import { UserService } from '../../services/user/user-service.service';
   templateUrl: './approvisionnement.component.html',
   styleUrls: ['./approvisionnement.component.scss'],
 })
-export class ApprovisionnementComponent {
+export class ApprovisionnementComponent implements OnInit {
   activContainer: string | null = null;
   isRotated = false;
   currentUser: any;
@@ -25,6 +25,10 @@ export class ApprovisionnementComponent {
       this.currentUserName = user.firstName;
       this.getFirstLetter();
     });
+  }
+
+  ngOnInit() {
+    this.showActiveContainer('Fournisseurs');
   }
 
   showActiveContainer(container: string) {
