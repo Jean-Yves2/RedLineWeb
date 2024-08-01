@@ -1,1 +1,105 @@
-<p>approvisionnement works!</p>
+<section class="container-menu">
+  <div class="container-menu_top">
+    <div class="container-menu-title">
+      <img
+        class="container-menu-title_logo"
+        src="../../../favicon.ico"
+        alt="logo"
+      />
+      <span class="container-menu-title_name">METALFACTORY</span>
+    </div>
+    <hr />
+    <div class="container-menu-user">
+      <div class="container-menu-user_cercle">
+        <span class="container-menu-user_cercle_span">{{ firstLetter }}</span>
+      </div>
+      <span class="menu-span">{{ currentUserName }} </span>
+    </div>
+    <hr />
+    <button (click)="showActiveContainer('Clients')" class="buttonToActivePage">
+      <div class="container-menu-clients" (click)="rotateElement()">
+        <img
+          class="icon"
+          src="assets/images/approvisionnement/fournisseur.png"
+          alt="logo Fournisseur"
+        />
+        <span class="menu-span">Fournisseurs</span>
+        <img
+          [ngClass]="{ 'rotate-90': isRotated }"
+          class="icon_direction"
+          src="assets/images/commercial/angle-droit.png"
+          alt="logo angle-droit"
+        />
+      </div>
+    </button>
+
+    <hr />
+    <button (click)="showActiveContainer('Devis')" class="buttonToActivePage">
+      <div class="container-menu-devis">
+        <img
+          class="icon"
+          src="assets/images/approvisionnement/produit.png"
+          alt="icon Stock"
+        />
+        <span class="menu-span">Stocks</span>
+        <img
+          class="icon_direction"
+          src="assets/images/commercial/angle-droit.png"
+          alt="logo angle-droit"
+        />
+      </div>
+    </button>
+
+    <hr />
+  </div>
+  <div class="container-menu_bottom">
+    <hr />
+    <div class="container-menu-deconnexion">
+      <img
+        class="icon , icon-deconnexion"
+        src="assets/images/commercial/deconnecter.png"
+        alt="icon deconnexion"
+      />
+      <button class="menu-span" (click)="logout()">Déconnexion</button>
+      <img
+        class="icon_direction"
+        src="assets/images/commercial/angle-droit.png"
+        alt="logo angle-droit"
+      />
+    </div>
+    <hr />
+    <button (click)="showActiveContainer('Profil')" class="buttonToActivePage">
+      <div class="container-menu-profil">
+        <img
+          class="icon"
+          src="assets/images/commercial/parametre.png"
+          alt="icon parametre"
+        />
+        <span class="menu-span">Mon Profil</span>
+        <img
+          class="icon_direction"
+          src="assets/images/commercial/angle-droit.png"
+          alt="logo angle-droit"
+        />
+      </div>
+    </button>
+
+    <hr />
+    <div class="container-menu-reduit">
+      <div class="container-menu-reduit_cercle">
+        <img
+          class="icon"
+          src="assets/images/commercial/fleches-gauche.png"
+          alt="icon devis"
+        />
+      </div>
+
+      <span class="menu-span">Réduit le Menu</span>
+      <img
+        class="icon_direction"
+        src="assets/images/commercial/angle-droit.png"
+        alt="logo angle-droit"
+      />
+    </div>
+  </div>
+</section>

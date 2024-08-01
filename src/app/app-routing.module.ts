@@ -10,6 +10,7 @@ import { PieceConfigurationComponent } from './components/piece-configuration/pi
 import { FormeMatiereComponent } from './components/forme-matiere/forme-matiere.component';
 import { ProductComponent } from './components/product/product.component';
 import { CommercialServiceComponent } from './components/commercial-service/commercial-service.component';
+import { ApprovisionnementComponent } from './components/approvisionnement/approvisionnement.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'matiere/:category', component: FormeMatiereComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'commercial', component: CommercialServiceComponent },
+  { path: 'approvisionnement', component: ApprovisionnementComponent },
 ];
 
 @NgModule({
