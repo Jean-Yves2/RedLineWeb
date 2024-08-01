@@ -21,6 +21,7 @@ export class CommercialServiceComponent implements OnInit {
   pageSize = 11;
   sortDirection: 'asc' | 'desc' = 'asc';
   searchTerm: string = '';
+  activContainer: string | null = null;
 
   constructor(
     private authService: AuthService,
@@ -36,6 +37,7 @@ export class CommercialServiceComponent implements OnInit {
 
   ngOnInit() {
     this.fetchUsers();
+    this.showActiveContainer('Clients');
   }
 
   fetchUsers() {
@@ -112,5 +114,9 @@ export class CommercialServiceComponent implements OnInit {
 
   goToPage(page: number) {
     this.setPage(page);
+  }
+
+  showActiveContainer(container: string) {
+    this.activContainer = container;
   }
 }
