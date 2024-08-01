@@ -14,11 +14,13 @@ export class CommercialServiceComponent implements OnInit {
   firstLetter: string | undefined;
   isRotated = false;
   users: any[] = [];
+  filteredUsers: any[] = [];
   paginatedUsers: any[] = [];
   currentPage = 1;
   totalPages = 1;
-  pageSize = 12;
+  pageSize = 11;
   sortDirection: 'asc' | 'desc' = 'asc';
+  searchTerm: string = '';
 
   constructor(
     private authService: AuthService,
@@ -40,9 +42,9 @@ export class CommercialServiceComponent implements OnInit {
     this.userService.getUsers().subscribe(
       (data) => {
         this.users = data;
-        this.totalPages = Math.ceil(this.users.length / this.pageSize);
+        this.filteredUsers = this.users;
+        this.totalPages = Math.ceil(this.filteredUsers.length / this.pageSize);
         this.setPage(this.currentPage);
-        console.log(this.users);
       },
       (error) => {
         console.error('Erreur lors de la récupération des utilisateurs', error);
@@ -66,7 +68,7 @@ export class CommercialServiceComponent implements OnInit {
   }
 
   sortUsers() {
-    this.users.sort((a, b) => {
+    this.filteredUsers.sort((a, b) => {
       const nameA = a.firstName.toLowerCase();
       const nameB = b.firstName.toLowerCase();
       if (nameA < nameB) {
@@ -80,6 +82,16 @@ export class CommercialServiceComponent implements OnInit {
     this.setPage(this.currentPage);
   }
 
+  filterUsers() {
+    this.filteredUsers = this.users.filter((user) =>
+      `${user.firstName} ${user.lastName}`
+        .toLowerCase()
+        .includes(this.searchTerm.toLowerCase())
+    );
+    this.totalPages = Math.ceil(this.filteredUsers.length / this.pageSize);
+    this.setPage(1);
+  }
+
   toggleSortDirection() {
     this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     this.sortUsers();
@@ -91,8 +103,11 @@ export class CommercialServiceComponent implements OnInit {
     }
     this.currentPage = page;
     const startIndex = (page - 1) * this.pageSize;
-    const endIndex = Math.min(startIndex + this.pageSize, this.users.length);
-    this.paginatedUsers = this.users.slice(startIndex, endIndex);
+    const endIndex = Math.min(
+      startIndex + this.pageSize,
+      this.filteredUsers.length
+    );
+    this.paginatedUsers = this.filteredUsers.slice(startIndex, endIndex);
   }
 
   goToPage(page: number) {

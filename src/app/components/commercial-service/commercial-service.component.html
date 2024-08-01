@@ -93,20 +93,28 @@
 <section class="container-data">
   <span class="container-data_title">Mes clients</span>
   <div class="container-data_order">
-    <button (click)="toggleSortDirection()">
+    <button class="container-data_order_sort" (click)="toggleSortDirection()">
       Trier par nom ({{ sortDirection === "asc" ? "A-Z" : "Z-A" }})
     </button>
-    <span>Type</span>
+    <input
+      class="container-data_order_search"
+      type="text"
+      placeholder="Rechercher un utilisateur"
+      [(ngModel)]="searchTerm"
+      (input)="filterUsers()"
+    />
   </div>
   <div class="container-data_list">
     <div *ngFor="let user of paginatedUsers" class="container-data_list_card">
       <section class="container-data_list_card_left">
         <div class="container-data_list_card_cercle">
-          <span class="container-data_list_card_cercle_span">{{
-            user.firstName.charAt(0).toUpperCase()
-          }}</span>
+          <span class="container-data_list_card_cercle_span">
+            {{ user.firstName.charAt(0) }}
+          </span>
         </div>
-        <span class="container-data_list_card_name">{{ user.firstName }}</span>
+        <span class="container-data_list_card_name">
+          {{ user.firstName }} {{ user.lastName }}
+        </span>
       </section>
       <section class="container-data_list_card_right">
         <button class="container-data_list_card_button">
@@ -116,12 +124,20 @@
       </section>
     </div>
   </div>
+  <!-- Pagination Controls -->
   <div class="pagination-controls">
-    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+    <button
+      class="pagination-controls_prev"
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
       Précédent
     </button>
-    <span>Page {{ currentPage }} sur {{ totalPages }}</span>
+    <span class="pagination-controls_span"
+      >Page {{ currentPage }} sur {{ totalPages }}</span
+    >
     <button
+      class="pagination-controls_next"
       (click)="goToPage(currentPage + 1)"
       [disabled]="currentPage === totalPages"
     >

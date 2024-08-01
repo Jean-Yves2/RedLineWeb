@@ -93,8 +93,22 @@
   &_order{
     display: flex;
     flex-direction: row;
+    width: 100%;
 
+    &_sort{
+    margin-left: 6%;
+    font-family: inter , sans-serif;
+    font-weight: bold;
+    }
+    &_search{
+
+      margin-left: 10%;
+      border: solid 2px $background-color;
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
   }
+
   &_list{
     display: flex;
     flex-direction: column;
@@ -194,4 +208,25 @@
 .container-data_list_card_left{
   justify-content: flex-start;
   width: 40%;
+}
+
+.pagination-controls{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5%;
+  &_span{
+    font-family: bevan;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $secondary-color;
+  }
+  &_prev,&_next{
+    color:white;
+    border: solid 1px $secondary-color;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: $primary-color;
+  }
+
 }
