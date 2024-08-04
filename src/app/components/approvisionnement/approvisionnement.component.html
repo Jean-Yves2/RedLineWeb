@@ -124,27 +124,55 @@
       Ajouter un Fournisseur
     </button>
     <div class="regulator">
-      <div class="fournisseur_card">
-        <div class="container-fourniddeur_name">
+      <div
+        class="fournisseur_card"
+        *ngFor="let supplier of paginatedActiveSupplier"
+      >
+        <div class="container-fournisseur_name">
           <section class="container-fournisseur_section_card">
             <div class="container-fournisseur_section_card_data">
               <span class="container-fournisseur_section_card_data_letter">{{
-                firstLetter
+                supplier.name.charAt(0)
               }}</span>
             </div>
           </section>
-          <span class="container-fournisseur_section_card_span"
-            >{{ currentUserName }}
-          </span>
+          <span class="container-fournisseur_section_card_span">{{
+            supplier.name
+          }}</span>
         </div>
-        <span class="fournisseur_info">Crée le : 20 avril 2024</span>
-        <span class="fournisseur_info">Email : trichelieu@php.fr</span>
-        <span class="fournisseur_info">N°Siret : 458 251 898 866</span>
-        <span class="fournisseur_info">Phone : +43 62 68 41 88</span>
+        <span class="fournisseur_info"
+          >Crée le : {{ formatDate(supplier.createdAt) }}</span
+        >
+        <span class="fournisseur_info"
+          >Email : {{ supplier.contactEmail }}</span
+        >
+        <span class="fournisseur_info">N°Siret : {{ supplier.SIRET }}</span>
+        <span class="fournisseur_info"
+          >Phone : {{ supplier.contactPhone }}</span
+        >
       </div>
     </div>
   </div>
+  <div class="pagination-controls">
+    <button
+      class="pagination-controls_prev"
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      Précédent
+    </button>
+    <span class="pagination-controls_span"
+      >Page {{ currentPage }} sur {{ totalPages }}</span
+    >
+    <button
+      class="pagination-controls_next"
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      Suivant
+    </button>
+  </div>
 </section>
 <section *ngIf="activContainer === 'Stocks'" class="allSectionContainer">
-  <p>Stocks</p>
+  <span> Nos Entrepôts </span>
 </section>

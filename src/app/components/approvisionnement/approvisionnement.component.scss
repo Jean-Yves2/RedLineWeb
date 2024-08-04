@@ -124,7 +124,7 @@
 
   display : flex;
   flex-direction: column;
-  width: 87%;
+  width: 86%;
   padding: 2rem;
 
   &_allbutton{
@@ -190,10 +190,11 @@
 
 }
 
-.container-fourniddeur_name{
+.container-fournisseur_name{
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
 }
 .fournisseur_card{
   display: flex;
@@ -204,6 +205,8 @@
   gap: 1rem;
   margin: 1rem;
   padding: 1rem;
+  width: 400px;
+  align-items: center;
 }
 .fournisseur_info{
   font-family: inter, "sans-serif";
@@ -215,4 +218,38 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: wrap;
 }
+
+
+/*
+* Pagination
+*/
+.pagination-controls{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5%;
+  margin: 2rem;
+  &_span{
+    font-family: bevan;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $secondary-color;
+  }
+  &_prev,&_next{
+    color:white;
+    border: solid 1px $secondary-color;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: $primary-color;
+  }
+
+}
+
+
+/*
+* * Stocks
+*/
+
+
