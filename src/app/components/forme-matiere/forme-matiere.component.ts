@@ -50,15 +50,6 @@ export class FormeMatiereComponent implements OnInit {
           'assets/images/matiere/aluminium/tube_rectangulaire/tubes_rectangulaires_img-alu.gif',
         details: '• De 25 x 15 à 80 x 50',
       },
-      {
-        id: 'alu6',
-        nom: 'TUBE RECTANGULAIRE ALUMINIUM',
-        schema:
-          'assets/images/matiere/aluminium/tube_rectangulaire/tubes_rectangulaires-alu.gif',
-        image:
-          'assets/images/matiere/aluminium/tube_rectangulaire/tubes_rectangulaires_img-alu.gif',
-        details: '• De 100 x 40 à 200 x 100',
-      },
     ],
     inox: [
       {
@@ -87,13 +78,6 @@ export class FormeMatiereComponent implements OnInit {
         schema: 'assets/images/matiere/inox/tube_rond/tubes_ronds.gif',
         image: 'assets/images/matiere/inox/tube_rond/tubes_ronds_img.gif',
         details: '• 17,2 à 60,3',
-      },
-      {
-        id: 'inox5',
-        nom: 'TUBE ROND INOX 304L',
-        schema: 'assets/images/matiere/inox/tube_rond/tubes_ronds.gif',
-        image: 'assets/images/matiere/inox/tube_rond/tubes_ronds_img.gif',
-        details: '• 76,1 à 406,4',
       },
       {
         id: 'inox6',
