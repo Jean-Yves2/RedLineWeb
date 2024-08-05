@@ -47,12 +47,11 @@ export class ConnexionComponent {
         this.formControls['password'].value
       )
       .subscribe({
-        //Mettre la redirection en fonction du role de l'utilisateurs
-        // Commercial -> /commercial
-        // Approvisionneur -> /approvisionneur
         next: (user) => {
-          if (user.user.role == 'INTERNAL_USER') {
+          if (user.user.role == 'COMMERCIAL') {
             this.router.navigate(['/commercial']);
+          } else if (user.user.role == 'SUPPLY_MANAGER') {
+            this.router.navigate(['/approvisionnement']);
           } else {
             this.router.navigate(['/']);
           }

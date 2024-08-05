@@ -7,13 +7,15 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  isCommercialUser: boolean = false;
+  isInternal: boolean = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.currentUser.subscribe((user) => {
-      this.isCommercialUser = user ? user.role === 'INTERNAL_USER' : false;
+      this.isInternal = user
+        ? user.role === 'SUPPLY_MANAGER' || user.role === 'COMMERCIAL'
+        : false;
     });
   }
 }

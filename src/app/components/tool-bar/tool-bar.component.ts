@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./tool-bar.component.scss'],
 })
 export class ToolBarComponent implements OnInit {
-  isCommercialUser: boolean = false;
+  isInternal: boolean = false;
   currentUser: any;
 
   constructor(private authService: AuthService, private router: Router) {
@@ -20,12 +20,15 @@ export class ToolBarComponent implements OnInit {
   ngOnInit() {
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
-      this.isCommercialUser = this.authService.isCommercial();
+      this.isInternal = this.authService.isInternal();
     });
   }
 
   isCommercial(): boolean {
-    return this.currentUser?.user.role === 'INTERNAL_USER';
+    return (
+      this.currentUser?.user.role === 'COMMERCIAL' ||
+      this.currentUser?.user.role === 'SUPPLY_MANAGER'
+    );
   }
 
   isLoggedIn(): boolean {

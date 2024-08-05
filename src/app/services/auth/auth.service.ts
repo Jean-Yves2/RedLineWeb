@@ -79,8 +79,10 @@ export class AuthService {
     return Cookies.get('access_token');
   }
 
-  public isCommercial(): boolean {
+  public isInternal(): boolean {
     const user = this.currentUserSubject.value;
-    return user && user.role === 'INTERNAL_USER';
+    return (
+      user && (user.role === 'SUPPLY_MANAGER' || user.role === 'COMMERCIAL')
+    );
   }
 }
