@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user-service.service';
 import { FournisseurService } from '../../services/fournisseur/fournisseur.service';
+import { EntrepotService } from '../../services/entrepot/entrepot.service';
 
 @Component({
   selector: 'app-approvisionnement',
@@ -16,20 +17,29 @@ export class ApprovisionnementComponent implements OnInit {
   currentUserName: string | undefined;
   firstLetter: string | undefined;
 
+  /* Suppliers */
+
   allSuppliers: any[] = [];
   activeSuppliers: any[] = [];
   inactiveSuppliers: any[] = [];
+
+  /* Pagination */
 
   paginatedActiveSupplier: any[] = [];
   currentPage = 1;
   totalPages = 1;
   pageSize = 6;
 
+  /* Warehouses */
+
+  allWarehouse: any[] = [];
+
   constructor(
     private authService: AuthService,
     private router: Router,
     private userService: UserService,
-    private fournisseurService: FournisseurService
+    private fournisseurService: FournisseurService,
+    private entrepotService: EntrepotService
   ) {
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
@@ -48,15 +58,13 @@ export class ApprovisionnementComponent implements OnInit {
         this.setPage(this.currentPage);
       })
       .then(() => {
-        console.log('Fournisseurs actifs', this.activeSuppliers);
         return this.getInactiveSuppliers();
-      })
-      .then(() => {
-        console.log('Fournisseurs inactifs', this.inactiveSuppliers);
       })
       .catch((error: any) => {
         console.error('Error fetching suppliers', error);
       });
+
+    this.fetchWarehouses();
   }
 
   fetchSuppliers(): Promise<void> {
@@ -65,9 +73,49 @@ export class ApprovisionnementComponent implements OnInit {
       .toPromise()
       .then((suppliers) => {
         this.allSuppliers = suppliers;
-
-        console.log('Tous les fournisseurs', suppliers);
       });
+  }
+  fetchWarehouses(): Promise<void> {
+    return this.entrepotService
+      .getWarehouse()
+      .toPromise()
+      .then((warehouses) => {
+        return Promise.all(
+          warehouses.map((warehouse: any) =>
+            this.getWarehouseAddress(warehouse.addressId).then((address) => {
+              warehouse.address = address;
+              return warehouse;
+            })
+          )
+        ).then((updatedWarehouses) => {
+          this.allWarehouse = updatedWarehouses;
+        });
+      });
+  }
+
+  getActiveWarehouse(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.entrepotService.getWarehouse().subscribe({
+        next: (warehouses) => {
+          this.allWarehouse = warehouses.filter(
+            (warehouse: { deletedAt: any }) => !warehouse.deletedAt
+          );
+          resolve();
+        },
+        error: (err) => reject(err),
+      });
+    });
+  }
+
+  getWarehouseAddress(id: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.entrepotService.getWarehouseAddress(id).subscribe({
+        next: (address) => {
+          resolve(address);
+        },
+        error: (err) => reject(err),
+      });
+    });
   }
 
   getActiveSuppliers(): Promise<void> {

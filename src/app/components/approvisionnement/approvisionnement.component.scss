@@ -247,6 +247,78 @@
 
 }
 
+/*
+* * Entrepot
+*/
+.section-entrepot{
+
+  display: flex;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  row-gap: 2rem;
+  padding: 2rem;
+}
+.section-entrepot_title{
+  display: flex;
+  font-family: inter, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.container-entrepot{
+
+  display: flex;
+  flex-direction: row;
+  border: solid 1px #D5D8DA;
+  padding: 1rem;
+  column-gap: 2rem;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  row-gap: 2rem;
+}
+
+.container-entrepot_card{
+  display: flex;
+  flex-direction: column;
+  border: solid 1px rgb(255, 255, 255);
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #D9D9D9;
+  row-gap: 1rem;
+}
+.container-entrepot_card_name{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.container-entrepot_card_info{
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  padding-left: 2rem;
+}
+
+
+
+
+.container-entrepot_card_name_span{
+  font-family: inter, sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $secondary-color;
+  padding-left: 2rem;
+}
+
+.container-entrepot_card_info_span{
+  font-family: inter, sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: $primary-color;
+}
 
 /*
 * * Stocks

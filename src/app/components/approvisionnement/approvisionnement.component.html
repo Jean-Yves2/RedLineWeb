@@ -173,6 +173,33 @@
     </button>
   </div>
 </section>
-<section *ngIf="activContainer === 'Stocks'" class="allSectionContainer">
-  <span> Nos Entrepôts </span>
+<section *ngIf="activContainer === 'Stocks'" class="section-entrepot">
+  <span class="section-entrepot_title"> Nos Entrepôts </span>
+  <div class="container-entrepot">
+    <div class="container-entrepot_card" *ngFor="let warehouse of allWarehouse">
+      <div class="container-entrepot_card_name">
+        <img src="assets\images\entrepot\entrepot.png" />
+        <span class="container-entrepot_card_name_span">{{
+          warehouse.name
+        }}</span>
+      </div>
+      <div class="container-entrepot_card_info">
+        <span class="container-entrepot_card_info_span"
+          >Rue : {{ warehouse.address.street }}</span
+        >
+        <span class="container-entrepot_card_info_span"
+          >Code postal : {{ warehouse.address.postalCode }}</span
+        >
+        <span class="container-entrepot_card_info_span"
+          >Ville : {{ warehouse.address.city }}</span
+        >
+        <span class="container-entrepot_card_info_span"
+          >Pays : {{ warehouse.address.country }}</span
+        >
+        <span class="container-entrepot_card_info_span"
+          >Date d'ajout : {{ formatDate(warehouse.createdAt) }}</span
+        >
+      </div>
+    </div>
+  </div>
 </section>
