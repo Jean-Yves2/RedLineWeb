@@ -159,7 +159,8 @@ export class FormeMatiereService {
         nom: 'TUBE RECTANGULAIRE GALVA SENDZINIR NF EN 10305-3 S4',
         schema:
           'assets/images/matiere/galva/tube_rectangulaire/tubes_rectangulaires-galva.gif',
-        image: 'assets/images/matiere/galva/tube_rectangulaires_img-galva.gif',
+        image:
+          'assets/images/matiere/galva/tube_rectangulaire/tubes_rectangulaires_img-galva.gif',
       },
     ],
   };
