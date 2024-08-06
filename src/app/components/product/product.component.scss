@@ -151,3 +151,31 @@
   }
 
 }
+
+//table scroll
+
+.container-card_selector_tab {
+  max-height: 400px;
+  overflow-y: auto;
+  width: 700px;
+}
+
+.container-card_selector_tab_data {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.container-card_selector_tab thead {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+}
+
+.container-card_selector_tab th,
+.container-card_selector_tab td {
+  padding: 8px;
+  text-align: left;
+}
+

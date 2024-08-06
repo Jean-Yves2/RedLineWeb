@@ -1,6 +1,6 @@
 <div class="container">
   <div class="container-title">
-    <p class="container-title_p">FER EN T INOX 304L</p>
+    <p class="container-title_p">{{ titleProduct }}</p>
   </div>
   <div class="container-card">
     <section class="container-card_selector">
@@ -8,18 +8,18 @@
         <section class="container-card_selector_image_visuel">
           <img
             class="container-card_selector_image_visuel_schema"
-            src="assets/images/matiere/inox/corniere_egale/cornieres_egales.gif"
+            [src]="productSchema"
             alt="Product Image"
           />
           <img
             class="container-card_selector_image_visuel_illustration"
-            src="assets/images/matiere/inox/corniere_egale/cornieres_egales_img.gif"
+            [src]="productImage"
             alt="Product Image"
           />
         </section>
         <section class="container-card_selector_image_data">
           <div class="container-card_selector_image_data_with">
-            <p>Longueur de votre Fer en T INOX 304l en cm :</p>
+            <p>Longueur de votre {{ titleProduct }} en cm :</p>
             <input
               id="longueur"
               type="number"
@@ -51,10 +51,26 @@
           <thead>
             <tr>
               <th>Choix</th>
-              <th>A<br />Épaisseur</th>
-              <th>B<br />Hauteur</th>
-              <th>C<br />Largeur</th>
-              <th>Masse<br />(Kg/m)</th>
+              <th
+                *ngIf="infoSupplementaire1"
+                [innerHTML]="titreInfoSupplementaire1"
+              ></th>
+              <th *ngIf="afficherEpaisseur" [innerHTML]="titreEpaisseur"></th>
+              <th
+                *ngIf="infoSupplementaire2"
+                [innerHTML]="titreInfoSupplementaire2"
+              ></th>
+              <th *ngIf="afficherHauteur" [innerHTML]="titreHauteur"></th>
+              <th
+                *ngIf="infoSupplementaire3"
+                [innerHTML]="titreInfoSupplementaire3"
+              ></th>
+              <th *ngIf="afficherLargeur" [innerHTML]="titreLargeur"></th>
+              <th
+                *ngIf="infoSupplementaire4"
+                [innerHTML]="titreInfoSupplementaire4"
+              ></th>
+              <th *ngIf="afficherMasse" [innerHTML]="titreMasse"></th>
             </tr>
           </thead>
           <tbody>
@@ -67,10 +83,22 @@
                   (click)="setupdateSelection(ligne)"
                 />
               </td>
-              <td>{{ ligne.epaisseur }}</td>
-              <td>{{ ligne.hauteur }}</td>
-              <td>{{ ligne.largeur }}</td>
-              <td>{{ ligne.masse }}</td>
+              <td *ngIf="infoSupplementaire1">
+                {{ ligne.additionalData1 }}
+              </td>
+              <td *ngIf="afficherEpaisseur">{{ ligne.epaisseur }}</td>
+              <td *ngIf="infoSupplementaire2">
+                {{ ligne.additionalData2 }}
+              </td>
+              <td *ngIf="afficherHauteur">{{ ligne.hauteur }}</td>
+              <td *ngIf="infoSupplementaire3">
+                {{ ligne.additionalData3 }}
+              </td>
+              <td *ngIf="afficherLargeur">{{ ligne.largeur }}</td>
+              <td *ngIf="infoSupplementaire4">
+                {{ ligne.additionalData4 }}
+              </td>
+              <td *ngIf="afficherMasse">{{ ligne.masse }}</td>
             </tr>
           </tbody>
         </table>

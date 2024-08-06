@@ -7,7 +7,7 @@ export class MatiereDataService {
   constructor() {}
 
   // Aluminium
-  FerEnTALUMINIUM = [
+  fer_t_aluminium = [
     {
       id: 0,
       epaisseur: 2,
@@ -81,7 +81,7 @@ export class MatiereDataService {
       nomProd: 'FER T ( Epaisseur : 8 mm Hauteur : 80 mm Largeur : 80 mm)',
     },
   ];
-  CornièreAailesEgalesALUMINIUM = [
+  corniere_egale_aluminium = [
     {
       id: 0,
       epaisseur: 1.5,
@@ -303,7 +303,7 @@ export class MatiereDataService {
         'Cornière à ailes égales ( Epaisseur : 10 mm Hauteur Ailes : 100 mm)',
     },
   ];
-  ProfileHALUMINIUM = [
+  profile_h_aluminium = [
     {
       id: 0,
       h: 140,
@@ -317,7 +317,7 @@ export class MatiereDataService {
       nom: "Profilé H ( H : 140 mm Epaisseur de la Semelle : 8 mm Epaisseur de l'âme : 8 mm Hauteur de l'âme : 140 mm Largeur de la Semelle : 90 mm)",
     },
   ];
-  ProfileUALUMINIUM = [
+  profile_u_aluminium = [
     {
       choix: 10,
       U: 10,
@@ -559,7 +559,7 @@ export class MatiereDataService {
       nom: "Profilé U ( U : 100 mm Epaisseur de l'âme : 6 mm Hauteur de l'âme : 100 mm Largeur de la Semelle : 50 mm)",
     },
   ];
-  TubeRectangulaireALUMINIUM = [
+  tube_rectangulaire_aluminium = [
     {
       choix: 0,
       hauteur: 25,
@@ -763,7 +763,7 @@ export class MatiereDataService {
   ];
 
   //Inox
-  CornièreAailesEgalesInoxconst = [
+  corniere_egale_inox = [
     {
       choix: 0,
       epaisseur: 3,
@@ -855,7 +855,7 @@ export class MatiereDataService {
       nom: 'Cornière à ailes égales (Epaisseur : 10 mm Hauteur Ailes : 100 mm)',
     },
   ];
-  FerEnTINOXconst = [
+  fer_t_inox = [
     {
       choix: 0,
       epaisseur: 3,
@@ -956,7 +956,7 @@ export class MatiereDataService {
       nom: 'FER T ( Epaisseur : 10 mm Hauteur : 100 mm Largeur : 100 mm)',
     },
   ];
-  Poutrelle_HEA_HEB = [
+  poutrelle_hea_heb_inox = [
     {
       Choix: 0,
       HEB_HEA: 100,
@@ -1079,7 +1079,7 @@ export class MatiereDataService {
     },
   ];
 
-  Tube_rond_INOX_304L = [
+  tube_rond_inox_304l = [
     {
       id: 0,
       diametre_exterieur: 17.2,
@@ -1252,7 +1252,7 @@ export class MatiereDataService {
     },
   ];
 
-  Barre_rond_plein_INOX_304L = [
+  barre_rond_plein_inox_304l = [
     {
       id: 0,
       diametre: 6,
@@ -1589,7 +1589,7 @@ export class MatiereDataService {
     },
   ];
 
-  cornieres_ailes_inegales = [
+  cornieres_ailes_inegales_acier = [
     {
       id: 0,
       hauteur: 30,
