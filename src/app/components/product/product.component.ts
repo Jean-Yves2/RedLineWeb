@@ -3,6 +3,7 @@ import { MatiereDataService } from 'src/app/services/table_data/matiere-data.ser
 import { ActivatedRoute } from '@angular/router';
 import { FormeMatiereService } from '../../services/forme_matiere/forme-matiere.service';
 import { Produit } from '../forme-matiere/interface/produit.model';
+import { FavorieService } from 'src/app/services/favorie/favorie.service';
 
 interface Ligne {
   epaisseur: number;
@@ -26,7 +27,8 @@ export class ProductComponent {
   constructor(
     private matiereDataService: MatiereDataService,
     private activatedRoutes: ActivatedRoute,
-    private formeMatiereService: FormeMatiereService
+    private formeMatiereService: FormeMatiereService,
+    private favorieService: FavorieService
   ) {}
 
   ngOnInit(): void {
@@ -706,5 +708,17 @@ export class ProductComponent {
         this.lignes = [];
         break;
     }
+  }
+
+  // Favorites
+
+  addToFavorites(item: any): void {
+    this.favorieService.addFavorite(item);
+  }
+  removeFromFavorites(item: any): void {
+    this.favorieService.removeFavorite(item);
+  }
+  getFavorites(): any[] {
+    return this.favorieService.getFavorites();
   }
 }
