@@ -23,6 +23,7 @@ import { ProductComponent } from './components/product/product.component';
 import { CommercialServiceComponent } from './components/commercial-service/commercial-service.component';
 import { ApprovisionnementComponent } from './components/approvisionnement/approvisionnement.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
+import { PanierComponent } from './components/panier/panier.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { FavoriteComponent } from './components/favorite/favorite.component';
     CommercialServiceComponent,
     ApprovisionnementComponent,
     FavoriteComponent,
+    PanierComponent,
   ],
   imports: [
     BrowserModule,

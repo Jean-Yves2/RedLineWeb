@@ -12,6 +12,7 @@ import { ProductComponent } from './components/product/product.component';
 import { CommercialServiceComponent } from './components/commercial-service/commercial-service.component';
 import { ApprovisionnementComponent } from './components/approvisionnement/approvisionnement.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
+import { PanierComponent } from './components/panier/panier.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'commercial', component: CommercialServiceComponent },
   { path: 'approvisionnement', component: ApprovisionnementComponent },
   { path: 'favoris', component: FavoriteComponent },
+  { path: 'panier', component: PanierComponent },
 ];
 
 @NgModule({
