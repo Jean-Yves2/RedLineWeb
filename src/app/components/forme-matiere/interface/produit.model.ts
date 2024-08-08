@@ -4,4 +4,6 @@ export interface Produit {
   schema: string;
   image: string;
   details?: string;
+  quantite?: number;
+  longueur?: number;
 }

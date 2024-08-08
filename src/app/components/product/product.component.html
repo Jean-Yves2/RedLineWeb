@@ -81,7 +81,7 @@
                   name="selection"
                   [value]="i"
                   (click)="setupdateSelection(ligne)"
-                  (click)="addToFavorites(ligne)"
+                  (click)="selectItem(ligne)"
                 />
               </td>
               <td *ngIf="infoSupplementaire1">
@@ -105,6 +105,18 @@
         </table>
       </div>
     </section>
-    <button class="container-card_button">AJOUTER AU PANIER</button>
+    <section class="container-card_button">
+      <button class="container-card_button_favorie" (click)="addToFavorites()">
+        AJOUTER AU FAVORIS
+        <img
+          class="container-card_button_favorie_image"
+          src="../../../assets/images/product/etoile.png"
+          alt="Star Icon">
+      </button>
+      <button class="container-card_button_panier">AJOUTER AU PANIER<img
+        class="container-card_button_panier_image"
+        src="../../../assets/images/product/ajouter-au-panier.png"
+        alt="Star Icon"></button>
+    </section>
   </div>
 </div>

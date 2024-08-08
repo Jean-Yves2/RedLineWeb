@@ -30,6 +30,7 @@ interface FavoriteItem {
 })
 export class ProductComponent {
   produits: { [key: string]: Produit[] } = {};
+  selectedItem: any = null;
 
   constructor(
     private matiereDataService: MatiereDataService,
@@ -762,15 +763,17 @@ export class ProductComponent {
   }
 
   // Favorites
-
-  addToFavorites(item: any): void {
-    const favoriteItem: FavoriteItem = {
+  selectItem(item: any): void {
+    this.selectedItem = {
       choix: item.choix,
       urlPart: item.urlPart,
       longueur: this.longueur,
       quantite: this.quantite,
     };
-    this.favorieService.addFavorite(favoriteItem);
+  }
+
+  addToFavorites(): void {
+    this.favorieService.addFavorite(this.selectedItem);
   }
   removeFromFavorites(item: any): void {
     this.favorieService.removeFavorite(item);
