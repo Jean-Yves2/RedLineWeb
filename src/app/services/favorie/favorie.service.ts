@@ -5,8 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class FavorieService {
   private FAVORITES_KEY = 'favorites';
+  private nextId: number = 1;
 
-  constructor() {}
+  constructor() {
+    const favorites = this.getFavorites();
+  }
 
   getFavorites(): any[] {
     return JSON.parse(localStorage.getItem(this.FAVORITES_KEY) || '[]');
@@ -14,13 +17,27 @@ export class FavorieService {
 
   addFavorite(item: any): void {
     const favorites = this.getFavorites();
-    favorites.push(item);
-    localStorage.setItem(this.FAVORITES_KEY, JSON.stringify(favorites));
+
+    const isExisting = favorites.some(
+      (fav) =>
+        fav.urlPart === item.urlPart &&
+        fav.longueur === item.longueur &&
+        fav.quantite === item.quantite &&
+        fav.choix === item.choix
+    );
+
+    if (!isExisting) {
+      const favoriteWithId = { ...item, fav_id: this.nextId++ };
+      favorites.push(favoriteWithId);
+      localStorage.setItem(this.FAVORITES_KEY, JSON.stringify(favorites));
+    } else {
+      console.log("L'élément existe déjà dans les favoris.");
+    }
   }
 
-  removeFavorite(item: any): void {
+  removeFavorite(id: number): void {
     let favorites = this.getFavorites();
-    favorites = favorites.filter((fav) => fav.id !== item.id);
+    favorites = favorites.filter((fav) => fav.fav_id !== id);
     localStorage.setItem(this.FAVORITES_KEY, JSON.stringify(favorites));
   }
 }

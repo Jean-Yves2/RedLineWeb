@@ -16,6 +16,13 @@ interface Ligne {
   additionalData4: number | string;
 }
 
+interface FavoriteItem {
+  choix: number;
+  urlPart: string;
+  longueur: number;
+  quantite: number;
+}
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -38,6 +45,8 @@ export class ProductComponent {
       this.chooseData(url);
     });
   }
+
+  //selectedItem: any = null;
 
   // Table Data
 
@@ -126,7 +135,7 @@ export class ProductComponent {
   chooseData(url: string): void {
     switch (url) {
       case 'product/alu1':
-        this.lignes = this.fer_t_aluminium.map((item) => ({
+        this.lignes = this.fer_t_aluminium.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteur,
           largeur: item.largeur,
@@ -135,6 +144,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -154,7 +165,7 @@ export class ProductComponent {
 
         break;
       case 'product/alu2':
-        this.lignes = this.corniere_egale_aluminium.map((item) => ({
+        this.lignes = this.corniere_egale_aluminium.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteurAiles,
           largeur: 0,
@@ -163,6 +174,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -182,7 +195,7 @@ export class ProductComponent {
 
         break;
       case 'product/alu3':
-        this.lignes = this.profile_h_aluminium.map((item) => ({
+        this.lignes = this.profile_h_aluminium.map((item, index) => ({
           epaisseur: item.a,
           hauteur: item.c,
           largeur: item.d,
@@ -191,6 +204,8 @@ export class ProductComponent {
           additionalData2: item.b,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -214,7 +229,7 @@ export class ProductComponent {
 
         break;
       case 'product/alu4':
-        this.lignes = this.profile_u_aluminium.map((item) => ({
+        this.lignes = this.profile_u_aluminium.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteur,
           largeur: item.largeur,
@@ -223,6 +238,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -245,7 +262,7 @@ export class ProductComponent {
 
         break;
       case 'product/alu5':
-        this.lignes = this.tube_rectangulaire_aluminium.map((item) => ({
+        this.lignes = this.tube_rectangulaire_aluminium.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteur,
           largeur: item.largeur,
@@ -254,6 +271,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -273,7 +292,7 @@ export class ProductComponent {
 
         break;
       case 'product/inox1':
-        this.lignes = this.corniere_egale_inox.map((item) => ({
+        this.lignes = this.corniere_egale_inox.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteurAiles,
           largeur: 0,
@@ -282,6 +301,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -301,7 +322,7 @@ export class ProductComponent {
 
         break;
       case 'product/inox2':
-        this.lignes = this.fer_t_inox.map((item) => ({
+        this.lignes = this.fer_t_inox.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteur,
           largeur: item.largeur,
@@ -310,6 +331,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -329,7 +352,7 @@ export class ProductComponent {
 
         break;
       case 'product/inox3':
-        this.lignes = this.poutrelle_hea_heb_inox.map((item) => ({
+        this.lignes = this.poutrelle_hea_heb_inox.map((item, index) => ({
           epaisseur: item.A,
           hauteur: item.C,
           largeur: item.D,
@@ -338,6 +361,8 @@ export class ProductComponent {
           additionalData2: item.B,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -361,7 +386,7 @@ export class ProductComponent {
 
         break;
       case 'product/inox4':
-        this.lignes = this.tube_rond_inox_304l.map((item) => ({
+        this.lignes = this.tube_rond_inox_304l.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.diametre_exterieur,
           largeur: 0,
@@ -370,6 +395,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -389,7 +416,7 @@ export class ProductComponent {
 
         break;
       case 'product/inox5':
-        this.lignes = this.barre_rond_plein_inox_304l.map((item) => ({
+        this.lignes = this.barre_rond_plein_inox_304l.map((item, index) => ({
           epaisseur: 0,
           hauteur: 0,
           largeur: 0,
@@ -398,6 +425,8 @@ export class ProductComponent {
           additionalData2: item.circonference,
           additionalData3: 0,
           additionalData4: item.masse_kg_m,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = false;
@@ -420,7 +449,7 @@ export class ProductComponent {
 
         break;
       case 'product/acier1':
-        this.lignes = this.cornieres_ailes_egales_acier.map((item) => ({
+        this.lignes = this.cornieres_ailes_egales_acier.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteurAiles,
           largeur: 0,
@@ -429,6 +458,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -448,16 +479,20 @@ export class ProductComponent {
 
         break;
       case 'product/acier2':
-        this.lignes = this.cornieres_ailes_inegales_acier.map((item) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteur,
-          largeur: item.largeur,
-          masse: item.masse,
-          additionalData1: 0,
-          additionalData2: 0,
-          additionalData3: 0,
-          additionalData4: 0,
-        }));
+        this.lignes = this.cornieres_ailes_inegales_acier.map(
+          (item, index) => ({
+            epaisseur: item.epaisseur,
+            hauteur: item.hauteur,
+            largeur: item.largeur,
+            masse: item.masse,
+            additionalData1: 0,
+            additionalData2: 0,
+            additionalData3: 0,
+            additionalData4: 0,
+            choix: index,
+            urlPart: this.activatedRoutes.snapshot.url[1].path,
+          })
+        );
 
         this.afficherEpaisseur = true;
         this.afficherHauteur = true;
@@ -476,7 +511,7 @@ export class ProductComponent {
 
         break;
       case 'product/acier3':
-        this.lignes = this.fers_t_acier.map((item) => ({
+        this.lignes = this.fers_t_acier.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteur,
           largeur: item.largeur,
@@ -485,6 +520,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -506,7 +543,7 @@ export class ProductComponent {
 
         break;
       case 'product/acier4':
-        this.lignes = this.tubes_carres_acier.map((item) => ({
+        this.lignes = this.tubes_carres_acier.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteur,
           largeur: 0,
@@ -515,6 +552,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -534,7 +573,7 @@ export class ProductComponent {
 
         break;
       case 'product/acier5':
-        this.lignes = this.tubes_rectangulaires_acier.map((item) => ({
+        this.lignes = this.tubes_rectangulaires_acier.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteur,
           largeur: item.largeur,
@@ -543,6 +582,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -562,7 +603,7 @@ export class ProductComponent {
 
         break;
       case 'product/galva1':
-        this.lignes = this.tole_perforee_galva.map((item) => ({
+        this.lignes = this.tole_perforee_galva.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: 0,
           largeur: 0,
@@ -571,6 +612,8 @@ export class ProductComponent {
           additionalData2: item.typeTrous,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -591,7 +634,7 @@ export class ProductComponent {
 
         break;
       case 'product/galva2':
-        this.lignes = this.cornieres_ailes_egales_galva.map((item) => ({
+        this.lignes = this.cornieres_ailes_egales_galva.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteurAiles,
           largeur: 0,
@@ -600,6 +643,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -619,7 +664,7 @@ export class ProductComponent {
 
         break;
       case 'product/galva3':
-        this.lignes = this.tubes_ronds_galva.map((item) => ({
+        this.lignes = this.tubes_ronds_galva.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: 0,
           largeur: 0,
@@ -628,6 +673,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -649,7 +696,7 @@ export class ProductComponent {
 
         break;
       case 'product/galva4':
-        this.lignes = this.tubes_carres_galva.map((item) => ({
+        this.lignes = this.tubes_carres_galva.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteur,
           largeur: 0,
@@ -658,6 +705,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -677,7 +726,7 @@ export class ProductComponent {
 
         break;
       case 'product/galva5':
-        this.lignes = this.tubes_rectangulaires_galva.map((item) => ({
+        this.lignes = this.tubes_rectangulaires_galva.map((item, index) => ({
           epaisseur: item.epaisseur,
           hauteur: item.hauteur,
           largeur: item.largeur,
@@ -686,6 +735,8 @@ export class ProductComponent {
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
         this.afficherEpaisseur = true;
@@ -713,12 +764,37 @@ export class ProductComponent {
   // Favorites
 
   addToFavorites(item: any): void {
-    this.favorieService.addFavorite(item);
+    const favoriteItem: FavoriteItem = {
+      choix: item.choix,
+      urlPart: item.urlPart,
+      longueur: this.longueur,
+      quantite: this.quantite,
+    };
+    this.favorieService.addFavorite(favoriteItem);
   }
   removeFromFavorites(item: any): void {
     this.favorieService.removeFavorite(item);
   }
   getFavorites(): any[] {
     return this.favorieService.getFavorites();
+  }
+
+  // Fonction pour extraire l'identifiant du produit à partir de l'URL
+  getProductIdFromUrl(url: string): string {
+    const urlParts = url.split('/');
+    return urlParts[urlParts.length - 1];
+  }
+
+  // Fonction pour trouver un produit par identifiant
+  findProductById(id: string, produits: { [key: string]: any[] }): any | null {
+    for (const key in produits) {
+      const productArray = produits[key];
+      for (const product of productArray) {
+        if (product.id === id) {
+          return product;
+        }
+      }
+    }
+    return null;
   }
 }
