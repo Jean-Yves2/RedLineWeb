@@ -1,6 +1,6 @@
 <section class="container">
-  <h1 class="container_title">Mes Favoris</h1>
-  <div class="container_design">
+  <h1 class="container_title">Mes Favoris<img class="container_title_image" src="assets/images/favorie/etoile_fav.png" /></h1>
+  <div class="container_design" *ngIf="havedFavorites">
     <div
       class="container_div"
       *ngFor="let product of favoriteProducts; let i = index"
@@ -45,4 +45,8 @@
       </div>
     </div>
   </div>
+  <div class="container_div_empty" *ngIf="!havedFavorites">
+    <img class="container_div_empty_image" src="assets/images/favorie/noFavorie.png">
+    <div class="container_div_empty_text">
+      Favoris Vide</div></div>
 </section>

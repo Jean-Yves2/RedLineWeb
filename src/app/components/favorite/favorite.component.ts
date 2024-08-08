@@ -12,6 +12,7 @@ export class FavoriteComponent implements OnInit {
   favorites: any[] = [];
   favoriteProducts: Produit[] = [];
   produits: { [key: string]: Produit[] } = {};
+  havedFavorites: boolean = false;
 
   constructor(
     private favorieService: FavorieService,
@@ -45,6 +46,7 @@ export class FavoriteComponent implements OnInit {
         }
       }
     });
+    this.havedFavorites = this.favoriteProducts.length > 0;
   }
 
   loadFavorites(): void {

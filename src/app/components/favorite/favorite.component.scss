@@ -1,142 +1,189 @@
 @import '../../../styles/theme.scss';
 
 :host {
-  display: flex;
-  flex: 1;
-  height: 100%;
-  width: 100%;
-  flex-direction: row;
-  justify-content: center;
+  display         : flex;
+  flex            : 1;
+  height          : 100%;
+  width           : 100%;
+  flex-direction  : row;
+  justify-content : center;
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display         : flex;
+  justify-content : flex-start;
+  margin-top      : 20px;
+  flex-direction  : row;
+  flex-wrap       : wrap;
 
-  &_title{
-    font-family: inter, sans-serif;
-    font-size: 2rem;
-    font-weight: bold;
-    width: 100%;
+  &_title {
+    font-family : inter, sans-serif;
+    font-size   : 2rem;
+    font-weight : bold;
+    position    : relative;
+    width       : 270px;
+
+    &_image {
+      position : absolute;
+      right    : 20px;
+      top      : -10px;
+      cursor   : pointer;
+      width    : 50px;
+    }
   }
 
-  &_design{
-    display: flex;
-    border: solid 1px #D5D8DA;
-    width: 100%;
-    padding: 10px;
-    column-gap: 20px;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+  &_design {
+    display         : flex;
+    border          : solid 1px #D5D8DA;
+    width           : 100%;
+    padding         : 10px;
+    column-gap      : 20px;
+    gap             : 30px;
+    flex-wrap       : wrap;
+    justify-content : flex-start;
   }
+
   h1 {
-    font-size: 30px;
-    color: #333;
+    font-size : 30px;
+    color     : #333;
   }
-  &_div{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border: solid 1px #D5D8DA;
-    background-color: #D5D8DA;
-    border-radius: 10px;
-    padding: 10px;
-    gap: 10px;
-    margin: 10px;
-    width: 320px;
+
+  &_div {
+    position         : relative;
+    display          : flex;
+    flex-direction   : column;
+    border           : solid 1px #D5D8DA;
+    background-color : #D5D8DA;
+    border-radius    : 10px;
+    padding          : 10px;
+    gap              : 10px;
+    margin           : 10px;
+    width            : 320px;
 
 
-    &_delete{
-      position: absolute;
-      width: 40px;
-      top: -10px;
-      right: -10px;
-      cursor: pointer;
+    &_delete {
+      position : absolute;
+      width    : 40px;
+      top      : -10px;
+      right    : -10px;
+      cursor   : pointer;
     }
 
 
 
 
-    &_card{
-      display: flex;
-      gap: 20px;
-      flex-direction: column;
+    &_card {
+      display        : flex;
+      gap            : 20px;
+      flex-direction : column;
 
-      &_name{
-        font-family: inter, sans-serif;
-        font-size: 1.4rem;
-        font-weight: bold;
-        color : $third-color;
-        width: 100%;
-        padding-left: 10px;
+      &_name {
+        font-family  : inter, sans-serif;
+        font-size    : 1.4rem;
+        font-weight  : bold;
+        color        : $third-color;
+        width        : 100%;
+        padding-left : 10px;
       }
 
-      &_image{
-        display: flex;
-        gap: 25px;
-        justify-content: space-around;
+      &_image {
+        display         : flex;
+        gap             : 25px;
+        justify-content : space-around;
 
 
-        &_size{
-          width: 100px;
-          height: 100px;
-          border-radius: 10px;
+        &_size {
+          width         : 100px;
+          height        : 100px;
+          border-radius : 10px;
 
         }
 
       }
 
-      &_data{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+      &_data {
+        display         : flex;
+        flex-direction  : row;
+        justify-content : space-between;
       }
 
-      &_description{
-        font-family: inter, sans-serif;
-        font-size: 1.1rem;
+      &_description {
+        font-family : inter, sans-serif;
+        font-size   : 1.1rem;
 
         color : $third-color;
-;
+        ;
       }
     }
 
-    &_panier{
+    &_panier {
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display         : flex;
+      justify-content : space-between;
+      align-items     : center;
 
 
     }
+
+    &_empty {
+
+      display         : flex;
+      justify-content : center;
+      align-items     : center;
+      font-family     : inter, sans-serif;
+      font-size       : 1.5rem;
+      font-weight     : bold;
+      width           : 100%;
+      color           : white;
+
+      &_image {
+        width     : 400px;
+        position  : relative;
+        animation : rotateImage 5s linear infinite;
+      }
+
+      &_text {
+
+        position : absolute;
+      }
+
+
+    }
+
   }
 
 
 }
 
 
-.container_div_card_data_quantity , .container_div_panier_price, .container_div_card_data_length {
-  display: flex;
-  font-family: inter, sans-serif;
-  font-size: 1rem;
-  font-weight: bold;
-  color : $third-color;
+.container_div_card_data_quantity,
+.container_div_panier_price,
+.container_div_card_data_length {
+  display     : flex;
+  font-family : inter, sans-serif;
+  font-size   : 1rem;
+  font-weight : bold;
+  color       : $third-color;
 
 }
 
-.container_div_panier_button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: $white;
-  border: solid 1px $primary-color;
-  background-color: $primary-color;
-  border-radius: 5px;
-  padding : 5px
+.container_div_panier_button {
+  display          : flex;
+  justify-content  : center;
+  align-items      : center;
+  color            : $white;
+  border           : solid 1px $primary-color;
+  background-color : $primary-color;
+  border-radius    : 5px;
+  padding          : 5px
+}
 
+@keyframes rotateImage {
+  from {
+    transform : rotate(0deg);
+  }
+
+  to {
+    transform : rotate(360deg);
+  }
 }
