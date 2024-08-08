@@ -1,1 +1,52 @@
-<p>panier works!</p>
+<section class="container">
+  <h1 class="container_title">Mon Panier<img class="container_title_image" src="assets/images/panier/panier.png" /></h1>
+  <div class="container_design" *ngIf="havedPanier">
+    <div
+      class="container_div"
+      *ngFor="let product of panierProducts; let i = index"
+    >
+      <button (click)="removeCart(product)">
+        <img
+          class="container_div_delete"
+          src="assets/images/favorie/croix.png"
+        />
+      </button>
+      <div class="container_div_card">
+        <span class="container_div_card_name">{{ product.nom }}</span>
+        <div class="container_div_card_image">
+          <img
+            class="container_div_card_image_size"
+            [src]="product.schema"
+            alt="schema du produit"
+          />
+          <img
+            class="container_div_card_image_size"
+            [src]="product.image"
+            alt="image du produit"
+          />
+        </div>
+        <div class="container_div_card_data">
+          <span class="container_div_card_data_quantity"
+            >Quantité : {{ product.quantite }}</span
+          >
+          <span class="container_div_card_data_length"
+            >Longueur : {{ product.longueur }} cm</span
+          >
+        </div>
+
+        <div class="container_div_card_description">
+          FER T <br />Epaisseur : 2 mm <br />Hauteur : 30 mm <br />Largeur : 30
+          mm
+        </div>
+      </div>
+      <div class="container_div_panier">
+        <button class="container_div_panier_button">Ajouter au panier</button>
+        <span class="container_div_panier_price"> PRIX* TTC : 1080 €</span>
+      </div>
+    </div>
+  </div>
+  <div class="container_div_empty"  *ngIf="!havedPanier">
+    <img class="container_div_empty_image" src="assets/images/favorie/noFavorie.png">
+    <div class="container_div_empty_text">
+      Panier Vide</div></div>
+</section>

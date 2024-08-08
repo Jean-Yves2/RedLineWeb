@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { MatiereDataService } from 'src/app/services/table_data/matiere-data.service';
+import { MatiereDataService } from '../../services/table_data/matiere-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormeMatiereService } from '../../services/forme_matiere/forme-matiere.service';
 import { Produit } from '../forme-matiere/interface/produit.model';
-import { FavorieService } from 'src/app/services/favorie/favorie.service';
+import { FavorieService } from '../../services/favorie/favorie.service';
+import { PanierService } from '../../services/panier/panier.service';
 
 interface Ligne {
   epaisseur: number;
@@ -36,7 +37,8 @@ export class ProductComponent {
     private matiereDataService: MatiereDataService,
     private activatedRoutes: ActivatedRoute,
     private formeMatiereService: FormeMatiereService,
-    private favorieService: FavorieService
+    private favorieService: FavorieService,
+    private cartService: PanierService
   ) {}
 
   ngOnInit(): void {
@@ -46,8 +48,6 @@ export class ProductComponent {
       this.chooseData(url);
     });
   }
-
-  //selectedItem: any = null;
 
   // Table Data
 
@@ -120,6 +120,7 @@ export class ProductComponent {
   updateSelection: Ligne | null = null;
 
   calcule(): void {
+    this.updateSelectedItem();
     if (this.updateSelection) {
       const poidsUnitaire = this.updateSelection.masse * this.longueur;
       this.resultat = poidsUnitaire * this.quantite;
@@ -771,8 +772,15 @@ export class ProductComponent {
       quantite: this.quantite,
     };
   }
+  updateSelectedItem(): void {
+    if (this.selectedItem) {
+      this.selectedItem.longueur = this.longueur;
+      this.selectedItem.quantite = this.quantite;
+    }
+  }
 
   addToFavorites(): void {
+    this.updateSelectedItem();
     this.favorieService.addFavorite(this.selectedItem);
   }
   removeFromFavorites(item: any): void {
@@ -782,13 +790,27 @@ export class ProductComponent {
     return this.favorieService.getFavorites();
   }
 
-  // Fonction pour extraire l'identifiant du produit à partir de l'URL
   getProductIdFromUrl(url: string): string {
     const urlParts = url.split('/');
     return urlParts[urlParts.length - 1];
   }
 
-  // Fonction pour trouver un produit par identifiant
+  // Cart
+
+  addToCart(): void {
+    this.updateSelectedItem();
+    this.cartService.addToCart(this.selectedItem);
+  }
+
+  removeFromCart(item: any): void {
+    this.cartService.removeFromCart(item);
+  }
+
+  getCartItems(): any[] {
+    return this.cartService.getCart();
+  }
+
+
   findProductById(id: string, produits: { [key: string]: any[] }): any | null {
     for (const key in produits) {
       const productArray = produits[key];

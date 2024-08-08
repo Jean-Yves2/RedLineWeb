@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class FavorieService {
   private FAVORITES_KEY = 'favorites';
-  private nextId: number = 1;
+  private nextId: number = this.getNextId();
   private favoritesSubjectCounter = new BehaviorSubject<number>(this.countFavorites());
 
   favorites$ = this.favoritesSubjectCounter.asObservable();
@@ -49,5 +49,9 @@ export class FavorieService {
 
   countFavorites(): number {
     return this.getFavorites().length;
+  }
+  private getNextId(): number {
+    const fav = this.getFavorites();
+    return fav.length ? Math.max(...fav.map(item => item.fav_id || 0)) + 1 : 1;
   }
 }
