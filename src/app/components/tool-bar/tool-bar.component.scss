@@ -1,9 +1,28 @@
 @import '../../../styles/theme.scss';
 @import 'dist/tailwind.css';
 
-.nav-bar{
+.nav-bar {
 
-  &_section{
-    background-color: $primary-color;
+  &_section {
+    background-color : $primary-color;
+  }
+}
+
+.favorieLink {
+
+  position : relative;
+
+  &_counter {
+    position         : absolute;
+    width            : 20px;
+    height           : 20px;
+    background-color : #F88A0A;
+    top              : 0px;
+    right            : -10px;
+    border-radius    : 50%;
+    display          : flex;
+    justify-content  : center;
+    align-items      : center;
+    color            : white;
   }
 }

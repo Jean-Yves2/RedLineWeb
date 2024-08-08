@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -6,9 +7,12 @@ import { Injectable } from '@angular/core';
 export class FavorieService {
   private FAVORITES_KEY = 'favorites';
   private nextId: number = 1;
+  private favoritesSubjectCounter = new BehaviorSubject<number>(this.countFavorites());
+
+  favorites$ = this.favoritesSubjectCounter.asObservable();
 
   constructor() {
-    const favorites = this.getFavorites();
+    this.favoritesSubjectCounter.next(this.countFavorites());
   }
 
   getFavorites(): any[] {
@@ -30,6 +34,7 @@ export class FavorieService {
       const favoriteWithId = { ...item, fav_id: this.nextId++ };
       favorites.push(favoriteWithId);
       localStorage.setItem(this.FAVORITES_KEY, JSON.stringify(favorites));
+      this.favoritesSubjectCounter.next(this.countFavorites());
     } else {
       console.log("L'élément existe déjà dans les favoris.");
     }
@@ -39,5 +44,10 @@ export class FavorieService {
     let favorites = this.getFavorites();
     favorites = favorites.filter((fav) => fav.fav_id !== id);
     localStorage.setItem(this.FAVORITES_KEY, JSON.stringify(favorites));
+    this.favoritesSubjectCounter.next(this.countFavorites());
+  }
+
+  countFavorites(): number {
+    return this.getFavorites().length;
   }
 }
