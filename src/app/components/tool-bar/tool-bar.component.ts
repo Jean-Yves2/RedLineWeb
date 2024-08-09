@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FavorieService } from '../../services/favorie/favorie.service';
 import { Subscription } from 'rxjs';
+import { PanierService } from 'src/app/services/panier/panier.service';
 
 @Component({
   selector: 'app-tool-bar',
@@ -13,12 +14,16 @@ export class ToolBarComponent implements OnInit, OnDestroy {
   isInternal: boolean = false;
   currentUser: any;
   favoriteCounter: number = 0;
+  cartCounter: number = 0;
+
   private favoritesSubscription!: Subscription;
+  private cartSubscription!: Subscription;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private favorieService: FavorieService
+    private favorieService: FavorieService,
+    private panierService: PanierService
   ) {}
 
   ngOnInit() {
@@ -32,6 +37,14 @@ export class ToolBarComponent implements OnInit, OnDestroy {
         this.favoriteCounter = count;
       }
     );
+
+    this.cartSubscription = this.panierService.cartItemCount$.subscribe(
+      (count) => {
+        this.cartCounter = count;
+      }
+    );
+
+
   }
 
   ngOnDestroy() {
