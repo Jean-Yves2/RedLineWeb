@@ -22,7 +22,7 @@ export class FavorieService {
 
   removeFavorite(productCode: number): void {
     if (this.authService.isLoggedIn()) {
-      this.http.delete(`${this.apiUrl}?productCode=${productCode}`, { withCredentials: true }).subscribe();
+      this.http.delete(`${this.apiUrl}/favorites/${productCode}`, { withCredentials: true }).subscribe();
     } else {
       this.removeFromLocalFavorites(productCode);
     }

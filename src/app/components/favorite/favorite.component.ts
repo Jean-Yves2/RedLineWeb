@@ -63,6 +63,7 @@ export class FavoriteComponent implements OnInit {
   }
 
   removeFavorite(item: any): void {
-    this.favorieService.removeFavorite(item.fav_id);
+    console.log(item.productCode);
+    this.favorieService.removeFavorite(item.productCode);
   }
 }
