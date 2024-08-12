@@ -14,10 +14,10 @@ interface Ligne {
   hauteur: number | undefined;
   largeur: number | undefined;
   masse: number | undefined;
-  additionalData1: number | string;
-  additionalData2: number | string;
-  additionalData3: number | string;
-  additionalData4: number | string;
+  additionalData1: number | string | undefined;
+  additionalData2: number | string | undefined;
+  additionalData3: number | string | undefined;
+  additionalData4: number | string | undefined;
 }
 
 interface FavoriteItem {
@@ -55,18 +55,24 @@ export class ProductComponent {
   ngOnInit(): void {
     this.produits = this.formeMatiereService.getProduits();
     console.log('image zone',this.produits);
-
-    this.productService.getProductsByType('alu1').subscribe({
-      next: (data) => {
-        console.log('Products fetched:', data);
-        this.fetchedproducts = data;
-        this.fetchProducts('alu1');
-      },
-      error: (error) => {
-        console.error('Error fetching products:', error);
-        this.errorMessage = 'Failed to load products';
-      }
+    this.activatedRoutes.url.subscribe((urlSegments) => {
+      const url = urlSegments.map((segment) => segment.path).join('/');
+      const secondPart = url.split('/')[1];
+      console.log('secondPart', secondPart);
+      this.productService.getProductsByType(secondPart).subscribe({
+        next: (data) => {
+          console.log('Products fetched:', data);
+          this.fetchedproducts = data;
+          this.fetchProducts(secondPart , url);
+        },
+        error: (error) => {
+          console.error('Error fetching products:', error);
+          this.errorMessage = 'Failed to load products';
+        }
+      });
     });
+
+
   }
 
 
@@ -103,7 +109,7 @@ export class ProductComponent {
   resultat: number = 0;
   updateSelection: Ligne | null = null;
 
-  fetchProducts(type: string): void {
+  fetchProducts(type: string , oneUrl : string): void {
     if(this.authService.isLoggedIn()){
       this.productService.getProductsByType(type).subscribe({
       next: (data) => {
@@ -111,7 +117,7 @@ export class ProductComponent {
         console.log('fetched product',this.fetchedproducts);
 
           console.log('url', this.url);
-          this.chooseData('products/alu1');
+          this.chooseData(oneUrl);
 
       },
       error: (err) => {
@@ -207,7 +213,7 @@ export class ProductComponent {
         this.lignes = this.fetchedproducts.map((item, index) => ({
           epaisseur: item.thickness,
           hauteur: item.height,
-          largeur: 0,
+          largeur: item.width,
           masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
@@ -219,17 +225,13 @@ export class ProductComponent {
 
         this.afficherEpaisseur = true;
         this.afficherHauteur = true;
-        this.afficherLargeur = false;
+        this.afficherLargeur = true;
         this.afficherMasse = true;
-        this.infoSupplementaire1 = true;
-        this.infoSupplementaire2 = true;
 
-        this.titreEpaisseur = `A <br /> Epaisseur <br /> de la Semelle`;
-        this.titreHauteur = 'C  <br /> Hauteur <br /> de l âme';
-        this.titreLargeur = 'D <br /> Largeur de <br />  la Semelle';
+        this.titreEpaisseur = `C <br /> Epaisseur`;
+        this.titreHauteur = 'A <br /> Hauteur ';
+        this.titreLargeur = 'B <br /> Largeur ';
         this.titreMasse = 'Masse Kg/m';
-        this.titreInfoSupplementaire1 = 'H';
-        this.titreInfoSupplementaire2 = 'B <br /> Epaisseur de <br /> l âme';
 
         this.titleProduct = this.titleProduct =
           this.produits['aluminium'][2]?.nom || 'Produit non trouvé';
@@ -253,16 +255,12 @@ export class ProductComponent {
 
         this.afficherEpaisseur = true;
         this.afficherHauteur = true;
-        this.afficherLargeur = true;
-        this.afficherMasse = true;
-        this.infoSupplementaire1 = true;
-        this.infoSupplementaire2 = false;
 
-        this.titreEpaisseur = `A <br /> Epaisseur <br /> de de l'âme`;
-        this.titreHauteur = `B  <br /> Hauteur <br /> de l âme`;
-        this.titreLargeur = `D <br /> Largeur de <br />  la Semelle`;
+        this.afficherMasse = true;
+
+        this.titreEpaisseur = `B <br /> Epaisseur `;
+        this.titreHauteur = `A  <br /> Hauteur`;
         this.titreMasse = `Masse Kg/m`;
-        this.titreInfoSupplementaire1 = `U`;
 
         this.titleProduct = this.titleProduct =
           this.produits['aluminium'][3]?.nom || 'Produit non trouvé';
@@ -284,14 +282,10 @@ export class ProductComponent {
           urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
-        this.afficherEpaisseur = true;
         this.afficherHauteur = true;
-        this.afficherLargeur = true;
         this.afficherMasse = true;
 
-        this.titreEpaisseur = `C <br /> Epaisseur`;
         this.titreHauteur = `A <br /> Hauteur`;
-        this.titreLargeur = `B <br /> Largeur`;
         this.titreMasse = `Masse Kg/m`;
 
         this.titleProduct = this.titleProduct =
@@ -334,7 +328,7 @@ export class ProductComponent {
         this.lignes = this.fetchedproducts.map((item, index) => ({
           epaisseur: item.thickness,
           hauteur: item.height,
-          largeur: 0,
+          largeur: item.width,
           masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
@@ -364,9 +358,9 @@ export class ProductComponent {
         this.lignes = this.fetchedproducts.map((item, index) => ({
           epaisseur: item.thickness,
           hauteur: item.height,
-          largeur: 0,
+          largeur:0,
           masse : item.linearWeight,
-          additionalData1: 0,
+          additionalData1:item.diameter,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
@@ -375,18 +369,12 @@ export class ProductComponent {
         }));
 
         this.afficherEpaisseur = true;
-        this.afficherHauteur = true;
-        this.afficherLargeur = true;
         this.afficherMasse = true;
         this.infoSupplementaire1 = true;
-        this.infoSupplementaire2 = true;
 
-        this.titreEpaisseur = `A <br /> Epaisseur de<br /> la Semelle`;
-        this.titreHauteur = 'H <br /> Hauteur';
-        this.titreLargeur = 'B <br /> Largeur';
+        this.titreEpaisseur = `B<br /> Epaisseur `;
         this.titreMasse = 'Masse <br /> (Kg/m)';
-        this.titreInfoSupplementaire1 = `HEB <br /> HEA`;
-        this.titreInfoSupplementaire2 = `B <br /> Epaisseur de l'âme `;
+        this.titreInfoSupplementaire1 = `A <br /> Diamètre extérieur`;
 
         this.titleProduct = this.titleProduct =
           this.produits['inox'][2]?.nom || 'Produit non trouvé';
@@ -400,22 +388,22 @@ export class ProductComponent {
           hauteur: item.height,
           largeur: 0,
           masse : item.linearWeight,
-          additionalData1: 0,
-          additionalData2: 0,
+          additionalData1:item.diameter,
+          additionalData2: item.circumference,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
-        this.afficherEpaisseur = true;
         this.afficherHauteur = false;
         this.afficherLargeur = false;
         this.afficherMasse = true;
         this.infoSupplementaire1 = true;
+        this.infoSupplementaire2 = true;
 
         this.titreInfoSupplementaire1 = `	A<br />Diamètre`;
-        this.titreEpaisseur = `B<br />Epaisseur`;
+        this.titreInfoSupplementaire2 = `Circonférence`;
         this.titreMasse = 'Masse <br /> (Kg/m)';
 
         this.titleProduct = this.titleProduct =
@@ -428,7 +416,7 @@ export class ProductComponent {
         this.lignes = this.fetchedproducts.map((item, index) => ({
           epaisseur: item.thickness,
           hauteur: item.height,
-          largeur: 0,
+          largeur: item.width,
           masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
@@ -438,18 +426,14 @@ export class ProductComponent {
           urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
 
-        this.afficherEpaisseur = false;
-        this.afficherHauteur = false;
-        this.afficherLargeur = false;
+        this.afficherEpaisseur = true;;
+        this.afficherLargeur = true;
         this.afficherMasse = true;
-        this.infoSupplementaire1 = true;
-        this.infoSupplementaire2 = true;
-        this.infoSupplementaire4 = true;
 
-        this.titreInfoSupplementaire1 = `Diamètre`;
-        this.titreInfoSupplementaire2 = `Circonférence`;
-        this.titreInfoSupplementaire4 = `Masse <br /> (Kg/m)`;
-        this.titreMasse = 'Section cm²';
+
+        this.titreEpaisseur = `B<br /> Epaisseur `;
+        this.titreLargeur = `A <br /> Largeur`;
+        this.titreMasse = 'Masse <br /> (Kg/m)';
 
         this.titleProduct = this.titleProduct =
           this.produits['inox'][4]?.nom || 'Produit non trouvé';
@@ -625,15 +609,12 @@ export class ProductComponent {
         }));
 
         this.afficherEpaisseur = true;
-        this.infoSupplementaire2 = true;
-
+        this.afficherHauteur = true;
         this.afficherMasse = true;
 
         this.titreEpaisseur = `A <br /> Épaisseur`;
-        this.titreHauteur = 'B <br /> Hauteur';
-        this.titreLargeur = 'C <br /> Largeur';
+        this.titreHauteur = 'B <br /> Hauteur Ailes';
         this.titreMasse = 'Masse <br /> (Kg/m)';
-        this.titreInfoSupplementaire2 = 'Type de trous';
 
         this.titleProduct = this.titleProduct =
           this.produits['galva'][0]?.nom || 'Produit non trouvé';
@@ -647,7 +628,7 @@ export class ProductComponent {
           hauteur: item.height,
           largeur: 0,
           masse : item.linearWeight,
-          additionalData1: 0,
+          additionalData1:  item.diameter,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
@@ -656,14 +637,14 @@ export class ProductComponent {
         }));
 
         this.afficherEpaisseur = true;
-        this.afficherHauteur = true;
         this.afficherLargeur = false;
         this.afficherMasse = true;
+        this.infoSupplementaire1 = true;
 
-        this.titreEpaisseur = `A <br /> Épaisseur`;
-        this.titreHauteur = 'B <br /> Hauteur';
+        this.titreEpaisseur = `B<br /> Épaisseur`;
         this.titreLargeur = 'C <br /> Largeur';
         this.titreMasse = 'Masse <br /> (Kg/m)';
+        this.titreInfoSupplementaire1 = 'A <br /> Diamètre extérieur';
 
         this.titleProduct = this.titleProduct =
           this.produits['galva'][1]?.nom || 'Produit non trouvé';
@@ -686,15 +667,12 @@ export class ProductComponent {
         }));
 
         this.afficherEpaisseur = true;
-        this.afficherHauteur = false;
-        this.afficherLargeur = false;
+        this.afficherHauteur = true;
         this.afficherMasse = true;
-        this.infoSupplementaire1 = true;
 
         this.titreInfoSupplementaire1 = `A<br />Diamètre extérieur`;
         this.titreEpaisseur = `B <br /> Épaisseur`;
-        this.titreHauteur = 'D <br /> Diamètre';
-        this.titreLargeur = 'C <br /> Largeur';
+        this.titreHauteur = 'A <br /> Hauteur';
         this.titreMasse = 'Masse <br /> (Kg/m)';
 
         this.titleProduct = this.titleProduct =
@@ -707,7 +685,7 @@ export class ProductComponent {
         this.lignes = this.fetchedproducts.map((item, index) => ({
           epaisseur: item.thickness,
           hauteur: item.height,
-          largeur: 0,
+          largeur: item.width,
           masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
@@ -719,12 +697,12 @@ export class ProductComponent {
 
         this.afficherEpaisseur = true;
         this.afficherHauteur = true;
-        this.afficherLargeur = false;
+        this.afficherLargeur = true;
         this.afficherMasse = true;
 
-        this.titreEpaisseur = `B <br /> Épaisseur`;
+        this.titreEpaisseur = `C<br /> Épaisseur`;
         this.titreHauteur = 'A <br /> Hauteur';
-        this.titreLargeur = 'C <br /> Largeur';
+        this.titreLargeur = 'B <br /> Largeur';
         this.titreMasse = 'Masse <br /> (Kg/m)';
 
         this.titleProduct = this.titleProduct =
@@ -748,13 +726,9 @@ export class ProductComponent {
         }));
 
         this.afficherEpaisseur = true;
-        this.afficherHauteur = true;
-        this.afficherLargeur = true;
         this.afficherMasse = true;
 
-        this.titreEpaisseur = `C <br /> Épaisseur`;
-        this.titreHauteur = 'A <br /> Hauteur';
-        this.titreLargeur = 'B <br /> Largeur';
+        this.titreEpaisseur = `A <br /> Épaisseur`;
         this.titreMasse = 'Masse <br /> (Kg/m)';
 
         this.titleProduct = this.titleProduct =

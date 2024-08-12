@@ -20,7 +20,6 @@ export class ProductService {
     return this.authService.isLoggedIn().pipe(
       switchMap(isAuthenticated => {
         if (isAuthenticated) {
-          console.log("isAuthenticated:", isAuthenticated);
           return this.http.get<Product[]>(`${this.apiUrl}/products/${type}`);
         } else {
           this.localProducts = localProducts as unknown as Product[];
@@ -28,13 +27,12 @@ export class ProductService {
           const filteredProducts = this.localProducts.filter(product =>
             product.productCode !== undefined && product.productCode >= min && product.productCode <= max
           );
-          console.log("filteredProducts:", filteredProducts);
           return of(filteredProducts);
         }
       }),
       catchError(err => {
         console.error('Error fetching products:', err);
-        return of([]); // Return an empty array in case of error
+        return of([]);
       })
     );
     }

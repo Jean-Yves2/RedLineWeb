@@ -39,6 +39,7 @@ export class FormeMatiereService {
         schema: 'assets/images/matiere/aluminium/tube_carres/tubes_carres-alu.gif',
         image:
           'assets/images/matiere/aluminium/tube_carres/tubes_carres-alu_img.gif',
+        details:'• De 20 x 20 à 35 x 35'
       },
       {
         id: 'alu5',
