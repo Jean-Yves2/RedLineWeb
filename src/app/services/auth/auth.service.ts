@@ -12,6 +12,7 @@ export class AuthService {
   private apiUrl = environment.apiUrl;
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
+  private isAuthenticated: boolean | null = null;
 
   constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<any>(
@@ -50,12 +51,14 @@ export class AuthService {
   }
 
   logout(): void {
+    this.resetAuthentication();
     this.http
       .post(`${this.apiUrl}/auth/logout`, {}, { withCredentials: true })
       .subscribe({
         next: () => {
           localStorage.removeItem('currentUser');
           this.currentUserSubject.next(null);
+          this.resetAuthentication();
           this.router.navigate(['/connexion']);
         },
         error: (error) => {
@@ -65,18 +68,31 @@ export class AuthService {
   }
 
   public isLoggedIn(): Observable<boolean> {
+    if (this.isAuthenticated !== null) {
+      return of(this.isAuthenticated);
+    }
+
     return this.http
-      .get<{ isAuthenticated: boolean }>(`${this.apiUrl}/auth/check-auth`, { withCredentials: true })
+      .get<{ isAuthenticated: boolean }>(`${environment.apiUrl}/auth/check-auth`, { withCredentials: true })
       .pipe(
-        map((response) => response.isAuthenticated),
-        catchError(() => of(false))
+        map((response) => {
+          this.isAuthenticated = response.isAuthenticated;
+          return this.isAuthenticated;
+        }),
+        catchError(() => {
+          this.isAuthenticated = false;
+          return of(false);
+        })
       );
-  }
+    }
 
   public isInternal(): boolean {
     const user = this.currentUserSubject.value;
     return (
       user && (user.role === 'SUPPLY_MANAGER' || user.role === 'COMMERCIAL')
     );
+  }
+  public resetAuthentication(): void {
+    this.isAuthenticated = null;
   }
 }

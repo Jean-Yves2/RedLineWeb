@@ -111,27 +111,28 @@ export class ProductComponent {
   resultat: number = 0;
   updateSelection: Ligne | null = null;
 
-  fetchProducts(type: string , oneUrl : string): void {
-    if(this.authService.isLoggedIn()){
-      this.productService.getProductsByType(type).subscribe({
-      next: (data) => {
-        this.fetchedproducts = data;
-        console.log('fetched product',this.fetchedproducts);
+  fetchProducts(type: string, oneUrl: string): void {
+    this.authService.isLoggedIn().subscribe((loggedIn) => {
+      if (loggedIn) {
+        this.productService.getProductsByType(type).subscribe({
+          next: (data) => {
+            this.fetchedproducts = data;
+            console.log('fetched product', this.fetchedproducts);
 
-          console.log('url', this.url);
-          this.chooseData(oneUrl);
-
-      },
-      error: (err) => {
-        this.errorMessage = 'Failed to load products';
-        console.error(err);
+            console.log('url', this.url);
+            this.chooseData(oneUrl);
+          },
+          error: (err) => {
+            this.errorMessage = 'Failed to load products';
+            console.error(err);
+          },
+        });
+      } else {
+        console.log("Not logged in");
       }
-    });}
-    else{
-      console.log("Not logged in");
-    }
-
+    });
   }
+
 
   calcule(): void {
     this.updateSelectedItem();
