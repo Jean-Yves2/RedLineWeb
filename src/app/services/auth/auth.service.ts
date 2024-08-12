@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
-import Cookies from 'js-cookie';
-import { tap } from 'rxjs/operators';
+import { tap, map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -46,23 +44,18 @@ export class AuthService {
         tap((response) => {
           localStorage.setItem('currentUser', JSON.stringify(response.user));
           this.currentUserSubject.next(response.user);
-        })
+        }),
+        catchError((error) => of(error))
       );
   }
 
-  setSession(authResult: any) {
-    Cookies.set('access_token', authResult.access_token);
-  }
-
   logout(): void {
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
-    Cookies.remove('access_token');
-
     this.http
       .post(`${this.apiUrl}/auth/logout`, {}, { withCredentials: true })
       .subscribe({
         next: () => {
+          localStorage.removeItem('currentUser');
+          this.currentUserSubject.next(null);
           this.router.navigate(['/connexion']);
         },
         error: (error) => {
@@ -71,12 +64,13 @@ export class AuthService {
       });
   }
 
-  public isLoggedIn(): boolean {
-    return !!Cookies.get('access_token');
-  }
-
-  public getToken(): string | undefined {
-    return Cookies.get('access_token');
+  public isLoggedIn(): Observable<boolean> {
+    return this.http
+      .get<{ isAuthenticated: boolean }>(`${this.apiUrl}/auth/check-auth`, { withCredentials: true })
+      .pipe(
+        map((response) => response.isAuthenticated),
+        catchError(() => of(false))
+      );
   }
 
   public isInternal(): boolean {

@@ -34,7 +34,7 @@
       *ngFor="let produit of produits[selectedCategory]"
       class="product-item"
     >
-      <a [routerLink]="['/product', produit.id]">
+      <a [routerLink]="['/products', produit.id]">
         <div class="product-description">
           <h2>{{ produit.nom }}</h2>
           <p *ngIf="produit.details">{{ produit.details }}</p>

@@ -23,29 +23,30 @@ export class FormeMatiereService {
         image:
           'assets/images/matiere/aluminium/corniere_egale/cornieres_egales_img.gif',
       },
+
       {
         id: 'alu3',
-        nom: 'PROFILÉ H ALUMINIUM',
-        schema: 'assets/images/matiere/aluminium/profile_h/poutrelles_he.gif',
-        image:
-          'assets/images/matiere/aluminium/profile_h/poutrelles_he_img.gif',
-      },
-      {
-        id: 'alu4',
-        nom: 'PROFILÉ U ALUMINIUM',
-        schema:
-          'assets/images/matiere/aluminium/profile_u/poutrelles_upn-alu.gif',
-        image:
-          'assets/images/matiere/aluminium/profile_u/poutrelles_upn_img.gif',
-      },
-      {
-        id: 'alu5',
         nom: 'TUBE RECTANGULAIRE ALUMINIUM',
         schema:
           'assets/images/matiere/aluminium/tube_rectangulaire/tubes_rectangulaires-alu.gif',
         image:
           'assets/images/matiere/aluminium/tube_rectangulaire/tubes_rectangulaires_img-alu.gif',
         details: '• De 25 x 15 à 80 x 50',
+      },
+      {
+        id: 'alu4',
+        nom: 'Tube carré',
+        schema: 'assets/images/matiere/aluminium/tube_carres/tubes_carres-alu.gif',
+        image:
+          'assets/images/matiere/aluminium/tube_carres/tubes_carres-alu_img.gif',
+      },
+      {
+        id: 'alu5',
+        nom: 'Barre carrée pleine',
+        schema:
+          'assets/images/matiere/aluminium/barre_carres_pleines/barres_carrees.gif',
+        image:
+          'assets/images/matiere/aluminium/barre_carres_pleines/barres_carrees_img.gif',
       },
     ],
     inox: [
@@ -63,27 +64,29 @@ export class FormeMatiereService {
         schema: 'assets/images/matiere/inox/fer_t/fer_t.gif',
         image: 'assets/images/matiere/inox/fer_t/fer_t_img.gif',
       },
+
       {
         id: 'inox3',
-        nom: 'POUTRELLE HEA / HEB INOX 304L',
-        schema: 'assets/images/matiere/inox/poutrelle_hea/poutrelles_he.gif',
-        image: 'assets/images/matiere/inox/poutrelle_hea/poutrelles_he_img.gif',
-      },
-      {
-        id: 'inox4',
         nom: 'TUBE ROND INOX 304L',
         schema: 'assets/images/matiere/inox/tube_rond/tubes_ronds.gif',
         image: 'assets/images/matiere/inox/tube_rond/tubes_ronds_img.gif',
         details: '• 17,2 à 60,3',
       },
       {
-        id: 'inox6',
+        id: 'inox4',
         nom: 'BARRE ROND PLEIN INOX 304L',
         schema:
           'assets/images/matiere/inox/barres_rondes_pleines/barres_rondes.gif',
         image:
           'assets/images/matiere/inox/barres_rondes_pleines/barres_rondes_img.gif',
       },
+      {
+        id: 'inox5',
+        nom: 'Fer plat',
+        schema: 'assets/images/matiere/inox/fer_plat/fer_plat.gif',
+        image: 'assets/images/matiere/inox/fer_plat/fer_plat_img.gif',
+      },
+
     ],
     acier: [
       {
@@ -126,16 +129,9 @@ export class FormeMatiereService {
       },
     ],
     galva: [
+
       {
         id: 'galva1',
-        nom: 'TOLES PERFORÉES EN GALVA A CHAUD NF EN 10346 À TROUS',
-        schema: 'assets/images/matiere/galva/tole_perforees/toles.gif',
-        image:
-          'assets/images/matiere/galva/tole_perforees/tole-perforee-rond.jpg',
-        details: 'CARRÉS OU RONDS',
-      },
-      {
-        id: 'galva2',
         nom: 'CORNIÈRE À AILES ÉGALES GALVA',
         schema:
           'assets/images/matiere/galva/corniere_egale/cornieres_egales.gif',
@@ -143,24 +139,32 @@ export class FormeMatiereService {
           'assets/images/matiere/galva/corniere_egale/cornieres_egales_img.gif',
       },
       {
-        id: 'galva3',
+        id: 'galva2',
         nom: 'TUBE ROND GALVA SENDZINIR NF EN 10305-3 S4',
         schema: 'assets/images/matiere/galva/tube_rond/tubes_ronds.gif',
         image: 'assets/images/matiere/galva/tube_rond/tubes_ronds_img.gif',
       },
       {
-        id: 'galva4',
+        id: 'galva3',
         nom: 'TUBE CARRÉ GALVA SENDZINIR NF EN 10305-3 S4',
         schema: 'assets/images/matiere/galva/tube_carres/tubes_carres.gif',
         image: 'assets/images/matiere/galva/tube_carres/tubes_carres_img.gif',
       },
       {
-        id: 'galva5',
+        id: 'galva4',
         nom: 'TUBE RECTANGULAIRE GALVA SENDZINIR NF EN 10305-3 S4',
         schema:
           'assets/images/matiere/galva/tube_rectangulaire/tubes_rectangulaires-galva.gif',
         image:
           'assets/images/matiere/galva/tube_rectangulaire/tubes_rectangulaires_img-galva.gif',
+      },
+      {
+        id: 'galva5',
+        nom: 'TOLES PERFORÉES EN GALVA A CHAUD NF EN 10346 À TROUS',
+        schema: 'assets/images/matiere/galva/tole_perforees/toles.gif',
+        image:
+          'assets/images/matiere/galva/tole_perforees/tole-perforee-rond.jpg',
+        details: 'CARRÉS OU RONDS',
       },
     ],
   };

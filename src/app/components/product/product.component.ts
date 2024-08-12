@@ -5,12 +5,15 @@ import { FormeMatiereService } from '../../services/forme_matiere/forme-matiere.
 import { Produit } from '../forme-matiere/interface/produit.model';
 import { FavorieService } from '../../services/favorie/favorie.service';
 import { PanierService } from '../../services/panier/panier.service';
+import { ProductService } from '../../services/product/product.service';
+import { Product } from '../../services/product/product.model.dto';
+import { AuthService } from '../../services/auth/auth.service';
 
 interface Ligne {
-  epaisseur: number;
-  hauteur: number;
-  largeur: number;
-  masse: number;
+  epaisseur: number | undefined;
+  hauteur: number | undefined;
+  largeur: number | undefined;
+  masse: number | undefined;
   additionalData1: number | string;
   additionalData2: number | string;
   additionalData3: number | string;
@@ -32,59 +35,40 @@ interface FavoriteItem {
 export class ProductComponent {
   produits: { [key: string]: Produit[] } = {};
   selectedItem: any = null;
+   url : string | undefined ;
+   teste : any;
+
+  fetchedproducts: Product[] = [];
+  resolveproducts: Product[] = [];
+  errorMessage: string = '';
 
   constructor(
     private matiereDataService: MatiereDataService,
     private activatedRoutes: ActivatedRoute,
     private formeMatiereService: FormeMatiereService,
     private favorieService: FavorieService,
-    private cartService: PanierService
+    private cartService: PanierService,
+    private productService: ProductService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.produits = this.formeMatiereService.getProduits();
-    this.activatedRoutes.url.subscribe((urlSegments) => {
-      const url = urlSegments.map((segment) => segment.path).join('/');
-      this.chooseData(url);
+    console.log('image zone',this.produits);
+
+    this.productService.getProductsByType('alu1').subscribe({
+      next: (data) => {
+        console.log('Products fetched:', data);
+        this.fetchedproducts = data;
+        this.fetchProducts('alu1');
+      },
+      error: (error) => {
+        console.error('Error fetching products:', error);
+        this.errorMessage = 'Failed to load products';
+      }
     });
   }
 
-  // Table Data
-
-  /* *Aluminium */
-  fer_t_aluminium = this.matiereDataService.fer_t_aluminium;
-  corniere_egale_aluminium = this.matiereDataService.corniere_egale_aluminium;
-  profile_h_aluminium = this.matiereDataService.profile_h_aluminium;
-  profile_u_aluminium = this.matiereDataService.profile_u_aluminium;
-  tube_rectangulaire_aluminium =
-    this.matiereDataService.tube_rectangulaire_aluminium;
-
-  /* *Inox */
-  corniere_egale_inox = this.matiereDataService.corniere_egale_inox;
-  fer_t_inox = this.matiereDataService.fer_t_inox;
-  poutrelle_hea_heb_inox = this.matiereDataService.poutrelle_hea_heb_inox;
-  tube_rond_inox_304l = this.matiereDataService.tube_rond_inox_304l;
-  barre_rond_plein_inox_304l =
-    this.matiereDataService.barre_rond_plein_inox_304l;
-
-  /* *Acier */
-  cornieres_ailes_egales_acier =
-    this.matiereDataService.cornieres_ailes_egales_acier;
-  cornieres_ailes_inegales_acier =
-    this.matiereDataService.cornieres_ailes_inegales_acier;
-  fers_t_acier = this.matiereDataService.fers_t_acier;
-  tubes_carres_acier = this.matiereDataService.tubes_carres_acier;
-  tubes_rectangulaires_acier =
-    this.matiereDataService.tubes_rectangulaires_acier;
-
-  /* *Galva */
-  tole_perforee_galva = this.matiereDataService.tole_perforee_galva;
-  cornieres_ailes_egales_galva =
-    this.matiereDataService.cornieres_ailes_egales_galva;
-  tubes_ronds_galva = this.matiereDataService.tubes_ronds_galva;
-  tubes_carres_galva = this.matiereDataService.tubes_carres_galva;
-  tubes_rectangulaires_galva =
-    this.matiereDataService.tubes_rectangulaires_galva;
 
   lignes: Ligne[] = [];
 
@@ -119,10 +103,32 @@ export class ProductComponent {
   resultat: number = 0;
   updateSelection: Ligne | null = null;
 
+  fetchProducts(type: string): void {
+    if(this.authService.isLoggedIn()){
+      this.productService.getProductsByType(type).subscribe({
+      next: (data) => {
+        this.fetchedproducts = data;
+        console.log('fetched product',this.fetchedproducts);
+
+          console.log('url', this.url);
+          this.chooseData('products/alu1');
+
+      },
+      error: (err) => {
+        this.errorMessage = 'Failed to load products';
+        console.error(err);
+      }
+    });}
+    else{
+      console.log("Not logged in");
+    }
+
+  }
+
   calcule(): void {
     this.updateSelectedItem();
     if (this.updateSelection) {
-      const poidsUnitaire = this.updateSelection.masse * this.longueur;
+      const poidsUnitaire = this.updateSelection.masse ? this.updateSelection.masse * this.longueur : 0;
       this.resultat = poidsUnitaire * this.quantite;
     }
   }
@@ -136,12 +142,12 @@ export class ProductComponent {
 
   chooseData(url: string): void {
     switch (url) {
-      case 'product/alu1':
-        this.lignes = this.fer_t_aluminium.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteur,
-          largeur: item.largeur,
-          masse: item.masseKgM,
+      case 'products/alu1':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
+          largeur: item.width,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -159,6 +165,7 @@ export class ProductComponent {
         this.titreHauteur = 'B<br />Hauteur';
         this.titreLargeur = 'C<br />Largeur';
         this.titreMasse = 'Masse<br />(Kg/m)';
+        console.log('produits on switch case',this.produits);
 
         this.titleProduct = this.titleProduct =
           this.produits['aluminium'][0]?.nom || 'Produit non trouvé';
@@ -166,12 +173,12 @@ export class ProductComponent {
         this.productSchema = this.produits['aluminium'][0]?.schema;
 
         break;
-      case 'product/alu2':
-        this.lignes = this.corniere_egale_aluminium.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteurAiles,
+      case 'products/alu2':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
           largeur: 0,
-          masse: item.masse,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -196,14 +203,14 @@ export class ProductComponent {
         this.productSchema = this.produits['aluminium'][1]?.schema;
 
         break;
-      case 'product/alu3':
-        this.lignes = this.profile_h_aluminium.map((item, index) => ({
-          epaisseur: item.a,
-          hauteur: item.c,
-          largeur: item.d,
-          masse: item.masseKgM,
-          additionalData1: item.h,
-          additionalData2: item.b,
+      case 'products/alu3':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
+          largeur: 0,
+          masse : item.linearWeight,
+          additionalData1: 0,
+          additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
@@ -230,13 +237,13 @@ export class ProductComponent {
         this.productSchema = this.produits['aluminium'][2]?.schema;
 
         break;
-      case 'product/alu4':
-        this.lignes = this.profile_u_aluminium.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteur,
-          largeur: item.largeur,
-          masse: item.masse,
-          additionalData1: item.U,
+      case 'products/alu4':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
+          largeur: 0,
+          masse : item.linearWeight,
+          additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
@@ -263,12 +270,12 @@ export class ProductComponent {
         this.productSchema = this.produits['aluminium'][3]?.schema;
 
         break;
-      case 'product/alu5':
-        this.lignes = this.tube_rectangulaire_aluminium.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteur,
-          largeur: item.largeur,
-          masse: item.masse,
+      case 'products/alu5':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
+          largeur: 0,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -293,12 +300,12 @@ export class ProductComponent {
         this.productSchema = this.produits['aluminium'][4]?.schema;
 
         break;
-      case 'product/inox1':
-        this.lignes = this.corniere_egale_inox.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteurAiles,
+      case 'products/inox1':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
           largeur: 0,
-          masse: item.masse,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -323,12 +330,12 @@ export class ProductComponent {
         this.productSchema = this.produits['inox'][0]?.schema;
 
         break;
-      case 'product/inox2':
-        this.lignes = this.fer_t_inox.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteur,
-          largeur: item.largeur,
-          masse: item.masse,
+      case 'products/inox2':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
+          largeur: 0,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -353,14 +360,14 @@ export class ProductComponent {
         this.productSchema = this.produits['inox'][1]?.schema;
 
         break;
-      case 'product/inox3':
-        this.lignes = this.poutrelle_hea_heb_inox.map((item, index) => ({
-          epaisseur: item.A,
-          hauteur: item.C,
-          largeur: item.D,
-          masse: item.Masse_kg_m,
-          additionalData1: item.HEB_HEA,
-          additionalData2: item.B,
+      case 'products/inox3':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
+          largeur: 0,
+          masse : item.linearWeight,
+          additionalData1: 0,
+          additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
@@ -387,13 +394,13 @@ export class ProductComponent {
         this.productSchema = this.produits['inox'][2]?.schema;
 
         break;
-      case 'product/inox4':
-        this.lignes = this.tube_rond_inox_304l.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.diametre_exterieur,
+      case 'products/inox4':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
           largeur: 0,
-          masse: item.masse_kg_m,
-          additionalData1: item.diametre_exterieur,
+          masse : item.linearWeight,
+          additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
@@ -417,16 +424,16 @@ export class ProductComponent {
         this.productSchema = this.produits['inox'][3]?.schema;
 
         break;
-      case 'product/inox5':
-        this.lignes = this.barre_rond_plein_inox_304l.map((item, index) => ({
-          epaisseur: 0,
-          hauteur: 0,
+      case 'products/inox5':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
           largeur: 0,
-          masse: item.section_cm2,
-          additionalData1: item.diametre,
-          additionalData2: item.circonference,
+          masse : item.linearWeight,
+          additionalData1: 0,
+          additionalData2: 0,
           additionalData3: 0,
-          additionalData4: item.masse_kg_m,
+          additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
         }));
@@ -450,12 +457,12 @@ export class ProductComponent {
         this.productSchema = this.produits['inox'][4]?.schema;
 
         break;
-      case 'product/acier1':
-        this.lignes = this.cornieres_ailes_egales_acier.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteurAiles,
+      case 'products/acier1':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
           largeur: 0,
-          masse: item.masseKgPerM,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -480,13 +487,12 @@ export class ProductComponent {
         this.productSchema = this.produits['acier'][0]?.schema;
 
         break;
-      case 'product/acier2':
-        this.lignes = this.cornieres_ailes_inegales_acier.map(
-          (item, index) => ({
-            epaisseur: item.epaisseur,
-            hauteur: item.hauteur,
-            largeur: item.largeur,
-            masse: item.masse,
+      case 'products/acier2':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
+          largeur: 0,
+          masse : item.linearWeight,
             additionalData1: 0,
             additionalData2: 0,
             additionalData3: 0,
@@ -512,12 +518,12 @@ export class ProductComponent {
         this.productSchema = this.produits['acier'][1]?.schema;
 
         break;
-      case 'product/acier3':
-        this.lignes = this.fers_t_acier.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteur,
-          largeur: item.largeur,
-          masse: item.masse,
+      case 'products/acier3':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
+          largeur: 0,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -544,12 +550,12 @@ export class ProductComponent {
         this.productSchema = this.produits['acier'][2]?.schema;
 
         break;
-      case 'product/acier4':
-        this.lignes = this.tubes_carres_acier.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteur,
+      case 'products/acier4':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
           largeur: 0,
-          masse: item.masse,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -574,12 +580,12 @@ export class ProductComponent {
         this.productSchema = this.produits['acier'][3]?.schema;
 
         break;
-      case 'product/acier5':
-        this.lignes = this.tubes_rectangulaires_acier.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteur,
-          largeur: item.largeur,
-          masse: item.masse,
+      case 'products/acier5':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
+          largeur: 0,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -604,14 +610,14 @@ export class ProductComponent {
         this.productSchema = this.produits['acier'][4]?.schema;
 
         break;
-      case 'product/galva1':
-        this.lignes = this.tole_perforee_galva.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: 0,
+      case 'products/galva1':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
           largeur: 0,
-          masse: item.masse,
+          masse : item.linearWeight,
           additionalData1: 0,
-          additionalData2: item.typeTrous,
+          additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
@@ -635,12 +641,12 @@ export class ProductComponent {
         this.productSchema = this.produits['galva'][0]?.schema;
 
         break;
-      case 'product/galva2':
-        this.lignes = this.cornieres_ailes_egales_galva.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteurAiles,
+      case 'products/galva2':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
           largeur: 0,
-          masse: item.masseKg_m,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -665,13 +671,13 @@ export class ProductComponent {
         this.productSchema = this.produits['galva'][1]?.schema;
 
         break;
-      case 'product/galva3':
-        this.lignes = this.tubes_ronds_galva.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: 0,
+      case 'products/galva3':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
           largeur: 0,
-          masse: item.masseKg_m,
-          additionalData1: item.diametreExterieur,
+          masse : item.linearWeight,
+          additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
@@ -697,12 +703,12 @@ export class ProductComponent {
         this.productSchema = this.produits['galva'][2]?.schema;
 
         break;
-      case 'product/galva4':
-        this.lignes = this.tubes_carres_galva.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteur,
+      case 'products/galva4':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
           largeur: 0,
-          masse: item.masse,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -727,12 +733,12 @@ export class ProductComponent {
         this.productSchema = this.produits['galva'][3]?.schema;
 
         break;
-      case 'product/galva5':
-        this.lignes = this.tubes_rectangulaires_galva.map((item, index) => ({
-          epaisseur: item.epaisseur,
-          hauteur: item.hauteur,
-          largeur: item.largeur,
-          masse: item.masse,
+      case 'products/galva5':
+        this.lignes = this.fetchedproducts.map((item, index) => ({
+          epaisseur: item.thickness,
+          hauteur: item.height,
+          largeur: 0,
+          masse : item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
@@ -822,4 +828,7 @@ export class ProductComponent {
     }
     return null;
   }
+
+
+
 }

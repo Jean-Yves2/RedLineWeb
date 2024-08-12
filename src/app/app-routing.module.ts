@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'offres', component: OffresComponent },
   { path: 'piece-configuration', component: PieceConfigurationComponent },
   { path: 'matiere/:category', component: FormeMatiereComponent },
-  { path: 'product/:id', component: ProductComponent },
+  { path: 'products/:id', component: ProductComponent },
   { path: 'commercial', component: CommercialServiceComponent },
   { path: 'approvisionnement', component: ApprovisionnementComponent },
   { path: 'favoris', component: FavoriteComponent },
