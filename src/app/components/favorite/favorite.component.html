@@ -1,9 +1,9 @@
 <section class="container">
   <h1 class="container_title">Mes Favoris<img class="container_title_image" src="assets/images/favorie/etoile_fav.png" /></h1>
-  <div class="container_design" *ngIf="havedFavorites">
+  <div class="container_design">
     <div
       class="container_div"
-      *ngFor="let product of favoriteProducts; let i = index"
+      *ngFor="let product of favorites; let i = index"
     >
       <button (click)="removeFavorite(product)">
         <img
@@ -12,7 +12,7 @@
         />
       </button>
       <div class="container_div_card">
-        <span class="container_div_card_name">{{ product.nom }}</span>
+        <span class="container_div_card_name">{{ product.name }}</span>
         <div class="container_div_card_image">
           <img
             class="container_div_card_image_size"
@@ -35,8 +35,7 @@
         </div>
 
         <div class="container_div_card_description">
-          FER T <br />Epaisseur : 2 mm <br />Hauteur : 30 mm <br />Largeur : 30
-          mm
+          {{ product.description }}
         </div>
       </div>
       <div class="container_div_panier">
@@ -45,7 +44,7 @@
       </div>
     </div>
   </div>
-  <div class="container_div_empty" *ngIf="!havedFavorites">
+  <div class="container_div_empty" *ngIf="havedFavorites">
     <img class="container_div_empty_image" src="assets/images/favorie/noFavorie.png">
     <div class="container_div_empty_text">
       Favoris Vide</div></div>

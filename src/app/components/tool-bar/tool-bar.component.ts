@@ -32,11 +32,11 @@ export class ToolBarComponent implements OnInit, OnDestroy {
       this.isInternal = this.authService.isInternal();
     });
 
-    this.favoritesSubscription = this.favorieService.favorites$.subscribe(
+    /*this.favoritesSubscription = this.favorieService.favorites$.subscribe(
       (count) => {
         this.favoriteCounter = count;
       }
-    );
+    );*/
 
     this.cartSubscription = this.panierService.cartItemCount$.subscribe(
       (count) => {

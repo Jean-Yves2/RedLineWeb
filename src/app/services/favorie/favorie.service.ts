@@ -1,57 +1,57 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class FavorieService {
-  private FAVORITES_KEY = 'favorites';
-  private nextId: number = this.getNextId();
-  private favoritesSubjectCounter = new BehaviorSubject<number>(this.countFavorites());
+  private apiUrl = environment.apiUrl;
 
-  favorites$ = this.favoritesSubjectCounter.asObservable();
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  constructor() {
-    this.favoritesSubjectCounter.next(this.countFavorites());
-  }
-
-  getFavorites(): any[] {
-    return JSON.parse(localStorage.getItem(this.FAVORITES_KEY) || '[]');
-  }
-
-  addFavorite(item: any): void {
-    const favorites = this.getFavorites();
-
-    const isExisting = favorites.some(
-      (fav) =>
-        fav.urlPart === item.urlPart &&
-        fav.longueur === item.longueur &&
-        fav.quantite === item.quantite &&
-        fav.choix === item.choix
-    );
-
-    if (!isExisting) {
-      const favoriteWithId = { ...item, fav_id: this.nextId++ };
-      favorites.push(favoriteWithId);
-      localStorage.setItem(this.FAVORITES_KEY, JSON.stringify(favorites));
-      this.favoritesSubjectCounter.next(this.countFavorites());
+  addFavorite(productCode: number): void {
+    if (this.authService.isLoggedIn()) {
+      this.http.post(`${this.apiUrl}`, { productCode } , { withCredentials: true }).subscribe();
     } else {
-      console.log("L'élément existe déjà dans les favoris.");
+      this.saveToLocalFavorites(productCode);
     }
   }
 
-  removeFavorite(id: number): void {
-    let favorites = this.getFavorites();
-    favorites = favorites.filter((fav) => fav.fav_id !== id);
-    localStorage.setItem(this.FAVORITES_KEY, JSON.stringify(favorites));
-    this.favoritesSubjectCounter.next(this.countFavorites());
+  removeFavorite(productCode: number): void {
+    if (this.authService.isLoggedIn()) {
+      this.http.delete(`${this.apiUrl}?productCode=${productCode}`, { withCredentials: true }).subscribe();
+    } else {
+      this.removeFromLocalFavorites(productCode);
+    }
   }
 
-  countFavorites(): number {
-    return this.getFavorites().length;
+  getFavorites(): Observable<any[]> | number[] {
+    if (this.authService.isLoggedIn()) {
+      return this.http.get<any[]>(`${this.apiUrl}/favorites`, { withCredentials: true });
+    } else {
+      return this.getLocalFavorites();
+    }
   }
-  private getNextId(): number {
-    const fav = this.getFavorites();
-    return fav.length ? Math.max(...fav.map(item => item.fav_id || 0)) + 1 : 1;
+
+  public getLocalFavorites(): number[] {
+    const favorites = localStorage.getItem('localFavorites');
+    return favorites ? JSON.parse(favorites) : [];
+  }
+
+  private saveToLocalFavorites(productCode: number): void {
+    let favorites = this.getLocalFavorites();
+    if (!favorites.includes(productCode)) {
+      favorites.push(productCode);
+      localStorage.setItem('localFavorites', JSON.stringify(favorites));
+    }
+  }
+
+  private removeFromLocalFavorites(productCode: number): void {
+    let favorites = this.getLocalFavorites();
+    favorites = favorites.filter(code => code !== productCode);
+    localStorage.setItem('localFavorites', JSON.stringify(favorites));
   }
 }

@@ -8,6 +8,7 @@ import { PanierService } from '../../services/panier/panier.service';
 import { ProductService } from '../../services/product/product.service';
 import { Product } from '../../services/product/product.model.dto';
 import { AuthService } from '../../services/auth/auth.service';
+import { Inject } from '@angular/core';
 
 interface Ligne {
   epaisseur: number | undefined;
@@ -46,7 +47,7 @@ export class ProductComponent {
     private matiereDataService: MatiereDataService,
     private activatedRoutes: ActivatedRoute,
     private formeMatiereService: FormeMatiereService,
-    private favorieService: FavorieService,
+    @Inject(FavorieService) private favorieService: FavorieService,
     private cartService: PanierService,
     private productService: ProductService,
     private authService: AuthService
@@ -766,9 +767,10 @@ export class ProductComponent {
   removeFromFavorites(item: any): void {
     this.favorieService.removeFavorite(item);
   }
+  /*
   getFavorites(): any[] {
     return this.favorieService.getFavorites();
-  }
+  }*/
 
   getProductIdFromUrl(url: string): string {
     const urlParts = url.split('/');
