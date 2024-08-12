@@ -14,7 +14,7 @@ export class FavorieService {
 
   addFavorite(productCode: number): void {
     if (this.authService.isLoggedIn()) {
-      this.http.post(`${this.apiUrl}`, { productCode } , { withCredentials: true }).subscribe();
+      this.http.post(`${this.apiUrl}/favorites/${productCode}`, { productCode } , { withCredentials: true }).subscribe();
     } else {
       this.saveToLocalFavorites(productCode);
     }

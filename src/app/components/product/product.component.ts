@@ -19,6 +19,7 @@ interface Ligne {
   additionalData2: number | string | undefined;
   additionalData3: number | string | undefined;
   additionalData4: number | string | undefined;
+  productCode: number | undefined;
 }
 
 interface FavoriteItem {
@@ -161,6 +162,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -192,6 +194,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -222,6 +225,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -252,6 +256,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -281,6 +286,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherHauteur = true;
@@ -307,6 +313,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -337,6 +344,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -367,6 +375,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -395,6 +404,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherHauteur = false;
@@ -425,6 +435,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;;
@@ -454,6 +465,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -484,6 +496,7 @@ export class ProductComponent {
             additionalData4: 0,
             choix: index,
             urlPart: this.activatedRoutes.snapshot.url[1].path,
+            productCode: item.productCode
           })
         );
 
@@ -515,6 +528,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -547,6 +561,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -577,6 +592,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -607,6 +623,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -635,6 +652,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -665,6 +683,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -694,6 +713,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -724,6 +744,7 @@ export class ProductComponent {
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode
         }));
 
         this.afficherEpaisseur = true;
@@ -751,6 +772,7 @@ export class ProductComponent {
       urlPart: item.urlPart,
       longueur: this.longueur,
       quantite: this.quantite,
+      productCode: item.productCode
     };
   }
   updateSelectedItem(): void {
@@ -762,7 +784,10 @@ export class ProductComponent {
 
   addToFavorites(): void {
     this.updateSelectedItem();
-    this.favorieService.addFavorite(this.selectedItem);
+    if (this.selectedItem) {
+      console.log('selectedItem', this.selectedItem);
+      this.favorieService.addFavorite(this.selectedItem.productCode);
+    }
   }
   removeFromFavorites(item: any): void {
     this.favorieService.removeFavorite(item);
