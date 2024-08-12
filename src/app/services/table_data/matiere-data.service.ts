@@ -303,6 +303,9 @@ export class MatiereDataService {
         'Cornière à ailes égales ( Epaisseur : 10 mm Hauteur Ailes : 100 mm)',
     },
   ];
+    /*
+  ! A supprimer
+  */
   profile_h_aluminium = [
     {
       id: 0,
@@ -559,6 +562,9 @@ export class MatiereDataService {
       nom: "Profilé U ( U : 100 mm Epaisseur de l'âme : 6 mm Hauteur de l'âme : 100 mm Largeur de la Semelle : 50 mm)",
     },
   ];
+  /*
+  ! A supprimer
+  */
   tube_rectangulaire_aluminium = [
     {
       choix: 0,
