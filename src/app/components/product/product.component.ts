@@ -45,7 +45,6 @@ export class ProductComponent {
   errorMessage: string = '';
 
   constructor(
-    private matiereDataService: MatiereDataService,
     private activatedRoutes: ActivatedRoute,
     private formeMatiereService: FormeMatiereService,
     @Inject(FavorieService) private favorieService: FavorieService,
