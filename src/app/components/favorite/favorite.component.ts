@@ -26,9 +26,10 @@ export class FavoriteComponent implements OnInit {
     this.produits = this.formeMatiereService.produits;
     console.log('produits on ngInit: ', this.produits);
 
-    this.authService.isLoggedIn().subscribe(isLoggedIn => {
-      if (isLoggedIn) {
+
+      if (this.authService.getIsAuthenticated()) {
         const favorites = this.favorieService.getFavorites();
+        this.favorieService.updateFavoriteCount();
         if (favorites instanceof Observable) {
           favorites.subscribe((data) => {
             this.favorites = data;
@@ -39,11 +40,11 @@ export class FavoriteComponent implements OnInit {
           // Gérer le cas où `favorites` n'est pas un Observable
         }
       } else {
-        this.favorites = this.favorieService.getLocalFavorites();
-        console.log('favorites no auth on ngInit: ', this.favorites);
-        this.updateFavoritesWithImages();
+        const localFavorites = this.favorieService.getLocalFavorites();
+        this.favorites = localFavorites;
+        Promise.resolve().then(() => this.updateFavoritesWithImages());
       }
-    });
+
   }
 
 
@@ -61,7 +62,8 @@ export class FavoriteComponent implements OnInit {
   }
 
   updateFavoritesWithImages(): void {
-    this.favorites = this.favorites.map((favorite) => {
+    if(this.authService.getIsAuthenticated()) {
+      this.favorites = this.favorites.map((favorite) => {
       const productImageData = this.findProductByCode(favorite.productCode);
       return {
         ...favorite,
@@ -69,6 +71,16 @@ export class FavoriteComponent implements OnInit {
         image: productImageData?.image || 'assets/images/default-image.png',
       };
     });
+  }else {
+    this.favorites = this.favorites.map((favorite) => {
+      const productImageData = this.findProductByCode(favorite);
+      return {
+        ...favorite,
+        schema: productImageData?.schema || 'assets/images/default-schema.png',
+        image: productImageData?.image || 'assets/images/default-image.png',
+      };})
+  }
+
   }
 
   removeFavorite(item: any): void {

@@ -12,13 +12,15 @@ export class AuthService {
   private apiUrl = environment.apiUrl;
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
-  private isAuthenticated: boolean | null = null;
+  private isAuthenticated: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {
+    const storedUser = JSON.parse(localStorage.getItem('currentUser')!);
     this.currentUserSubject = new BehaviorSubject<any>(
       JSON.parse(localStorage.getItem('currentUser')!)
     );
     this.currentUser = this.currentUserSubject.asObservable();
+    this.isAuthenticated = !!storedUser;
 
   }
 
@@ -46,13 +48,13 @@ export class AuthService {
         tap((response) => {
           localStorage.setItem('currentUser', JSON.stringify(response.user));
           this.currentUserSubject.next(response.user);
+          this.trueAuthentication();
         }),
         catchError((error) => of(error))
       );
   }
 
   logout(): void {
-    this.resetAuthentication();
     this.http
       .post(`${this.apiUrl}/auth/logout`, {}, { withCredentials: true })
       .subscribe({
@@ -68,9 +70,8 @@ export class AuthService {
       });
   }
 
-  public isLoggedIn(): Observable<boolean> {
-    if (this.isAuthenticated !== null) {
-      console.log('isAuthenticated', this.isAuthenticated);
+ /* public isLoggedIn(): Observable<boolean> {
+    if (this.isAuthenticated) {
       return of(this.isAuthenticated);
     }
 
@@ -86,7 +87,7 @@ export class AuthService {
           return of(false);
         })
       );
-    }
+  }*/
 
   public isInternal(): boolean {
     const user = this.currentUserSubject.value;
@@ -97,5 +98,13 @@ export class AuthService {
   public resetAuthentication(): void {
     console.log('resetAuthentication', this.isAuthenticated);
     this.isAuthenticated = false;
+  }
+  public trueAuthentication(): void {
+    console.log('trueAuthentication before', this.isAuthenticated);
+    this.isAuthenticated = true;
+    console.log('trueAuthentication before', this.isAuthenticated);
+  }
+  public getIsAuthenticated(): boolean {
+    return this.isAuthenticated;
   }
 }

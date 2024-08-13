@@ -17,9 +17,8 @@ export class ProductService {
   constructor(private http: HttpClient , private authService: AuthService) {}
 
   getProductsByType(type: string): Observable<Product[]> {
-    return this.authService.isLoggedIn().pipe(
-      switchMap(isAuthenticated => {
-        if (isAuthenticated) {
+
+        if (this.authService.getIsAuthenticated()) {
           return this.http.get<Product[]>(`${this.apiUrl}/products/${type}`);
         } else {
           this.localProducts = localProducts as unknown as Product[];
@@ -29,12 +28,8 @@ export class ProductService {
           );
           return of(filteredProducts);
         }
-      }),
-      catchError(err => {
-        console.error('Error fetching products:', err);
-        return of([]);
-      })
-    );
+
+
     }
   private getRangeByType(type: string): { min: number, max: number } {
     switch (type) {

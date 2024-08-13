@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { FavorieService } from '../../services/favorie/favorie.service';
 
 @Component({
   selector: 'app-connexion',
@@ -17,7 +18,8 @@ export class ConnexionComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private favorieService: FavorieService
   ) {
     if (this.authService.currentUserValue) {
       this.router.navigate(['/']);
@@ -53,6 +55,7 @@ export class ConnexionComponent {
           } else if (user.user.role == 'SUPPLY_MANAGER') {
             this.router.navigate(['/approvisionnement']);
           } else {
+            this.favorieService.updateFavoriteCount();
             this.router.navigate(['/']);
           }
         },

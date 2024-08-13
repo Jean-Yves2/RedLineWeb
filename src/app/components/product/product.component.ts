@@ -103,9 +103,8 @@ export class ProductComponent {
   updateSelection: Ligne | null = null;
 
   fetchProducts(type: string, oneUrl: string): void {
-    this.authService.isLoggedIn().subscribe((loggedIn) => {
-      console.log('logged in', loggedIn);
-      if (loggedIn) {
+
+      if (this.authService.getIsAuthenticated()) {
         this.productService.getProductsByType(type).subscribe({
           next: (data) => {
             this.fetchedproducts = data;
@@ -121,7 +120,7 @@ export class ProductComponent {
         this.fetchedproducts = this.productService.getLocalProductsByType(type);
         this.chooseData(oneUrl);
       }
-    });
+
   }
 
 

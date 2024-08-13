@@ -3,7 +3,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FavorieService } from '../../services/favorie/favorie.service';
 import { Observable, Subscription } from 'rxjs';
-import { PanierService } from 'src/app/services/panier/panier.service';
+import { PanierService } from '../../services/panier/panier.service';
 
 @Component({
   selector: 'app-tool-bar',
@@ -30,6 +30,9 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
       this.isInternal = this.authService.isInternal();
+      const testFavorite = this.favorieService.getFavorites();
+      console.log('testFavorite', testFavorite);
+      this.updateFavorites();
       if (user) {
         this.updateFavorites();
       }
@@ -40,13 +43,13 @@ export class ToolBarComponent implements OnInit, OnDestroy {
         this.favoriteCounter = count;
       }
     );
+    this.favorieService.updateFavoriteCount();
 
-
-    this.cartSubscription = this.panierService.cartItemCount$.subscribe(
+    /*this.cartSubscription = this.panierService.cartItemCount$.subscribe(
       (count) => {
         this.cartCounter = count;
       }
-    );
+    );*/
 
 
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, catchError, Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of, switchMap, tap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { environment } from '../../../environments/environment';
 
@@ -18,10 +18,11 @@ export class FavorieService {
   }
 
   addFavorite(productCode: number): void {
-    if (this.authService.isLoggedIn()) {
+    if (this.authService.getIsAuthenticated()) {
       this.http.post<void>(`${this.apiUrl}/favorites/${productCode}`, { productCode }, { withCredentials: true })
         .pipe(
-          switchMap(() => this.updateFavorites()),
+          switchMap(() =>  this.updateFavorites()),
+          tap(() => this.updateFavoriteCount()),
           catchError(error => {
             console.error('Error adding favorite', error);
             return of([]);
@@ -35,10 +36,11 @@ export class FavorieService {
   }
 
   removeFavorite(productCode: number): void {
-    if (this.authService.isLoggedIn()) {
+    if (this.authService.getIsAuthenticated()) {
       this.http.delete<void>(`${this.apiUrl}/favorites/${productCode}`, { withCredentials: true })
         .pipe(
           switchMap(() => this.updateFavorites()),
+          tap(() => this.updateFavoriteCount()),
           catchError(error => {
             console.error('Error removing favorite', error);
             return of([]);
@@ -52,7 +54,7 @@ export class FavorieService {
   }
 
   getFavorites(): Observable<any[]> | number[] {
-    if (this.authService.isLoggedIn()) {
+    if (this.authService.getIsAuthenticated()) {
       return this.http.get<any[]>(`${this.apiUrl}/favorites`, { withCredentials: true });
     } else {
       console.log('geLocaltFavorites',this.getLocalFavorites() );
@@ -60,16 +62,23 @@ export class FavorieService {
     }
   }
 
-   updateFavoriteCount(): void {
-    const favorites = this.authService.isLoggedIn() ? this.getFavorites() : this.getLocalFavorites();
-    if (favorites instanceof Observable) {
-      favorites.subscribe((data) => {
-        this.favoriteCountSubject.next(data.length);
-      });
+  updateFavoriteCount(): void {
+    const isAuthenticated = this.authService.getIsAuthenticated();
+    console.log('isAuthenticated',isAuthenticated);
+    if (isAuthenticated) {
+      const favorites$ = this.getFavorites();
+      if (favorites$ instanceof Observable) {
+        favorites$.subscribe((data) => {
+          this.favoriteCountSubject.next(data.length);
+        });
+      }
     } else {
+      const favorites = this.getLocalFavorites();
       this.favoriteCountSubject.next(favorites.length);
     }
   }
+
+
 
   public getLocalFavorites(): number[] {
     const favorites = localStorage.getItem('localFavorites');
@@ -97,24 +106,12 @@ export class FavorieService {
 
 
   /**/
-  updateFavorites(): Observable<any[]> {
-    return this.authService.isLoggedIn().pipe(
-      switchMap(isLoggedIn => {
-        if (isLoggedIn) {
-          return this.http.get<any[]>(`${this.apiUrl}/favorites`, { withCredentials: true });
-        } else {
-          return of(this.getLocalFavorites());
-        }
-      }),
-      catchError(error => {
-        console.error('Error fetching favorites', error);
-        return of([]); // Retourne un tableau vide en cas d'erreur
-      }),
-      switchMap(data => {
-        this.updateFavoriteCount(); // Met à jour le compteur de favoris
-        return of(data); // Retourne les favoris mis à jour
-      })
-    );
+public updateFavorites(): Observable<any[]> {
 
+  if (this.authService.getIsAuthenticated()) {
+    return this.http.get<any[]>(`${this.apiUrl}/favorites`, { withCredentials: true });
+  } else {
+    return of(this.getLocalFavorites());
   }
+}
 }
