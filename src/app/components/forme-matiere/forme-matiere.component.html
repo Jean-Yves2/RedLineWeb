@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="tabs">
+    <button
+      class="tab"
+      [ngClass]="{ active: selectedCategory === 'aluminium' }"
+      (click)="showCategory('aluminium')"
+    >
+      Aluminium
+    </button>
+    <button
+      class="tab"
+      [ngClass]="{ active: selectedCategory === 'inox' }"
+      (click)="showCategory('inox')"
+    >
+      Inox
+    </button>
+    <button
+      class="tab"
+      [ngClass]="{ active: selectedCategory === 'acier' }"
+      (click)="showCategory('acier')"
+    >
+      Acier
+    </button>
+    <button
+      class="tab"
+      [ngClass]="{ active: selectedCategory === 'galva' }"
+      (click)="showCategory('galva')"
+    >
+      Galva
+    </button>
+  </div>
+  <div class="product-list">
+    <div
+      *ngFor="let produit of produits[selectedCategory]"
+      class="product-item"
+    >
+      <a [routerLink]="['/products', produit.id]">
+        <div class="product-description">
+          <h2>{{ produit.nom }}</h2>
+          <p *ngIf="produit.details">{{ produit.details }}</p>
+        </div>
+        <div class="product-icons">
+          <img [src]="produit.schema" [alt]="produit.nom" />
+          <img [src]="produit.image" [alt]="produit.nom" /></div
+      ></a>
+    </div>
+  </div>
+</div>

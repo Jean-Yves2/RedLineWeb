@@ -1,0 +1,19 @@
+@import '../../../styles/theme.scss';
+
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+
+.btn-connexion{
+  background-color: $secondary-color;
+}
+
+
+.form_error{
+  color: red;
+  font-size: 1em;
+  margin-top: 10px;
+}
