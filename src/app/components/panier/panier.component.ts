@@ -47,7 +47,6 @@ export class PanierComponent {
         }
       }
     });
-    console.log('panierProducts', this.panierProducts);
     this.havedPanier = this.panierProducts.length > 0;
   }
 

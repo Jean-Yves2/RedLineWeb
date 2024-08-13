@@ -108,7 +108,6 @@ export class ProductComponent {
         this.productService.getProductsByType(type).subscribe({
           next: (data) => {
             this.fetchedproducts = data;
-            console.log('fetched product : byType', this.fetchedproducts);
             this.chooseData(oneUrl);
           },
           error: (err) => {
@@ -165,7 +164,6 @@ export class ProductComponent {
         this.titreHauteur = 'B<br />Hauteur';
         this.titreLargeur = 'C<br />Largeur';
         this.titreMasse = 'Masse<br />(Kg/m)';
-        console.log('produits on switch case',this.produits);
 
         this.titleProduct = this.titleProduct =
           this.produits['aluminium'][0]?.nom || 'Produit non trouvé';
@@ -776,7 +774,6 @@ export class ProductComponent {
   addToFavorites(): void {
     this.updateSelectedItem();
     if (this.selectedItem) {
-      console.log('selectedItem', this.selectedItem);
       this.favorieService.addFavorite(this.selectedItem.productCode);
     }
   }

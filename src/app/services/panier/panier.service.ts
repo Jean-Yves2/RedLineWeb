@@ -21,7 +21,6 @@ export class PanierService {
 
   addToCart(item: any): void {
     const cart = this.getCart();
-    console.log('cart', cart);
 
     let isExisting = cart.some(
       (cartItem) =>
@@ -37,7 +36,7 @@ export class PanierService {
       localStorage.setItem(this.CART_KEY, JSON.stringify(cart));
       this.cartItemCountSubject.next(this.countCartItems());
     } else {
-      console.log("L'élément existe déjà dans le Panier.");
+      console.error("L'élément existe déjà dans le Panier.");
     }
   }
 

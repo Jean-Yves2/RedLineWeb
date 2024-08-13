@@ -4,6 +4,7 @@ import { Produit } from '../forme-matiere/interface/produit.model';
 import { FormeMatiereService } from '../../services/forme_matiere/forme-matiere.service';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
+import { localProducts } from '../../services/table_data/localProducts';
 
 @Component({
   selector: 'app-favorite',
@@ -24,7 +25,6 @@ export class FavoriteComponent implements OnInit {
 
   ngOnInit(): void {
     this.produits = this.formeMatiereService.produits;
-    console.log('produits on ngInit: ', this.produits);
 
 
       if (this.authService.getIsAuthenticated()) {
@@ -33,11 +33,10 @@ export class FavoriteComponent implements OnInit {
         if (favorites instanceof Observable) {
           favorites.subscribe((data) => {
             this.favorites = data;
-            console.log('data when observable', this.favorites);
             this.updateFavoritesWithImages();
           });
         } else {
-          // Gérer le cas où `favorites` n'est pas un Observable
+
         }
       } else {
         const localFavorites = this.favorieService.getLocalFavorites();
@@ -62,31 +61,39 @@ export class FavoriteComponent implements OnInit {
   }
 
   updateFavoritesWithImages(): void {
-    if(this.authService.getIsAuthenticated()) {
+    if (this.authService.getIsAuthenticated()) {
       this.favorites = this.favorites.map((favorite) => {
-      const productImageData = this.findProductByCode(favorite.productCode);
-      return {
-        ...favorite,
-        schema: productImageData?.schema || 'assets/images/default-schema.png',
-        image: productImageData?.image || 'assets/images/default-image.png',
-      };
-    });
-  }else {
-    this.favorites = this.favorites.map((favorite) => {
-      const productImageData = this.findProductByCode(favorite);
-      return {
-        ...favorite,
-        schema: productImageData?.schema || 'assets/images/default-schema.png',
-        image: productImageData?.image || 'assets/images/default-image.png',
-      };})
+        const productImageData = this.findProductByCode(favorite.productCode);
+        return {
+          ...favorite,
+          schema: productImageData?.schema || 'assets/images/default-schema.png',
+          image: productImageData?.image || 'assets/images/default-image.png',
+        };
+      });
+    } else {
+      const localFav = this.favorieService.getLocalFavorites();
+      this.favorites = localFav.map((productCode) => {
+        const productImageData = this.findProductByCode(productCode);
+        return {
+          productCode,
+          schema: productImageData?.schema || 'assets/images/default-schema.png',
+          image: productImageData?.image || 'assets/images/default-image.png',
+        };
+      });
+    }
   }
 
-  }
 
   removeFavorite(item: any): void {
-    console.log(item.productCode);
+
+    if(this.authService.getIsAuthenticated()) {
     this.favorieService.removeFavorite(item.productCode);
     this.favorites = this.favorites.filter(fav => fav.productCode !== item.productCode);
     this.havedFavorites = this.favorites.length === 0;
+    } else {
+      this.favorieService.removeFromLocalFavorites(item.productCode);
+      this.favorites = this.favorites.filter(fav => fav !== item);
+      this.havedFavorites = this.favorites.length === 0;
+    }
   }
 }

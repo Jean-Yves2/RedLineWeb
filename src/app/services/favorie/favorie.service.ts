@@ -49,7 +49,7 @@ export class FavorieService {
         .subscribe();
     } else {
       this.removeFromLocalFavorites(productCode);
-      this.updateFavoriteCount();
+
     }
   }
 
@@ -57,14 +57,12 @@ export class FavorieService {
     if (this.authService.getIsAuthenticated()) {
       return this.http.get<any[]>(`${this.apiUrl}/favorites`, { withCredentials: true });
     } else {
-      console.log('geLocaltFavorites',this.getLocalFavorites() );
       return this.getLocalFavorites();
     }
   }
 
   updateFavoriteCount(): void {
     const isAuthenticated = this.authService.getIsAuthenticated();
-    console.log('isAuthenticated',isAuthenticated);
     if (isAuthenticated) {
       const favorites$ = this.getFavorites();
       if (favorites$ instanceof Observable) {
@@ -90,7 +88,6 @@ export class FavorieService {
     if (!favorites.includes(productCode)) {
       favorites.push(productCode);
       localStorage.setItem('localFavorites', JSON.stringify(favorites));
-      console.log('favorites on saveToLocalFavorites :',favorites);
     }
   }
 
@@ -98,6 +95,8 @@ export class FavorieService {
     let favorites = this.getLocalFavorites();
     favorites = favorites.filter(code => code !== productCode);
     localStorage.setItem('localFavorites', JSON.stringify(favorites));
+    this.getLocalFavorites();
+    this.updateFavoriteCount();
   }
    resetFavoriteCount(): void {
     this.favoriteCountSubject.next(0);

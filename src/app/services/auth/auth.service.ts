@@ -96,13 +96,10 @@ export class AuthService {
     );
   }
   public resetAuthentication(): void {
-    console.log('resetAuthentication', this.isAuthenticated);
     this.isAuthenticated = false;
   }
   public trueAuthentication(): void {
-    console.log('trueAuthentication before', this.isAuthenticated);
     this.isAuthenticated = true;
-    console.log('trueAuthentication before', this.isAuthenticated);
   }
   public getIsAuthenticated(): boolean {
     return this.isAuthenticated;

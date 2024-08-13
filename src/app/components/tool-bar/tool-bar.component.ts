@@ -31,7 +31,6 @@ export class ToolBarComponent implements OnInit, OnDestroy {
       this.currentUser = user;
       this.isInternal = this.authService.isInternal();
       const testFavorite = this.favorieService.getFavorites();
-      console.log('testFavorite', testFavorite);
       this.updateFavorites();
       if (user) {
         this.updateFavorites();
