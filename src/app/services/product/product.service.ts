@@ -72,4 +72,10 @@ export class ProductService {
         return { min: 0, max: 0 };
     }
   }
+  getLocalProductsByType(type: string): Product[] {
+    const { min, max } = this.getRangeByType(type);
+    return this.localProducts.filter(product =>
+      product.productCode !== undefined && product.productCode >= min && product.productCode <= max
+    );
+  }
 }

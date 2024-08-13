@@ -56,11 +56,11 @@ export class ProductComponent {
 
   ngOnInit(): void {
     this.produits = this.formeMatiereService.getProduits();
-    console.log('image zone',this.produits);
     this.activatedRoutes.url.subscribe((urlSegments) => {
+
       const url = urlSegments.map((segment) => segment.path).join('/');
       const secondPart = url.split('/')[1];
-      console.log('secondPart', secondPart);
+
       this.productService.getProductsByType(secondPart).subscribe({
         next: (data) => {
           console.log('Products fetched:', data);
@@ -117,7 +117,7 @@ export class ProductComponent {
         this.productService.getProductsByType(type).subscribe({
           next: (data) => {
             this.fetchedproducts = data;
-            console.log('fetched product', this.fetchedproducts);
+            console.log('fetched product : byType', this.fetchedproducts);
 
             console.log('url', this.url);
             this.chooseData(oneUrl);
@@ -128,7 +128,8 @@ export class ProductComponent {
           },
         });
       } else {
-        console.log("Not logged in");
+        this.fetchedproducts = this.productService.getLocalProductsByType(type);
+        this.chooseData(oneUrl);
       }
     });
   }
