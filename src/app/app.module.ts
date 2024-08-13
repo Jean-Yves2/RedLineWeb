@@ -24,7 +24,7 @@ import { CommercialServiceComponent } from './components/commercial-service/comm
 import { ApprovisionnementComponent } from './components/approvisionnement/approvisionnement.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { PanierComponent } from './components/panier/panier.component';
-import { CartComponent } from './components/cart/cart/cart.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
