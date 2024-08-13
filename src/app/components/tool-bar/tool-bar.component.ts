@@ -70,7 +70,7 @@ export class ToolBarComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
-    this.authService.resetAuthentication();
+    this.favorieService.resetFavoriteCount();
     this.router.navigate(['/connexion']);
   }
   private updateFavorites(): void {
