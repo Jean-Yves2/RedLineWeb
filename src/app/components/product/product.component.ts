@@ -61,17 +61,9 @@ export class ProductComponent {
       const url = urlSegments.map((segment) => segment.path).join('/');
       const secondPart = url.split('/')[1];
 
-      this.productService.getProductsByType(secondPart).subscribe({
-        next: (data) => {
-          console.log('Products fetched:', data);
-          this.fetchedproducts = data;
-          this.fetchProducts(secondPart , url);
-        },
-        error: (error) => {
-          console.error('Error fetching products:', error);
-          this.errorMessage = 'Failed to load products';
-        }
-      });
+
+        this.fetchProducts(secondPart , url);
+
     });
 
 
@@ -113,13 +105,12 @@ export class ProductComponent {
 
   fetchProducts(type: string, oneUrl: string): void {
     this.authService.isLoggedIn().subscribe((loggedIn) => {
+      console.log('logged in', loggedIn);
       if (loggedIn) {
         this.productService.getProductsByType(type).subscribe({
           next: (data) => {
             this.fetchedproducts = data;
             console.log('fetched product : byType', this.fetchedproducts);
-
-            console.log('url', this.url);
             this.chooseData(oneUrl);
           },
           error: (err) => {

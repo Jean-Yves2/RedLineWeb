@@ -12,7 +12,7 @@ import {localProducts} from '../table_data/localProducts';
 })
 export class ProductService {
   private apiUrl = environment.apiUrl;
-  localProducts: Product[] = [];
+  localProducts: Product[] = localProducts as unknown as Product[];
 
   constructor(private http: HttpClient , private authService: AuthService) {}
 
