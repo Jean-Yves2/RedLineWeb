@@ -32,6 +32,7 @@ export class PanierService {
 
     if (!isExisting) {
       const cartwithId = { ...item, cart_id: this.nextId++ };
+      console.log('cartwithId',cartwithId);
       cart.push(cartwithId);
       localStorage.setItem(this.CART_KEY, JSON.stringify(cart));
       this.cartItemCountSubject.next(this.countCartItems());

@@ -39,6 +39,7 @@ export class ProductComponent {
   selectedItem: any = null;
    url : string | undefined ;
    teste : any;
+   isSelection = false;
 
   fetchedproducts: Product[] = [];
   resolveproducts: Product[] = [];
@@ -763,6 +764,7 @@ export class ProductComponent {
       quantite: this.quantite,
       productCode: item.productCode
     };
+    this.isSelection = true;
   }
   updateSelectedItem(): void {
     if (this.selectedItem) {
@@ -775,6 +777,7 @@ export class ProductComponent {
     this.updateSelectedItem();
     if (this.selectedItem) {
       this.favorieService.addFavorite(this.selectedItem.productCode);
+      this.isSelection = false;
     }
   }
   removeFromFavorites(item: any): void {
@@ -794,7 +797,11 @@ export class ProductComponent {
 
   addToCart(): void {
     this.updateSelectedItem();
-    this.cartService.addToCart(this.selectedItem);
+    if (this.selectedItem) {
+      this.cartService.addToCart(this.selectedItem);
+      this.isSelection = false;
+    }
+
   }
 
   removeFromCart(item: any): void {

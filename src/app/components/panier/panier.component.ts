@@ -42,6 +42,8 @@ export class PanierComponent {
             (product as any).quantite = cart.quantite;
             (product as any).longueur = cart.longueur;
             (product as any).choix = cart.choix;
+
+            console.log('product', product);
             this.panierProducts.push(product);
           }
         }
