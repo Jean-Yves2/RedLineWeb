@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
-import Cookies from 'js-cookie';
-import { tap } from 'rxjs/operators';
+import { tap, map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +12,16 @@ export class AuthService {
   private apiUrl = environment.apiUrl;
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
+  private isAuthenticated: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {
+    const storedUser = JSON.parse(localStorage.getItem('currentUser')!);
     this.currentUserSubject = new BehaviorSubject<any>(
       JSON.parse(localStorage.getItem('currentUser')!)
     );
     this.currentUser = this.currentUserSubject.asObservable();
+    this.isAuthenticated = !!storedUser;
+
   }
 
   register(registerForm: any): Observable<any> {
@@ -44,22 +46,22 @@ export class AuthService {
       )
       .pipe(
         tap((response) => {
+          localStorage.setItem('currentUser', JSON.stringify(response.user));
           this.currentUserSubject.next(response.user);
-        })
+          this.trueAuthentication();
+        }),
+        catchError((error) => of(error))
       );
   }
 
-  setSession(authResult: any) {
-    Cookies.set('access_token', authResult.access_token);
-  }
-
   logout(): void {
-    this.currentUserSubject.next(null);
-
     this.http
       .post(`${this.apiUrl}/auth/logout`, {}, { withCredentials: true })
       .subscribe({
         next: () => {
+          localStorage.removeItem('currentUser');
+          this.currentUserSubject.next(null);
+          this.resetAuthentication();
           this.router.navigate(['/connexion']);
         },
         error: (error) => {
@@ -68,11 +70,38 @@ export class AuthService {
       });
   }
 
-  public isLoggedIn(): boolean {
-    return !!Cookies.get('access_token');
-  }
+ /* public isLoggedIn(): Observable<boolean> {
+    if (this.isAuthenticated) {
+      return of(this.isAuthenticated);
+    }
 
-  public getToken(): string | undefined {
-    return Cookies.get('access_token');
+    return this.http
+      .get<{ isAuthenticated: boolean }>(`${environment.apiUrl}/auth/check-auth`, { withCredentials: true })
+      .pipe(
+        map((response) => {
+          this.isAuthenticated = response.isAuthenticated;
+          return this.isAuthenticated;
+        }),
+        catchError(() => {
+          this.isAuthenticated = false;
+          return of(false);
+        })
+      );
+  }*/
+
+  public isInternal(): boolean {
+    const user = this.currentUserSubject.value;
+    return (
+      user && (user.role === 'SUPPLY_MANAGER' || user.role === 'COMMERCIAL')
+    );
+  }
+  public resetAuthentication(): void {
+    this.isAuthenticated = false;
+  }
+  public trueAuthentication(): void {
+    this.isAuthenticated = true;
+  }
+  public getIsAuthenticated(): boolean {
+    return this.isAuthenticated;
   }
 }

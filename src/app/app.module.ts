@@ -19,6 +19,11 @@ import { AccueilComponent } from './components/accueil/accueil.component';
 import { PieceConfigurationComponent } from './components/piece-configuration/piece-configuration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormeMatiereComponent } from './components/forme-matiere/forme-matiere.component';
+import { ProductComponent } from './components/product/product.component';
+import { CommercialServiceComponent } from './components/commercial-service/commercial-service.component';
+import { ApprovisionnementComponent } from './components/approvisionnement/approvisionnement.component';
+import { FavoriteComponent } from './components/favorite/favorite.component';
+import { PanierComponent } from './components/panier/panier.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +38,11 @@ import { FormeMatiereComponent } from './components/forme-matiere/forme-matiere.
     AccueilComponent,
     PieceConfigurationComponent,
     FormeMatiereComponent,
+    ProductComponent,
+    CommercialServiceComponent,
+    ApprovisionnementComponent,
+    FavoriteComponent,
+    PanierComponent,
   ],
   imports: [
     BrowserModule,

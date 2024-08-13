@@ -58,7 +58,6 @@ export class InscriptionComponent implements OnInit {
         },
       });
     } else {
-      console.log('Form not valid');
       this.displayFormErrors();
     }
   }
@@ -68,7 +67,7 @@ export class InscriptionComponent implements OnInit {
       if (this.registerForm.controls.hasOwnProperty(control)) {
         const formControl = this.registerForm.get(control);
         if (formControl && formControl.invalid) {
-          console.log(`Invalid field: ${control}`, formControl.errors);
+          console.error(`Invalid field: ${control}`, formControl.errors);
         }
 
         if (formControl instanceof FormGroup) {
@@ -76,7 +75,7 @@ export class InscriptionComponent implements OnInit {
             if (formControl.controls.hasOwnProperty(subControl)) {
               const subFormControl = formControl.get(subControl);
               if (subFormControl && subFormControl.invalid) {
-                console.log(
+                console.error(
                   `Invalid field: ${control}.${subControl}`,
                   subFormControl.errors
                 );

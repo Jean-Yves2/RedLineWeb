@@ -1,0 +1,205 @@
+<section class="container-menu">
+  <div class="container-menu_top">
+    <div class="container-menu-title">
+      <img
+        class="container-menu-title_logo"
+        src="../../../favicon.ico"
+        alt="logo"
+      />
+      <span class="container-menu-title_name">METALFACTORY</span>
+    </div>
+    <hr />
+    <div class="container-menu-user">
+      <div class="container-menu-user_cercle">
+        <span class="container-menu-user_cercle_span">{{ firstLetter }}</span>
+      </div>
+      <span class="menu-span">{{ currentUserName }} </span>
+    </div>
+    <hr />
+    <button
+      (click)="showActiveContainer('Fournisseurs')"
+      class="buttonToActivePage"
+    >
+      <div class="container-menu-clients" (click)="rotateElement()">
+        <img
+          class="icon"
+          src="assets/images/approvisionnement/fournisseur.png"
+          alt="logo Fournisseur"
+        />
+        <span class="menu-span">Fournisseurs</span>
+        <img
+          [ngClass]="{ 'rotate-90': isRotated }"
+          class="icon_direction"
+          src="assets/images/commercial/angle-droit.png"
+          alt="logo angle-droit"
+        />
+      </div>
+    </button>
+
+    <hr />
+    <button (click)="showActiveContainer('Stocks')" class="buttonToActivePage">
+      <div class="container-menu-devis">
+        <img
+          class="icon"
+          src="assets/images/approvisionnement/produit.png"
+          alt="icon Stock"
+        />
+        <span class="menu-span">Stocks</span>
+        <img
+          class="icon_direction"
+          src="assets/images/commercial/angle-droit.png"
+          alt="logo angle-droit"
+        />
+      </div>
+    </button>
+
+    <hr />
+  </div>
+  <div class="container-menu_bottom">
+    <hr />
+    <div class="container-menu-deconnexion">
+      <img
+        class="icon , icon-deconnexion"
+        src="assets/images/commercial/deconnecter.png"
+        alt="icon deconnexion"
+      />
+      <button class="menu-span" (click)="logout()">Déconnexion</button>
+      <img
+        class="icon_direction"
+        src="assets/images/commercial/angle-droit.png"
+        alt="logo angle-droit"
+      />
+    </div>
+    <hr />
+    <button (click)="showActiveContainer('Profil')" class="buttonToActivePage">
+      <div class="container-menu-profil">
+        <img
+          class="icon"
+          src="assets/images/commercial/parametre.png"
+          alt="icon parametre"
+        />
+        <span class="menu-span">Mon Profil</span>
+        <img
+          class="icon_direction"
+          src="assets/images/commercial/angle-droit.png"
+          alt="logo angle-droit"
+        />
+      </div>
+    </button>
+
+    <hr />
+    <div class="container-menu-reduit">
+      <div class="container-menu-reduit_cercle">
+        <img
+          class="icon"
+          src="assets/images/commercial/fleches-gauche.png"
+          alt="icon devis"
+        />
+      </div>
+
+      <span class="menu-span">Réduit le Menu</span>
+      <img
+        class="icon_direction"
+        src="assets/images/commercial/angle-droit.png"
+        alt="logo angle-droit"
+      />
+    </div>
+  </div>
+</section>
+
+<section
+  class="container-fournisseur , allSectionContainer"
+  *ngIf="activContainer === 'Fournisseurs'"
+>
+  <div class="container-fournisseur_allbutton">
+    <button class="container-fournisseur_allbutton_one">
+      Fournisseurs Actif
+    </button>
+    <button class="container-fournisseur_allbutton_one">
+      Fournisseurs suspendus
+    </button>
+  </div>
+  <div class="container-fournisseur_section">
+    <button class="container-fournisseur_section_add">
+      Ajouter un Fournisseur
+    </button>
+    <div class="regulator">
+      <div
+        class="fournisseur_card"
+        *ngFor="let supplier of paginatedActiveSupplier"
+      >
+        <div class="container-fournisseur_name">
+          <section class="container-fournisseur_section_card">
+            <div class="container-fournisseur_section_card_data">
+              <span class="container-fournisseur_section_card_data_letter">{{
+                supplier.name.charAt(0)
+              }}</span>
+            </div>
+          </section>
+          <span class="container-fournisseur_section_card_span">{{
+            supplier.name
+          }}</span>
+        </div>
+        <span class="fournisseur_info"
+          >Crée le : {{ formatDate(supplier.createdAt) }}</span
+        >
+        <span class="fournisseur_info"
+          >Email : {{ supplier.contactEmail }}</span
+        >
+        <span class="fournisseur_info">N°Siret : {{ supplier.SIRET }}</span>
+        <span class="fournisseur_info"
+          >Phone : {{ supplier.contactPhone }}</span
+        >
+      </div>
+    </div>
+  </div>
+  <div class="pagination-controls">
+    <button
+      class="pagination-controls_prev"
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      Précédent
+    </button>
+    <span class="pagination-controls_span"
+      >Page {{ currentPage }} sur {{ totalPages }}</span
+    >
+    <button
+      class="pagination-controls_next"
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      Suivant
+    </button>
+  </div>
+</section>
+<section *ngIf="activContainer === 'Stocks'" class="section-entrepot">
+  <span class="section-entrepot_title"> Nos Entrepôts </span>
+  <div class="container-entrepot">
+    <div class="container-entrepot_card" *ngFor="let warehouse of allWarehouse">
+      <div class="container-entrepot_card_name">
+        <img src="assets\images\entrepot\entrepot.png" />
+        <span class="container-entrepot_card_name_span">{{
+          warehouse.name
+        }}</span>
+      </div>
+      <div class="container-entrepot_card_info">
+        <span class="container-entrepot_card_info_span"
+          >Rue : {{ warehouse.address.street }}</span
+        >
+        <span class="container-entrepot_card_info_span"
+          >Code postal : {{ warehouse.address.postalCode }}</span
+        >
+        <span class="container-entrepot_card_info_span"
+          >Ville : {{ warehouse.address.city }}</span
+        >
+        <span class="container-entrepot_card_info_span"
+          >Pays : {{ warehouse.address.country }}</span
+        >
+        <span class="container-entrepot_card_info_span"
+          >Date d'ajout : {{ formatDate(warehouse.createdAt) }}</span
+        >
+      </div>
+    </div>
+  </div>
+</section>

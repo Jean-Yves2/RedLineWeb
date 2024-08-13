@@ -34,14 +34,15 @@
       *ngFor="let produit of produits[selectedCategory]"
       class="product-item"
     >
-      <div class="product-description">
-        <h2>{{ produit.nom }}</h2>
-        <p *ngIf="produit.details">{{ produit.details }}</p>
-      </div>
-      <div class="product-icons">
-        <img [src]="produit.schema" [alt]="produit.nom" />
-        <img [src]="produit.image" [alt]="produit.nom" />
-      </div>
+      <a [routerLink]="['/products', produit.id]">
+        <div class="product-description">
+          <h2>{{ produit.nom }}</h2>
+          <p *ngIf="produit.details">{{ produit.details }}</p>
+        </div>
+        <div class="product-icons">
+          <img [src]="produit.schema" [alt]="produit.nom" />
+          <img [src]="produit.image" [alt]="produit.nom" /></div
+      ></a>
     </div>
   </div>
 </div>

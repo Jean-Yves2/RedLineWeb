@@ -1,0 +1,169 @@
+<section class="container-menu">
+  <div class="container-menu_top">
+    <div class="container-menu-title">
+      <img
+        class="container-menu-title_logo"
+        src="../../../favicon.ico"
+        alt="logo"
+      />
+      <span class="container-menu-title_name">METALFACTORY</span>
+    </div>
+    <hr />
+    <div class="container-menu-user">
+      <div class="container-menu-user_cercle">
+        <span class="container-menu-user_cercle_span">{{ firstLetter }}</span>
+      </div>
+      <span class="menu-span">{{ currentUserName }} </span>
+    </div>
+    <hr />
+    <button (click)="showActiveContainer('Clients')" class="buttonToActivePage">
+      <div class="container-menu-clients" (click)="rotateElement()">
+        <img
+          class="icon"
+          src="assets/images/commercial/client.png"
+          alt="logo"
+        />
+        <span class="menu-span">Clients</span>
+        <img
+          [ngClass]="{ 'rotate-90': isRotated }"
+          class="icon_direction"
+          src="assets/images/commercial/angle-droit.png"
+          alt="logo angle-droit"
+        />
+      </div>
+    </button>
+
+    <hr />
+    <button (click)="showActiveContainer('Devis')" class="buttonToActivePage">
+      <div class="container-menu-devis">
+        <img
+          class="icon"
+          src="assets/images/commercial/devis.png"
+          alt="icon devis"
+        />
+        <span class="menu-span">Devis</span>
+        <img
+          class="icon_direction"
+          src="assets/images/commercial/angle-droit.png"
+          alt="logo angle-droit"
+        />
+      </div>
+    </button>
+
+    <hr />
+  </div>
+  <div class="container-menu_bottom">
+    <hr />
+    <div class="container-menu-deconnexion">
+      <img
+        class="icon , icon-deconnexion"
+        src="assets/images/commercial/deconnecter.png"
+        alt="icon deconnexion"
+      />
+      <button class="menu-span" (click)="logout()">Déconnexion</button>
+      <img
+        class="icon_direction"
+        src="assets/images/commercial/angle-droit.png"
+        alt="logo angle-droit"
+      />
+    </div>
+    <hr />
+    <button (click)="showActiveContainer('Profil')" class="buttonToActivePage">
+      <div class="container-menu-profil">
+        <img
+          class="icon"
+          src="assets/images/commercial/parametre.png"
+          alt="icon parametre"
+        />
+        <span class="menu-span">Mon Profil</span>
+        <img
+          class="icon_direction"
+          src="assets/images/commercial/angle-droit.png"
+          alt="logo angle-droit"
+        />
+      </div>
+    </button>
+
+    <hr />
+    <div class="container-menu-reduit">
+      <div class="container-menu-reduit_cercle">
+        <img
+          class="icon"
+          src="assets/images/commercial/fleches-gauche.png"
+          alt="icon devis"
+        />
+      </div>
+
+      <span class="menu-span">Réduit le Menu</span>
+      <img
+        class="icon_direction"
+        src="assets/images/commercial/angle-droit.png"
+        alt="logo angle-droit"
+      />
+    </div>
+  </div>
+</section>
+<section
+  class="container-data , allSectionContainer"
+  *ngIf="activContainer === 'Clients'"
+>
+  <span class="container-data_title">Mes clients</span>
+  <div class="container-data_order">
+    <button class="container-data_order_sort" (click)="toggleSortDirection()">
+      Trier par nom ({{ sortDirection === "asc" ? "A-Z" : "Z-A" }})
+    </button>
+    <input
+      class="container-data_order_search"
+      type="text"
+      placeholder="Rechercher un utilisateur"
+      [(ngModel)]="searchTerm"
+      (input)="filterUsers()"
+    />
+  </div>
+  <div class="container-data_list">
+    <div *ngFor="let user of paginatedUsers" class="container-data_list_card">
+      <section class="container-data_list_card_left">
+        <div class="container-data_list_card_cercle">
+          <span class="container-data_list_card_cercle_span">
+            {{ user.firstName.charAt(0) }}
+          </span>
+        </div>
+        <span class="container-data_list_card_name">
+          {{ user.firstName }} {{ user.lastName }}
+        </span>
+      </section>
+      <section class="container-data_list_card_right">
+        <button class="container-data_list_card_button">
+          Voir ce dossier client
+        </button>
+        <span class="container-data_list_card_type">{{ user.userType }}</span>
+      </section>
+    </div>
+  </div>
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <button
+      class="pagination-controls_prev"
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      Précédent
+    </button>
+    <span class="pagination-controls_span"
+      >Page {{ currentPage }} sur {{ totalPages }}</span
+    >
+    <button
+      class="pagination-controls_next"
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      Suivant
+    </button>
+  </div>
+</section>
+<section *ngIf="activContainer === 'Devis'" class="allSectionContainer">
+  <p>Devis</p>
+</section>
+<section *ngIf="activContainer === 'Profil'" class="allSectionContainer">
+  <p>Profil</p>
+</section>

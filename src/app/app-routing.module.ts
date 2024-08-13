@@ -8,6 +8,11 @@ import { OffresComponent } from './components/offres/offres.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { PieceConfigurationComponent } from './components/piece-configuration/piece-configuration.component';
 import { FormeMatiereComponent } from './components/forme-matiere/forme-matiere.component';
+import { ProductComponent } from './components/product/product.component';
+import { CommercialServiceComponent } from './components/commercial-service/commercial-service.component';
+import { ApprovisionnementComponent } from './components/approvisionnement/approvisionnement.component';
+import { FavoriteComponent } from './components/favorite/favorite.component';
+import { PanierComponent } from './components/panier/panier.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -19,6 +24,11 @@ const routes: Routes = [
   { path: 'offres', component: OffresComponent },
   { path: 'piece-configuration', component: PieceConfigurationComponent },
   { path: 'matiere/:category', component: FormeMatiereComponent },
+  { path: 'products/:id', component: ProductComponent },
+  { path: 'commercial', component: CommercialServiceComponent },
+  { path: 'approvisionnement', component: ApprovisionnementComponent },
+  { path: 'favoris', component: FavoriteComponent },
+  { path: 'panier', component: PanierComponent },
 ];
 
 @NgModule({
