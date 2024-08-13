@@ -3,6 +3,7 @@ import { FavorieService } from '../../services/favorie/favorie.service';
 import { Produit } from '../forme-matiere/interface/produit.model';
 import { FormeMatiereService } from '../../services/forme_matiere/forme-matiere.service';
 import { Observable } from 'rxjs';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-favorite',
@@ -18,25 +19,33 @@ export class FavoriteComponent implements OnInit {
   constructor(
     private favorieService: FavorieService,
     private formeMatiereService: FormeMatiereService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.produits = this.formeMatiereService.produits;
+    console.log('produits on ngInit: ', this.produits);
 
-    const favorites = this.favorieService.getFavorites();
-    console.log(favorites);
-
-    if (favorites instanceof Observable) {
-      favorites.subscribe((data) => {
-        this.favorites = data;
-        console.log(this.favorites);
+    this.authService.isLoggedIn().subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        const favorites = this.favorieService.getFavorites();
+        if (favorites instanceof Observable) {
+          favorites.subscribe((data) => {
+            this.favorites = data;
+            console.log('data when observable', this.favorites);
+            this.updateFavoritesWithImages();
+          });
+        } else {
+          // Gérer le cas où `favorites` n'est pas un Observable
+        }
+      } else {
+        this.favorites = this.favorieService.getLocalFavorites();
+        console.log('favorites no auth on ngInit: ', this.favorites);
         this.updateFavoritesWithImages();
-      });
-    } else {
-      this.favorites = favorites;
-      this.updateFavoritesWithImages();
-    }
+      }
+    });
   }
+
 
   findProductByCode(productCode: number): { schema: string, image: string } | null {
     for (const key in this.produits) {
