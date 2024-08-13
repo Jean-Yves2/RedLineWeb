@@ -81,6 +81,7 @@ export class FavorieService {
     if (!favorites.includes(productCode)) {
       favorites.push(productCode);
       localStorage.setItem('localFavorites', JSON.stringify(favorites));
+      console.log('favorites on saveToLocalFavorites :',favorites);
     }
   }
 

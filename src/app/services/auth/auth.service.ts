@@ -19,6 +19,7 @@ export class AuthService {
       JSON.parse(localStorage.getItem('currentUser')!)
     );
     this.currentUser = this.currentUserSubject.asObservable();
+
   }
 
   register(registerForm: any): Observable<any> {
@@ -69,6 +70,7 @@ export class AuthService {
 
   public isLoggedIn(): Observable<boolean> {
     if (this.isAuthenticated !== null) {
+      console.log('isAuthenticated', this.isAuthenticated);
       return of(this.isAuthenticated);
     }
 
@@ -93,6 +95,7 @@ export class AuthService {
     );
   }
   public resetAuthentication(): void {
-    this.isAuthenticated = null;
+    console.log('resetAuthentication', this.isAuthenticated);
+    this.isAuthenticated = false;
   }
 }
