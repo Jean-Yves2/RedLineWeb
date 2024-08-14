@@ -20,10 +20,7 @@ export class FavorieService {
   favoriteCountSubject = new BehaviorSubject<number>(0);
   public favoriteCount$ = this.favoriteCountSubject.asObservable();
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-  ) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     this.updateFavoriteCount();
   }
 
@@ -33,7 +30,7 @@ export class FavorieService {
         .post<void>(
           `${this.apiUrl}/favorites/${productCode}`,
           { productCode },
-          { withCredentials: true },
+          { withCredentials: true }
         )
         .pipe(
           switchMap(() => this.updateFavorites()),
@@ -41,7 +38,7 @@ export class FavorieService {
           catchError((error) => {
             console.error('Error adding favorite', error);
             return of([]);
-          }),
+          })
         )
         .subscribe();
     } else {
@@ -62,7 +59,7 @@ export class FavorieService {
           catchError((error) => {
             console.error('Error removing favorite', error);
             return of([]);
-          }),
+          })
         )
         .subscribe();
     } else {

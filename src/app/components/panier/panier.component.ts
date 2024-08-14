@@ -132,6 +132,7 @@ export class PanierComponent {
             this.panierProducts.push(produit);
           }
         });
+        this.cartService.updateCartCount(this.panierProducts);
         this.havedPanier = this.panierProducts.length > 0;
       });
     } else {
@@ -141,7 +142,6 @@ export class PanierComponent {
   }
 
   addCart(item: any): void {
-    console.log('MyItem :', item);
     if (this.authService.getIsAuthenticated()) {
       this.cartService
         .addItemToCart(item.productCode, item.quantite, item.longueur)
