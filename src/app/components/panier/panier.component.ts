@@ -71,7 +71,6 @@ export class PanierComponent {
   }
 
   // Sert a l'affichage des informations de produits dans le panier pour un utilisateur connecter
-  // Fonction simplifiée avec typage pour trouver la correspondance et transformer en Produit
   mapApiProductToProduit(
     apiProduct: any,
     localProducts: LocalProducts
@@ -85,13 +84,11 @@ export class PanierComponent {
             apiProduct.product.productCode <= product.range.end
           ) {
             return {
-              // Propriétés locales
               id: apiProduct.product.id.toString(),
               nom: product.nom,
               schema: product.schema,
               image: product.image,
 
-              // Propriétés de l'API
               details: apiProduct.product.description,
               quantite: apiProduct.quantity,
               longueur: apiProduct.length,
@@ -120,7 +117,6 @@ export class PanierComponent {
   }
 
   loadCart(): void {
-    console.log(this.authService.getIsAuthenticated());
     if (this.authService.getIsAuthenticated()) {
       this.cartService.getCartByUserId().subscribe((data) => {
         this.paniers = data.items;
@@ -145,7 +141,13 @@ export class PanierComponent {
   }
 
   removeCart(item: any): void {
-    this.panierService.removeFromCart(item.cart_id);
-    this.loadCart();
+    if (this.authService.getIsAuthenticated()) {
+      this.cartService.removeItemFromCart(item.productCode).subscribe(() => {
+        this.loadCart();
+      });
+    } else {
+      this.panierService.removeFromCart(item.cart_id);
+      this.loadCart();
+    }
   }
 }

@@ -18,12 +18,12 @@ export class CartService {
   addItemToCart(
     productCode: number,
     quantity: number,
-    length: number,
+    length: number
   ): Observable<any> {
     return this.http.post(
       `${this.apiUrl}/item`,
       { productCode, quantity, length },
-      { withCredentials: true },
+      { withCredentials: true }
     );
   }
 
@@ -33,6 +33,7 @@ export class CartService {
 
   removeItemFromCart(productCode: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/item`, {
+      withCredentials: true,
       body: { productCode },
     });
   }
