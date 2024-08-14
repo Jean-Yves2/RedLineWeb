@@ -1,24 +1,26 @@
 import { Component } from '@angular/core';
 import { Produit } from '../forme-matiere/interface/produit.model';
 import { FormeMatiereService } from '../../services/forme_matiere/forme-matiere.service';
-import { PanierService } from 'src/app/services/panier/panier.service';
-
+import { PanierService } from '../../services/panier/panier.service';
+import { CartService } from '../../services/cart/cart.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-panier',
   templateUrl: './panier.component.html',
-  styleUrls: ['./panier.component.scss']
+  styleUrls: ['./panier.component.scss'],
 })
 export class PanierComponent {
-
   paniers: any[] = [];
   panierProducts: Produit[] = [];
   produits: { [key: string]: Produit[] } = {};
   havedPanier: boolean = false;
 
   constructor(
-    private cartService: PanierService,
-    private formeMatiereService: FormeMatiereService
+    private panierService: PanierService,
+    private formeMatiereService: FormeMatiereService,
+    private authService: AuthService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class PanierComponent {
   }
 
   getCart(): any[] {
-    return this.cartService.getCart();
+    return this.panierService.getCart();
   }
 
   // Sert a l'affichage des informations de produits dans le panier
@@ -52,16 +54,25 @@ export class PanierComponent {
     });
     this.havedPanier = this.panierProducts.length > 0;
   }
-
+  /*
+  ! Je Travaille ici --> je suis le flux de donner pour en faire l'affichage lorsque l'utilisateur est connecter
+  */
   loadCart(): void {
-    this.paniers = this.getCart();
-    console.log( 'dsgdfg',this.paniers);
-    this.mapPanierToProducts();
+    console.log(this.authService.getIsAuthenticated());
+    if (this.authService.getIsAuthenticated()) {
+      this.cartService.getCartByUserId().subscribe((data) => {
+        this.paniers = data;
+        console.log('loadCard', this.paniers);
+        this.mapPanierToProducts();
+      });
+    } else {
+      this.paniers = this.getCart();
+      this.mapPanierToProducts();
+    }
   }
 
   removeCart(item: any): void {
-    this.cartService.removeFromCart(item.cart_id);
+    this.panierService.removeFromCart(item.cart_id);
     this.loadCart();
   }
-
 }

@@ -16,21 +16,19 @@ export class CartComponent implements OnInit {
   }
 
   loadCart(): void {
-    this.cartService.getCartByUserId(1).subscribe((data) => {
+    this.cartService.getCartByUserId().subscribe((data) => {
       this.cart = data;
     });
   }
 
   addItemToCart(productCode: number, quantity: number, length: number): void {
-    const cartId = this.cart.id;
-    this.cartService.addItemToCart(cartId, productCode, quantity, length).subscribe(() => {
+    this.cartService.addItemToCart( productCode, quantity, length).subscribe(() => {
       this.loadCart();
     });
   }
 
   removeItemFromCart(productCode: number): void {
-    const cartId = this.cart.id;
-    this.cartService.removeItemFromCart(cartId, productCode).subscribe(() => {
+    this.cartService.removeItemFromCart(productCode).subscribe(() => {
       this.loadCart();
     });
   }
