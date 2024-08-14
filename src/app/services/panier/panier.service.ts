@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { localProducts } from '../../services/table_data/localProducts'
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +9,7 @@ export class PanierService {
   private CART_KEY = 'cart';
   private cartItemCountSubject = new BehaviorSubject<number>(this.countCartItems());
   private nextId: number = this.getNextId();
+  localProducts = localProducts;
 
   cartItemCount$ = this.cartItemCountSubject.asObservable();
 
@@ -31,15 +33,26 @@ export class PanierService {
     );
 
     if (!isExisting) {
-      const cartwithId = { ...item, cart_id: this.nextId++ };
-      console.log('cartwithId',cartwithId);
-      cart.push(cartwithId);
-      localStorage.setItem(this.CART_KEY, JSON.stringify(cart));
-      this.cartItemCountSubject.next(this.countCartItems());
+      let localProduct = this.localProducts.find((p) => p.productCode === item.productCode);
+
+      if (localProduct) {
+        const cartwithId = {
+          ...item,
+          ...localProduct,
+          cart_id: this.nextId++
+        };
+
+        cart.push(cartwithId);
+        localStorage.setItem(this.CART_KEY, JSON.stringify(cart));
+        this.cartItemCountSubject.next(this.countCartItems());
+      } else {
+        console.error("Produit local non trouvé pour le code produit:", item.productCode);
+      }
     } else {
       console.error("L'élément existe déjà dans le Panier.");
     }
   }
+
 
   removeFromCart(id: number): void {
     let cart = this.getCart();

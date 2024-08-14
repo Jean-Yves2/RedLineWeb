@@ -30,6 +30,7 @@ export class PanierComponent {
     return this.cartService.getCart();
   }
 
+  // Sert a l'affichage des informations de produits dans le panier
   mapPanierToProducts(): void {
     this.panierProducts = [];
     this.paniers.forEach((cart) => {
@@ -42,8 +43,8 @@ export class PanierComponent {
             (product as any).quantite = cart.quantite;
             (product as any).longueur = cart.longueur;
             (product as any).choix = cart.choix;
+            (product as any).description = cart.description;
 
-            console.log('product', product);
             this.panierProducts.push(product);
           }
         }
@@ -54,6 +55,7 @@ export class PanierComponent {
 
   loadCart(): void {
     this.paniers = this.getCart();
+    console.log( 'dsgdfg',this.paniers);
     this.mapPanierToProducts();
   }
 

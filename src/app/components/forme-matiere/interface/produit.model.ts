@@ -6,4 +6,5 @@ export interface Produit {
   details?: string;
   quantite?: number;
   longueur?: number;
+  description?: string;
 }
