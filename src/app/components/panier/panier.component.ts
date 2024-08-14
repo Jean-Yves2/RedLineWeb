@@ -140,6 +140,20 @@ export class PanierComponent {
     }
   }
 
+  addCart(item: any): void {
+    console.log('MyItem :', item);
+    if (this.authService.getIsAuthenticated()) {
+      this.cartService
+        .addItemToCart(item.productCode, item.quantite, item.longueur)
+        .subscribe(() => {
+          this.loadCart();
+        });
+    } else {
+      this.panierService.addToCart(item);
+      this.loadCart();
+    }
+  }
+
   removeCart(item: any): void {
     if (this.authService.getIsAuthenticated()) {
       this.cartService.removeItemFromCart(item.productCode).subscribe(() => {

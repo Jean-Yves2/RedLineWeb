@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { MatiereDataService } from '../../services/table_data/matiere-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormeMatiereService } from '../../services/forme_matiere/forme-matiere.service';
 import { Produit } from '../forme-matiere/interface/produit.model';
 import { FavorieService } from '../../services/favorie/favorie.service';
-import { PanierService } from '../../services/panier/panier.service';
 import { ProductService } from '../../services/product/product.service';
 import { Product } from '../../services/product/product.model.dto';
 import { AuthService } from '../../services/auth/auth.service';
 import { Inject } from '@angular/core';
+import { CartService } from '../../services/cart/cart.service';
 
 interface Ligne {
   epaisseur: number | undefined;
@@ -49,9 +48,9 @@ export class ProductComponent {
     private activatedRoutes: ActivatedRoute,
     private formeMatiereService: FormeMatiereService,
     @Inject(FavorieService) private favorieService: FavorieService,
-    private cartService: PanierService,
+    private cartService: CartService,
     private productService: ProductService,
-    private authService: AuthService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -788,18 +787,28 @@ export class ProductComponent {
 
   addToCart(): void {
     this.updateSelectedItem();
+    console.log('selectedItem :', this.selectedItem);
+
     if (this.selectedItem) {
-      this.cartService.addToCart(this.selectedItem);
+      console.log('selectedItem :', this.selectedItem);
+
+      this.cartService
+        .addItemToCart(
+          this.selectedItem.productCode,
+          this.selectedItem.quantite,
+          this.selectedItem.longueur
+        )
+        .subscribe({
+          next: () => {
+            console.log('Produit ajouté au panier');
+          },
+          error: (err) => {
+            console.error(err);
+          },
+        });
+
       this.isSelection = false;
     }
-  }
-
-  removeFromCart(item: any): void {
-    this.cartService.removeFromCart(item);
-  }
-
-  getCartItems(): any[] {
-    return this.cartService.getCart();
   }
 
   findProductById(id: string, produits: { [key: string]: any[] }): any | null {
