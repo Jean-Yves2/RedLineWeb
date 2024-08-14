@@ -20,7 +20,7 @@ export class PanierComponent {
     private panierService: PanierService,
     private formeMatiereService: FormeMatiereService,
     private authService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
   ) {}
 
   ngOnInit(): void {

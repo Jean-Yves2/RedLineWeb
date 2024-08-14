@@ -1,5 +1,10 @@
 <section class="container">
-  <h1 class="container_title">Mon Panier<img class="container_title_image" src="assets/images/panier/panier.png" /></h1>
+  <h1 class="container_title">
+    Mon Panier<img
+      class="container_title_image"
+      src="assets/images/panier/panier.png"
+    />
+  </h1>
   <div class="container_design" *ngIf="havedPanier">
     <div
       class="container_div"
@@ -39,13 +44,15 @@
         </div>
       </div>
       <div class="container_div_panier">
-
         <span class="container_div_panier_price"> PRIX* TTC : 1080 €</span>
       </div>
     </div>
   </div>
-  <div class="container_div_empty"  *ngIf="!havedPanier">
-    <img class="container_div_empty_image" src="assets/images/favorie/noFavorie.png">
-    <div class="container_div_empty_text">
-      Panier Vide</div></div>
+  <div class="container_div_empty" *ngIf="!havedPanier">
+    <img
+      class="container_div_empty_image"
+      src="assets/images/favorie/noFavorie.png"
+    />
+    <div class="container_div_empty_text">Panier Vide</div>
+  </div>
 </section>

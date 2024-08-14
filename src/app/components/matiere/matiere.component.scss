@@ -23,7 +23,10 @@
     justify-content: center;
     width: 60%;
 
-    &_inox, &_galva, &_aluminium, &_acier {
+    &_inox,
+    &_galva,
+    &_aluminium,
+    &_acier {
       height: 300px;
       width: 100%;
       max-width: 300px;
@@ -33,7 +36,7 @@
     }
 
     &_inox {
-      &_link{
+      &_link {
         border: 1px solid #000;
       }
     }
@@ -52,13 +55,13 @@
   }
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
   .matiere-content > section {
     height: 200px;
   }
 }
 
-@media (max-width: 320px){
+@media (max-width: 320px) {
   .matiere-content {
     width: 80%;
   }

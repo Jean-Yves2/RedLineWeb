@@ -1,4 +1,4 @@
-@import '../../../styles/theme.scss';
+@import "../../../styles/theme.scss";
 
 :host {
   display: flex;
@@ -8,8 +8,7 @@
   flex-direction: row;
 }
 
-
-.container-menu{
+.container-menu {
   display: flex;
   background-color: $primary-color;
   height: 100%;
@@ -18,31 +17,27 @@
   flex-direction: column;
   justify-content: space-between;
 
-  &-title{
-
+  &-title {
     display: flex;
     flex-direction: row;
     margin: 10px;
     align-items: center;
     justify-content: space-around;
 
-    &_logo{
+    &_logo {
       height: 50px;
       width: 50px;
       border: solid 1px $secondary-color;
     }
-    &_name{
+    &_name {
       font-family: bevan;
       font-size: 15px;
       font-weight: bold;
       color: $secondary-color;
     }
-
-
   }
-  &-user_cercle{
-
-    &_span{
+  &-user_cercle {
+    &_span {
       font-family: bevan;
       font-size: 2rem;
       font-weight: bold;
@@ -50,8 +45,13 @@
     }
   }
 
-  &-title,&-user,&-clients,&-devis,&-deconnexion,&-reduit,&-profil{
-
+  &-title,
+  &-user,
+  &-clients,
+  &-devis,
+  &-deconnexion,
+  &-reduit,
+  &-profil {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -59,40 +59,43 @@
     padding-bottom: 20px;
     padding-top: 20px;
   }
-  &-clients,&-devis,&-deconnexion,&-reduit,&-profil{
-    background-color: rgb(1 36 81 / 42%);;
+  &-clients,
+  &-devis,
+  &-deconnexion,
+  &-reduit,
+  &-profil {
+    background-color: rgb(1 36 81 / 42%);
   }
-  &-clients:hover ,&-devis:hover ,
-  &-deconnexion:hover ,&-reduit:hover ,&-profil:hover {
+  &-clients:hover,
+  &-devis:hover,
+  &-deconnexion:hover,
+  &-reduit:hover,
+  &-profil:hover {
     background-color: #f8890a32;
     cursor: pointer;
   }
 
-  &-reduit_cercle{
+  &-reduit_cercle {
     border-radius: 20px;
     background-color: #f88a0a;
   }
-
 }
 
-.icon{
+.icon {
   height: 40px;
   width: 40px;
-
 }
 
-.icon_direction{
+.icon_direction {
   height: 20px;
   width: 20px;
-
 }
 
 .rotate-90 {
   transform: rotate(90deg);
   transition: transform 0.3s ease-in-out;
-
 }
-.container-menu-user_cercle  {
+.container-menu-user_cercle {
   display: flex;
   border: solid 1px $secondary-color;
   height: 40px;
@@ -102,7 +105,7 @@
   align-items: center;
   justify-content: center;
 }
-.menu-span{
+.menu-span {
   font-family: bevan;
   font-size: 15px;
   font-weight: bold;
@@ -110,56 +113,51 @@
   width: 100px;
 }
 
-.buttonToActivePage{
+.buttonToActivePage {
   width: 100%;
 }
-
 
 /**
   * * Container Fournisseur
 */
 
-
-.container-fournisseur{
-
-  display : flex;
+.container-fournisseur {
+  display: flex;
   flex-direction: column;
   width: 86%;
   padding: 2rem;
 
-  &_allbutton{
+  &_allbutton {
     display: flex;
     color: $secondary-color;
     font-family: bevan;
     font-size: 1.5rem;
     font-weight: bold;
 
-    &_one{
+    &_one {
       padding: 1rem;
       border: solid 1px $background-color;
       margin-right: 1rem;
     }
-
   }
-  &_section{
+  &_section {
     display: flex;
     border: solid 1px $background-color;
     flex-direction: column;
-    &_add{
+    &_add {
       background-color: $primary-color;
       color: white;
       margin: 1rem;
       width: 200px;
-      padding: 0.80rem;
+      padding: 0.8rem;
       border-radius: 10px;
       font-family: inter, "sans-serif";
       font-weight: bold;
     }
-    &_card{
-
+    &_card {
       margin-right: 20px;
 
-      &_data{
+      &_data {
         display: flex;
         border: solid 1px $secondary-color;
         height: 40px;
@@ -169,34 +167,30 @@
         align-items: center;
         justify-content: center;
 
-        &_letter{
+        &_letter {
           font-family: bevan;
           font-size: 2rem;
           font-weight: bold;
           color: $secondary-color;
         }
       }
-      &_span{
+      &_span {
         font-family: inter, "sans-serif";
         font-size: 1.4rem;
         font-weight: bold;
         color: $primary-color;
       }
     }
-
-
   }
-
-
 }
 
-.container-fournisseur_name{
+.container-fournisseur_name {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
 }
-.fournisseur_card{
+.fournisseur_card {
   display: flex;
   flex-direction: column;
   border: solid 1px black;
@@ -208,12 +202,12 @@
   width: 400px;
   align-items: center;
 }
-.fournisseur_info{
+.fournisseur_info {
   font-family: inter, "sans-serif";
   font-size: 1.2rem;
   font-weight: bold;
 }
-.regulator{
+.regulator {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -221,37 +215,35 @@
   flex-wrap: wrap;
 }
 
-
 /*
 * Pagination
 */
-.pagination-controls{
+.pagination-controls {
   display: flex;
   justify-content: center;
   align-items: center;
   column-gap: 5%;
   margin: 2rem;
-  &_span{
+  &_span {
     font-family: bevan;
     font-size: 1.5rem;
     font-weight: bold;
     color: $secondary-color;
   }
-  &_prev,&_next{
-    color:white;
+  &_prev,
+  &_next {
+    color: white;
     border: solid 1px $secondary-color;
     padding: 0.5rem;
     border-radius: 5px;
     background-color: $primary-color;
   }
-
 }
 
 /*
 * * Entrepot
 */
-.section-entrepot{
-
+.section-entrepot {
   display: flex;
   flex: 1;
   height: 100%;
@@ -260,18 +252,17 @@
   row-gap: 2rem;
   padding: 2rem;
 }
-.section-entrepot_title{
+.section-entrepot_title {
   display: flex;
   font-family: inter, sans-serif;
   font-size: 2rem;
   font-weight: bold;
 }
 
-.container-entrepot{
-
+.container-entrepot {
   display: flex;
   flex-direction: row;
-  border: solid 1px #D5D8DA;
+  border: solid 1px #d5d8da;
   padding: 1rem;
   column-gap: 2rem;
   justify-content: space-evenly;
@@ -279,33 +270,29 @@
   row-gap: 2rem;
 }
 
-.container-entrepot_card{
+.container-entrepot_card {
   display: flex;
   flex-direction: column;
   border: solid 1px rgb(255, 255, 255);
   padding: 1rem;
   border-radius: 10px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   row-gap: 1rem;
 }
-.container-entrepot_card_name{
+.container-entrepot_card_name {
   display: flex;
   flex-direction: row;
   align-items: center;
-
 }
 
-.container-entrepot_card_info{
+.container-entrepot_card_info {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
   padding-left: 2rem;
 }
 
-
-
-
-.container-entrepot_card_name_span{
+.container-entrepot_card_name_span {
   font-family: inter, sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
@@ -313,7 +300,7 @@
   padding-left: 2rem;
 }
 
-.container-entrepot_card_info_span{
+.container-entrepot_card_info_span {
   font-family: inter, sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
@@ -323,5 +310,3 @@
 /*
 * * Stocks
 */
-
-

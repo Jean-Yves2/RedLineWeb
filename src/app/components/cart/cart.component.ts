@@ -4,7 +4,7 @@ import { CartService } from '../../services/cart/cart.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
   cart: any;
@@ -22,9 +22,11 @@ export class CartComponent implements OnInit {
   }
 
   addItemToCart(productCode: number, quantity: number, length: number): void {
-    this.cartService.addItemToCart( productCode, quantity, length).subscribe(() => {
-      this.loadCart();
-    });
+    this.cartService
+      .addItemToCart(productCode, quantity, length)
+      .subscribe(() => {
+        this.loadCart();
+      });
   }
 
   removeItemFromCart(productCode: number): void {

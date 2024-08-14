@@ -51,7 +51,7 @@ export class ProductComponent {
     @Inject(FavorieService) private favorieService: FavorieService,
     private cartService: PanierService,
     private productService: ProductService,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {

@@ -18,12 +18,12 @@ export class CartService {
   addItemToCart(
     productCode: number,
     quantity: number,
-    length: number
+    length: number,
   ): Observable<any> {
     return this.http.post(
       `${this.apiUrl}/item`,
       { productCode, quantity, length },
-      { withCredentials: true }
+      { withCredentials: true },
     );
   }
 

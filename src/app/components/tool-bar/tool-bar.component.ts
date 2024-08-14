@@ -23,7 +23,7 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     private favorieService: FavorieService,
-    private panierService: PanierService
+    private panierService: PanierService,
   ) {}
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     this.favoritesSubscription = this.favorieService.favoriteCount$.subscribe(
       (count) => {
         this.favoriteCounter = count;
-      }
+      },
     );
     this.favorieService.updateFavoriteCount();
 
@@ -49,8 +49,6 @@ export class ToolBarComponent implements OnInit, OnDestroy {
         this.cartCounter = count;
       }
     );*/
-
-
   }
 
   ngOnDestroy() {

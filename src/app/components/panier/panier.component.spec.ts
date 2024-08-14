@@ -8,7 +8,7 @@ describe('PanierComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PanierComponent]
+      declarations: [PanierComponent],
     });
     fixture = TestBed.createComponent(PanierComponent);
     component = fixture.componentInstance;

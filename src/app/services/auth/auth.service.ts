@@ -14,14 +14,16 @@ export class AuthService {
   public currentUser: Observable<any>;
   private isAuthenticated: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {
     const storedUser = JSON.parse(localStorage.getItem('currentUser')!);
     this.currentUserSubject = new BehaviorSubject<any>(
-      JSON.parse(localStorage.getItem('currentUser')!)
+      JSON.parse(localStorage.getItem('currentUser')!),
     );
     this.currentUser = this.currentUserSubject.asObservable();
     this.isAuthenticated = !!storedUser;
-
   }
 
   register(registerForm: any): Observable<any> {
@@ -42,7 +44,7 @@ export class AuthService {
       .post<any>(
         `${this.apiUrl}/auth/login`,
         { email, password },
-        { withCredentials: true }
+        { withCredentials: true },
       )
       .pipe(
         tap((response) => {
@@ -50,7 +52,7 @@ export class AuthService {
           this.currentUserSubject.next(response.user);
           this.trueAuthentication();
         }),
-        catchError((error) => of(error))
+        catchError((error) => of(error)),
       );
   }
 
@@ -70,7 +72,7 @@ export class AuthService {
       });
   }
 
- /* public isLoggedIn(): Observable<boolean> {
+  /* public isLoggedIn(): Observable<boolean> {
     if (this.isAuthenticated) {
       return of(this.isAuthenticated);
     }
