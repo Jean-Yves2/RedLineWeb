@@ -26,17 +26,16 @@ export class CommercialServiceComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userService: UserService,
-  ) {
+    private userService: UserService
+  ) {}
+
+  ngOnInit() {
+    this.fetchUsers();
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
       this.currentUserName = user.firstName;
       this.getFirstLetter();
     });
-  }
-
-  ngOnInit() {
-    this.fetchUsers();
     this.showActiveContainer('Clients');
   }
 
@@ -50,11 +49,12 @@ export class CommercialServiceComponent implements OnInit {
       },
       (error) => {
         console.error('Erreur lors de la récupération des utilisateurs', error);
-      },
+      }
     );
   }
 
   logout() {
+    this.authService.resetCurrentUser();
     this.authService.logout();
     this.router.navigate(['/connexion']);
   }
@@ -88,7 +88,7 @@ export class CommercialServiceComponent implements OnInit {
     this.filteredUsers = this.users.filter((user) =>
       `${user.firstName} ${user.lastName}`
         .toLowerCase()
-        .includes(this.searchTerm.toLowerCase()),
+        .includes(this.searchTerm.toLowerCase())
     );
     this.totalPages = Math.ceil(this.filteredUsers.length / this.pageSize);
     this.setPage(1);
@@ -107,7 +107,7 @@ export class CommercialServiceComponent implements OnInit {
     const startIndex = (page - 1) * this.pageSize;
     const endIndex = Math.min(
       startIndex + this.pageSize,
-      this.filteredUsers.length,
+      this.filteredUsers.length
     );
     this.paginatedUsers = this.filteredUsers.slice(startIndex, endIndex);
   }

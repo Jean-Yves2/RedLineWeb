@@ -75,12 +75,17 @@ export class ToolBarComponent implements OnInit, OnDestroy {
   }
   private updateFavorites(): void {
     const favorites = this.favorieService.getFavorites();
-    if (favorites instanceof Observable) {
-      favorites.subscribe((data) => {
-        this.favorieService.favoriteCountSubject.next(data.length);
-      });
-    } else {
-      this.favorieService.favoriteCountSubject.next(favorites.length);
+    if (this.authService.getIsAuthenticated()) {
+      if (favorites instanceof Observable) {
+        favorites.subscribe(
+          (data) => {
+            this.favorieService.favoriteCountSubject.next(data.length);
+          },
+          () => {}
+        );
+      } else {
+        this.favorieService.favoriteCountSubject.next(favorites.length);
+      }
     }
   }
 }
