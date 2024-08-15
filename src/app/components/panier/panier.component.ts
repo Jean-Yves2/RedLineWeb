@@ -80,8 +80,8 @@ export class PanierComponent {
         const products = localProducts[material];
         for (const product of products) {
           if (
-            apiProduct.product.productCode >= product.range.start &&
-            apiProduct.product.productCode <= product.range.end
+            apiProduct.product.productCode >= (product.range?.start ?? 0) &&
+            apiProduct.product.productCode <= (product.range?.end ?? Infinity)
           ) {
             return {
               id: apiProduct.product.id.toString(),
