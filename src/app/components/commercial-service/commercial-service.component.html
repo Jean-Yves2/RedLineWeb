@@ -164,6 +164,34 @@
 <section *ngIf="activContainer === 'Devis'" class="allSectionContainer">
   <p>Devis</p>
 </section>
-<section *ngIf="activContainer === 'Profil'" class="allSectionContainer">
-  <p>Profil</p>
+<section
+  *ngIf="activContainer === 'Profil'"
+  class="allSectionContainer , container-profil"
+>
+  <span class="container-profil_title">Profil</span>
+  <div class="container-profil_card">
+    <div class="container-profil_card_design">
+      <div class="container-profil_card_design_head">
+        <span class="container-profil_card_design_head_title"> V </span>
+      </div>
+      <div class="container-profil_card_design_decor1"></div>
+      <div class="container-profil_card_design_decor2"></div>
+      <div class="container-profil_card_design_decor3"></div>
+      <div class="container-profil_card_design_decor4"></div>
+      <div class="container-profil_card_design_data">
+        <p>Nom : {{ myProfil.firstName }}</p>
+        <p>Prénom : {{ myProfil.lastName }}</p>
+        <p>Role : Commercial</p>
+        <p>Email : VulcanoRosso</p>
+        <p>Numéro de téléphone : VulcanoRosso</p>
+        <p>Adresse : VulcanoRosso</p>
+        <p>Code Postal : VulcanoRosso</p>
+        <p>Ville : VulcanoRosso</p>
+        <p>Pays : VulcanoRosso</p>
+
+        <p>Besoin de modification <br />contacter l’administrateur</p>
+        <p>Site web : VulcanoRosso</p>
+      </div>
+    </div>
+  </div>
 </section>

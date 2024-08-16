@@ -22,6 +22,7 @@ export class CommercialServiceComponent implements OnInit {
   sortDirection: 'asc' | 'desc' = 'asc';
   searchTerm: string = '';
   activContainer: string | null = null;
+  myProfil: any;
 
   constructor(
     private authService: AuthService,
@@ -36,7 +37,9 @@ export class CommercialServiceComponent implements OnInit {
       this.currentUserName = user.firstName;
       this.getFirstLetter();
     });
-    this.showActiveContainer('Clients');
+    this.showActiveContainer('Profil');
+
+    this.fetchMyProfile();
   }
 
   fetchUsers() {
@@ -49,6 +52,17 @@ export class CommercialServiceComponent implements OnInit {
       },
       (error) => {
         console.error('Erreur lors de la récupération des utilisateurs', error);
+      }
+    );
+  }
+  fetchMyProfile() {
+    this.userService.getMyProfile().subscribe(
+      (data) => {
+        this.myProfil = data;
+        console.log('Mon profil : ', this.myProfil);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération de mon profil', error);
       }
     );
   }

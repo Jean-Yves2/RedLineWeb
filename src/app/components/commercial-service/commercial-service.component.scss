@@ -1,47 +1,49 @@
 @import "../../../styles/theme.scss";
 
 :host {
-  display: flex;
-  flex: 1;
-  height: 100%;
-  width: 100%;
-  flex-direction: row;
+  display        : flex;
+  flex           : 1;
+  height         : 100%;
+  width          : 100%;
+  flex-direction : row;
 }
 
 .container-menu {
-  display: flex;
-  background-color: $primary-color;
-  height: 100%;
-  width: 250px;
-  color: white;
-  flex-direction: column;
-  justify-content: space-between;
+  display          : flex;
+  background-color : $primary-color;
+  height           : 100%;
+  width            : 250px;
+  color            : white;
+  flex-direction   : column;
+  justify-content  : space-between;
 
   &-title {
-    display: flex;
-    flex-direction: row;
-    margin: 10px;
-    align-items: center;
-    justify-content: space-around;
+    display         : flex;
+    flex-direction  : row;
+    margin          : 10px;
+    align-items     : center;
+    justify-content : space-around;
 
     &_logo {
-      height: 50px;
-      width: 50px;
-      border: solid 1px $secondary-color;
+      height : 50px;
+      width  : 50px;
+      border : solid 1px $secondary-color;
     }
+
     &_name {
-      font-family: bevan;
-      font-size: 15px;
-      font-weight: bold;
-      color: $secondary-color;
+      font-family : bevan;
+      font-size   : 15px;
+      font-weight : bold;
+      color       : $secondary-color;
     }
   }
+
   &-user_cercle {
     &_span {
-      font-family: bevan;
-      font-size: 2rem;
-      font-weight: bold;
-      color: $secondary-color;
+      font-family : bevan;
+      font-size   : 2rem;
+      font-weight : bold;
+      color       : $secondary-color;
     }
   }
 
@@ -52,191 +54,334 @@
   &-deconnexion,
   &-reduit,
   &-profil {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    display         : flex;
+    flex-direction  : row;
+    align-items     : center;
+    justify-content : space-around;
+    padding-bottom  : 20px;
+    padding-top     : 20px;
   }
+
   &-clients,
   &-devis,
   &-deconnexion,
   &-reduit,
   &-profil {
-    background-color: rgb(1 36 81 / 42%);
+    background-color : rgb(1 36 81 / 42%);
   }
+
   &-clients:hover,
   &-devis:hover,
   &-deconnexion:hover,
   &-reduit:hover,
   &-profil:hover {
-    background-color: #f8890a32;
-    cursor: pointer;
+    background-color : #f8890a32;
+    cursor           : pointer;
   }
 
   &-reduit_cercle {
-    border-radius: 20px;
-    background-color: #f88a0a;
+    border-radius    : 20px;
+    background-color : #f88a0a;
   }
 }
+
 .container-data {
-  display: flex;
-  flex: 1;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-  row-gap: 2rem;
-  padding: 2rem;
+  display        : flex;
+  flex           : 1;
+  height         : 100%;
+  width          : 100%;
+  flex-direction : column;
+  row-gap        : 2rem;
+  padding        : 2rem;
 
   &_title {
-    font-family: inter, sans-serif;
-    font-size: 2rem;
+    font-family : inter, sans-serif;
+    font-size   : 2rem;
 
-    font-weight: bold;
+    font-weight : bold;
   }
+
   &_order {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+    display        : flex;
+    flex-direction : row;
+    width          : 100%;
 
     &_sort {
-      margin-left: 6%;
-      font-family: inter, sans-serif;
-      font-weight: bold;
+      margin-left : 6%;
+      font-family : inter, sans-serif;
+      font-weight : bold;
     }
+
     &_search {
-      margin-left: 10%;
-      border: solid 2px $background-color;
-      padding: 0.5rem;
-      border-radius: 5px;
+      margin-left   : 10%;
+      border        : solid 2px $background-color;
+      padding       : 0.5rem;
+      border-radius : 5px;
     }
   }
 
   &_list {
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-    width: 100%;
-    border: solid 1px $background-color;
-    padding: 1rem;
+    display        : flex;
+    flex-direction : column;
+    row-gap        : 1rem;
+    width          : 100%;
+    border         : solid 1px $background-color;
+    padding        : 1rem;
 
     &_card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display         : flex;
+      align-items     : center;
+      justify-content : space-between;
 
       &_cercle {
-        margin-right: 8%;
-        margin-left: 2%;
+        margin-right : 8%;
+        margin-left  : 2%;
       }
     }
   }
 }
 
 .icon {
-  height: 40px;
-  width: 40px;
+  height : 40px;
+  width  : 40px;
 }
 
 .icon_direction {
-  height: 20px;
-  width: 20px;
+  height : 20px;
+  width  : 20px;
 }
 
 .menu-span {
-  font-family: bevan;
-  font-size: 15px;
-  font-weight: bold;
-  color: white;
-  width: 100px;
+  font-family : bevan;
+  font-size   : 15px;
+  font-weight : bold;
+  color       : white;
+  width       : 100px;
 }
 
 .rotate-90 {
-  transform: rotate(90deg);
-  transition: transform 0.3s ease-in-out;
+  transform  : rotate(90deg);
+  transition : transform 0.3s ease-in-out;
 }
 
 .container-menu-user_cercle,
 .container-data_list_card_cercle {
-  display: flex;
-  border: solid 1px $secondary-color;
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
-  background-color: white;
-  align-items: center;
-  justify-content: center;
+  display          : flex;
+  border           : solid 1px $secondary-color;
+  height           : 40px;
+  width            : 40px;
+  border-radius    : 20px;
+  background-color : white;
+  align-items      : center;
+  justify-content  : center;
 }
+
 .container-data_list_card_cercle_span {
-  font-family: bevan;
-  font-size: 2rem;
-  font-weight: bold;
-  color: $secondary-color;
+  font-family : bevan;
+  font-size   : 2rem;
+  font-weight : bold;
+  color       : $secondary-color;
 }
+
 .container-data_list_card_name {
-  font-family: inter, sans-serif;
-  font-size: 1.5rem;
+  font-family : inter, sans-serif;
+  font-size   : 1.5rem;
 }
 
 .container-data_list_card_button {
-  font-family: inter, sans-serif;
-  font-weight: bold;
-  background-color: $background-color;
-  padding: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-radius: 5px;
-  margin-right: 35%;
+  font-family      : inter, sans-serif;
+  font-weight      : bold;
+  background-color : $background-color;
+  padding          : 0.5rem;
+  padding-left     : 1rem;
+  padding-right    : 1rem;
+  border-radius    : 5px;
+  margin-right     : 35%;
 }
 
 .container-data_list_card_type {
-  font-family: inter, sans-serif;
-  font-weight: bold;
-  padding-right: 1rem;
+  font-family   : inter, sans-serif;
+  font-weight   : bold;
+  padding-right : 1rem;
 }
+
 .container-data_list_card_right,
 .container-data_list_card_left {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display        : flex;
+  flex-direction : row;
+  align-items    : center;
 }
+
 .container-data_list_card_right {
-  width: 55%;
+  width : 55%;
 }
 
 .container-data_list_card_left {
-  justify-content: flex-start;
-  width: 40%;
+  justify-content : flex-start;
+  width           : 40%;
 }
 
 /*
 * Pagination
 */
 .pagination-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 5%;
+  display         : flex;
+  justify-content : center;
+  align-items     : center;
+  column-gap      : 5%;
+
   &_span {
-    font-family: bevan;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: $secondary-color;
+    font-family : bevan;
+    font-size   : 1.5rem;
+    font-weight : bold;
+    color       : $secondary-color;
   }
+
   &_prev,
   &_next {
-    color: white;
-    border: solid 1px $secondary-color;
-    padding: 0.5rem;
-    border-radius: 5px;
-    background-color: $primary-color;
+    color            : white;
+    border           : solid 1px $secondary-color;
+    padding          : 0.5rem;
+    border-radius    : 5px;
+    background-color : $primary-color;
   }
 }
 
 .buttonToActivePage {
-  width: 100%;
+  width : 100%;
 }
 
-.allSectionContainer {
+.container-profil {
+
+  display        : flex;
+  flex           : 1;
+  height         : 100%;
+  width          : 100%;
+  flex-direction : column;
+  row-gap        : 2rem;
+  padding        : 2rem;
+
+  &_title {
+    display     : flex;
+    font-family : bevan;
+    font-size   : 3rem;
+    font-weight : bold;
+    text-align  : center;
+    width       : 100%;
+  }
+
+  &_card {
+    display            : flex;
+    width              : 100%;
+    height             : 100%;
+    //border          : solid 1px #d5d8da;
+    flex-direction     : row;
+    justify-content    : center;
+    align-items        : center;
+
+    &_design {
+      position         : relative;
+      display          : flex;
+      width            : 400px;
+      height           : 600px;
+      border           : solid 1px $third-color;
+      background-color : $third-color;
+      border-radius    : 20px;
+
+      &_head {
+        position             : absolute;
+        display              : flex;
+        top                  : -50px;
+        left                 : 160px;
+        width                : 100px;
+        height               : 100px;
+        // border           : solid 1px $background-color;
+        background-color     : white;
+        justify-content      : center;
+        align-items          : center;
+        border-radius        : 100px;
+
+        &_title {
+          font-family : bevan;
+          font-size   : 5rem;
+          font-weight : bold;
+          color       : $secondary-color;
+          text-align  : center;
+        }
+      }
+
+      &_data {
+        display         : flex;
+        flex-direction  : column;
+        flex-wrap       : wrap;
+        align-content   : center;
+        align-items     : flex-start;
+        justify-content : center;
+        row-gap         : 1rem;
+
+        font-family : bevan;
+        font-size   : 1.2rem;
+        font-weight : bold;
+        text-align  : center;
+        color       : white;
+        width       : 100%;
+
+
+      }
+
+      // Décorations
+
+      &_decor1,
+      &_decor2,
+      &_decor3,
+      &_decor4 {
+        background-color : $secondary-color;
+        justify-content  : center;
+        align-items      : center;
+        border-radius    : 100px;
+        border           : solid 10px $primary-color;
+      }
+
+      &_decor1 {
+        position : absolute;
+        display  : flex;
+        top      : 10px;
+        left     : 345px;
+        width    : 40px;
+        height   : 40px;
+
+      }
+
+      &_decor2 {
+        position : absolute;
+        display  : flex;
+        top      : 10px;
+        left     : 10px;
+        width    : 40px;
+        height   : 40px;
+
+      }
+
+      &_decor3 {
+        position : absolute;
+        display  : flex;
+        top      : 550px;
+        left     : 345px;
+        width    : 40px;
+        height   : 40px;
+
+      }
+
+      &_decor4 {
+        position : absolute;
+        display  : flex;
+        top      : 550px;
+        left     : 10px;
+        width    : 40px;
+        height   : 40px;
+      }
+    }
+
+
+  }
 }
