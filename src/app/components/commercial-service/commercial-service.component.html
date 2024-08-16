@@ -121,7 +121,11 @@
     />
   </div>
   <div class="container-data_list">
-    <div *ngFor="let user of paginatedUsers" class="container-data_list_card">
+    <div
+      *ngFor="let user of paginatedUsers; let i = index"
+      class="container-data_list_card"
+      [ngClass]="{ 'dark-background': i % 2 === 0 }"
+    >
       <section class="container-data_list_card_left">
         <div class="container-data_list_card_cercle">
           <span class="container-data_list_card_cercle_span">
@@ -161,8 +165,47 @@
     </button>
   </div>
 </section>
-<section *ngIf="activContainer === 'Devis'" class="allSectionContainer">
-  <p>Devis</p>
+<section
+  *ngIf="activContainer === 'Devis'"
+  class="allSectionContainer , container-devis"
+>
+  <span class="container-devis_title">Devis</span>
+  <div class="container-devis_head">
+    <div class="container-devis_head_user">Utilisateur</div>
+    <div class="container-devis_head_numdevi">Numero de devis</div>
+    <div class="container-devis_head_status">Status</div>
+  </div>
+
+  <div
+    class="container-devis_card"
+    *ngFor="let quote of allQuotes; let i = index"
+    [ngClass]="{ 'dark-background': i % 2 === 0 }"
+  >
+    <div class="container-devis_card_user">
+      <div class="container-devis_card_user_name-container">
+        <div class="container-devis_card_user_cercle">
+          <span class="container-devis_card_user_cercle_span">{{
+            quote.client.firstName.charAt(0)
+          }}</span>
+        </div>
+        <span class="container-devis_card_user_name"
+          >{{ quote.client.firstName }} {{ quote.client.lastName }}</span
+        >
+      </div>
+
+      <span class="container-devis_card_user_numdevi"> {{ quote.id }}</span>
+      <span
+        class="container-devis_card_user_status"
+        [ngClass]="{
+          pending: quote.status === 'PENDING',
+          'in-process': quote.status === 'IN_PROCESS',
+          closed: quote.status === 'CLOSED'
+        }"
+      >
+        {{ quote.status }}</span
+      >
+    </div>
+  </div>
 </section>
 <section
   *ngIf="activContainer === 'Profil'"
@@ -172,7 +215,9 @@
   <div class="container-profil_card">
     <div class="container-profil_card_design">
       <div class="container-profil_card_design_head">
-        <span class="container-profil_card_design_head_title"> V </span>
+        <span class="container-profil_card_design_head_title">{{
+          myProfil.firstName.charAt(0)
+        }}</span>
       </div>
       <div class="container-profil_card_design_decor1"></div>
       <div class="container-profil_card_design_decor2"></div>

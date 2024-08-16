@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user-service.service';
+import { CommercialService } from '../../services/commercial/commercial.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-commercial-service',
@@ -18,28 +20,30 @@ export class CommercialServiceComponent implements OnInit {
   paginatedUsers: any[] = [];
   currentPage = 1;
   totalPages = 1;
-  pageSize = 11;
+  pageSize = 10;
   sortDirection: 'asc' | 'desc' = 'asc';
   searchTerm: string = '';
   activContainer: string | null = null;
   myProfil: any;
+  allQuotes: any;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private commercialService: CommercialService
   ) {}
 
   ngOnInit() {
-    this.fetchUsers();
+    // Initialiser l'utilisateur courant
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
       this.currentUserName = user.firstName;
       this.getFirstLetter();
     });
-    this.showActiveContainer('Profil');
 
-    this.fetchMyProfile();
+    // Charger les clients ou devis en fonction de la section active
+    this.showActiveContainer('Clients'); // Par défaut afficher Clients
   }
 
   fetchUsers() {
@@ -55,6 +59,7 @@ export class CommercialServiceComponent implements OnInit {
       }
     );
   }
+
   fetchMyProfile() {
     this.userService.getMyProfile().subscribe(
       (data) => {
@@ -63,6 +68,18 @@ export class CommercialServiceComponent implements OnInit {
       },
       (error) => {
         console.error('Erreur lors de la récupération de mon profil', error);
+      }
+    );
+  }
+
+  getAllQuotesWithoutException() {
+    this.commercialService.getAllQuotesWithoutException().subscribe(
+      (data) => {
+        this.allQuotes = data;
+        console.log('All quotes : ', this.allQuotes);
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des devis', error);
       }
     );
   }
@@ -132,5 +149,14 @@ export class CommercialServiceComponent implements OnInit {
 
   showActiveContainer(container: string) {
     this.activContainer = container;
+
+    // Charger les données en fonction de la section active
+    if (container === 'Clients' && !this.users.length) {
+      this.fetchUsers();
+    } else if (container === 'Devis' && !this.allQuotes) {
+      this.getAllQuotesWithoutException();
+    } else if (container === 'Profil' && !this.myProfil) {
+      this.fetchMyProfile();
+    }
   }
 }
