@@ -137,7 +137,10 @@
         </span>
       </section>
       <section class="container-data_list_card_right">
-        <button class="container-data_list_card_button">
+        <button
+          class="container-data_list_card_button"
+          (click)="showActiveContainer('dossier')"
+        >
           Voir ce dossier client
         </button>
         <span class="container-data_list_card_type">{{ user.userType }}</span>
@@ -240,3 +243,4 @@
     </div>
   </div>
 </section>
+<app-dossier-client *ngIf="activContainer === 'dossier'"></app-dossier-client>

@@ -27,6 +27,7 @@ import { PanierComponent } from './components/panier/panier.component';
 import { CartComponent } from './components/cart/cart.component';
 import { TokenInterceptor } from './interceptors/token.interceptor.service';
 import { AuthService } from './services/auth/auth.service';
+import { DossierClientComponent } from './components/dossier-client/dossier-client.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AuthService } from './services/auth/auth.service';
     FavoriteComponent,
     PanierComponent,
     CartComponent,
+    DossierClientComponent,
   ],
   imports: [
     BrowserModule,

@@ -43,7 +43,7 @@ export class CommercialServiceComponent implements OnInit {
     });
 
     // Charger les clients ou devis en fonction de la section active
-    this.showActiveContainer('Clients'); // Par défaut afficher Clients
+    this.showActiveContainer('dossier'); // Par défaut afficher Clients
   }
 
   fetchUsers() {
