@@ -54,19 +54,22 @@
   </div>
   <div class="container-menu_bottom">
     <hr />
-    <div class="container-menu-deconnexion">
+    <button
+      class="container-menu-deconnexion buttonToActivePage"
+      (click)="logout()"
+    >
       <img
         class="icon , icon-deconnexion"
         src="assets/images/commercial/deconnecter.png"
         alt="icon deconnexion"
       />
-      <button class="menu-span" (click)="logout()">Déconnexion</button>
+      <span class="menu-span">Déconnexion</span>
       <img
         class="icon_direction"
         src="assets/images/commercial/angle-droit.png"
         alt="logo angle-droit"
       />
-    </div>
+    </button>
     <hr />
     <button (click)="showActiveContainer('Profil')" class="buttonToActivePage">
       <div class="container-menu-profil">
