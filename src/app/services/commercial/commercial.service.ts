@@ -17,4 +17,9 @@ export class CommercialService {
       withCredentials: true,
     });
   }
+  getOrdersByCustomerId(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/order/customer/${id}`, {
+      withCredentials: true,
+    });
+  }
 }

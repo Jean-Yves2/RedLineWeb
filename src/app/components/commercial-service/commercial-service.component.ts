@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user-service.service';
 import { CommercialService } from '../../services/commercial/commercial.service';
-import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-commercial-service',
