@@ -1,26 +1,25 @@
 @import "../../../styles/theme.scss";
-@import "dist/tailwind.css";
 
 .nav-bar {
   &_section {
-    background-color: $primary-color;
+    background-color : $primary-color;
   }
 }
 
 .favorieLink {
-  position: relative;
+  position : relative;
 
   &_counter {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #f88a0a;
-    top: 0px;
-    right: -10px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+    position         : absolute;
+    width            : 20px;
+    height           : 20px;
+    background-color : #f88a0a;
+    top              : 0px;
+    right            : -10px;
+    border-radius    : 50%;
+    display          : flex;
+    justify-content  : center;
+    align-items      : center;
+    color            : white;
   }
 }
