@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FavorieService } from '../../services/favorie/favorie.service';
 import { Observable, Subscription } from 'rxjs';
 import { PanierService } from '../../services/panier/panier.service';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-tool-bar',
@@ -23,7 +24,8 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router,
     private favorieService: FavorieService,
-    private panierService: PanierService
+    private panierService: PanierService,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -44,13 +46,9 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     );
     this.favorieService.updateFavoriteCount();
 
-    /*this.cartSubscription = this.panierService.cartItemCount$.subscribe(
-      (count) => {
-        this.cartCounter = count;
-      }
-    );*/
-
-
+    this.cartSubscription = this.cartService.cartCount$.subscribe((count) => {
+      this.cartCounter = count;
+    });
   }
 
   ngOnDestroy() {
@@ -77,12 +75,17 @@ export class ToolBarComponent implements OnInit, OnDestroy {
   }
   private updateFavorites(): void {
     const favorites = this.favorieService.getFavorites();
-    if (favorites instanceof Observable) {
-      favorites.subscribe((data) => {
-        this.favorieService.favoriteCountSubject.next(data.length);
-      });
-    } else {
-      this.favorieService.favoriteCountSubject.next(favorites.length);
+    if (this.authService.getIsAuthenticated()) {
+      if (favorites instanceof Observable) {
+        favorites.subscribe(
+          (data) => {
+            this.favorieService.favoriteCountSubject.next(data.length);
+          },
+          () => {}
+        );
+      } else {
+        this.favorieService.favoriteCountSubject.next(favorites.length);
+      }
     }
   }
 }

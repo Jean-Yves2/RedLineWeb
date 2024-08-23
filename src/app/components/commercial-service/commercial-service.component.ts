@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user-service.service';
+import { CommercialService } from '../../services/commercial/commercial.service';
 
 @Component({
   selector: 'app-commercial-service',
@@ -18,43 +19,73 @@ export class CommercialServiceComponent implements OnInit {
   paginatedUsers: any[] = [];
   currentPage = 1;
   totalPages = 1;
-  pageSize = 11;
+  pageSize = 10;
   sortDirection: 'asc' | 'desc' = 'asc';
   searchTerm: string = '';
   activContainer: string | null = null;
+  myProfil: any;
+  allQuotes: any;
+  selectedClient: any;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userService: UserService
-  ) {
+    private userService: UserService,
+    private commercialService: CommercialService
+  ) {}
+
+  ngOnInit() {
+    // Initialiser l'utilisateur courant
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
       this.currentUserName = user.firstName;
       this.getFirstLetter();
     });
-  }
 
-  ngOnInit() {
-    this.fetchUsers();
-    this.showActiveContainer('Clients');
+    // Charger les clients ou devis en fonction de la section active
+    this.showActiveContainer('dossier'); // Par défaut afficher Clients
   }
 
   fetchUsers() {
-    this.userService.getUsers().subscribe(
-      (data) => {
+    this.userService.getUsers().subscribe({
+      next: (data) => {
         this.users = data;
         this.filteredUsers = this.users;
         this.totalPages = Math.ceil(this.filteredUsers.length / this.pageSize);
         this.setPage(this.currentPage);
       },
-      (error) => {
+      error: (error) => {
         console.error('Erreur lors de la récupération des utilisateurs', error);
-      }
-    );
+      },
+    });
+  }
+
+  fetchMyProfile() {
+    this.userService.getMyProfile().subscribe({
+      next: (data) => {
+        this.myProfil = data;
+        console.log('Mon profil : ', this.myProfil);
+      },
+      error: (error) => {
+        console.error('Erreur lors de la récupération de mon profil', error);
+      },
+    });
+  }
+
+  getAllQuotesWithoutException() {
+    this.commercialService.getAllQuotesWithoutException().subscribe({
+      next: (data) => {
+        this.allQuotes = data;
+        console.log('All quotes : ', this.allQuotes);
+      },
+      error: (error) => {
+        console.error('Erreur lors de la récupération des devis', error);
+      },
+    });
   }
 
   logout() {
+    this.authService.resetCurrentUser();
     this.authService.logout();
     this.router.navigate(['/connexion']);
   }
@@ -118,5 +149,28 @@ export class CommercialServiceComponent implements OnInit {
 
   showActiveContainer(container: string) {
     this.activContainer = container;
+
+    // Charger les données en fonction de la section active
+    if (container === 'Clients' && !this.users.length) {
+      this.fetchUsers();
+    } else if (container === 'Devis' && !this.allQuotes) {
+      this.getAllQuotesWithoutException();
+    } else if (container === 'Profil' && !this.myProfil) {
+      this.fetchMyProfile();
+    }
+  }
+
+  setSelectedClient(client: any) {
+    localStorage.setItem('selectedClient', JSON.stringify(client));
+    this.updateClient();
+  }
+
+  getSelectedClient() {
+    return JSON.parse(localStorage.getItem('selectedClient') || '{}');
+  }
+
+  updateClient() {
+    this.selectedClient = this.getSelectedClient();
+    console.log('Client sélectionné updated : ', this.selectedClient);
   }
 }

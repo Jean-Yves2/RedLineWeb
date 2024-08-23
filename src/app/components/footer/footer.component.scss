@@ -1,33 +1,31 @@
-@import '../../../styles/theme.scss';
-.footer{
+@import "../../../styles/theme.scss";
+.footer {
   color: #fff;
   text-align: center;
   bottom: 0;
   width: 100%;
   font-size: 12px;
 
-  footer{
+  footer {
     padding: 10px;
     background-color: $primary-color;
 
-    input{
+    input {
       border-radius: 0;
-      border: none
+      border: none;
     }
-    button{
+    button {
       background-color: $secondary-color;
       border-radius: 0;
-
     }
-
   }
-  form{
+  form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 
-    .checkbox-description{
-      font-family:$font-family-regular;
+    .checkbox-description {
+      font-family: $font-family-regular;
       font-size: 14px;
       font-weight: bold;
     }

@@ -13,6 +13,7 @@ import { CommercialServiceComponent } from './components/commercial-service/comm
 import { ApprovisionnementComponent } from './components/approvisionnement/approvisionnement.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { PanierComponent } from './components/panier/panier.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'approvisionnement', component: ApprovisionnementComponent },
   { path: 'favoris', component: FavoriteComponent },
   { path: 'panier', component: PanierComponent },
+  { path: 'cart', component: CartComponent },
 ];
 
 @NgModule({
