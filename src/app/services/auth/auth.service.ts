@@ -37,6 +37,8 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
+    console.log('API URL:', this.apiUrl);
+
     return this.http
       .post<any>(
         `${this.apiUrl}/auth/login`,
