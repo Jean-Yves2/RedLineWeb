@@ -30,8 +30,13 @@ export class CommercialServiceComponent implements OnInit {
   ) {
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
-      this.currentUserName = user.firstName;
-      this.getFirstLetter();
+      if (this.currentUser) {
+        this.currentUserName = user.firstName;
+        this.getFirstLetter();
+      } else {
+        this.currentUserName = undefined;
+        this.firstLetter = undefined;
+      }
     });
   }
 

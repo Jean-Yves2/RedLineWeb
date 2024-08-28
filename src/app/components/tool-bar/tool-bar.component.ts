@@ -31,9 +31,16 @@ export class ToolBarComponent implements OnInit, OnDestroy {
       this.currentUser = user;
       this.isInternal = this.authService.isInternal();
       const testFavorite = this.favorieService.getFavorites();
-      this.updateFavorites();
       if (user) {
         this.updateFavorites();
+      }
+    });
+
+    this.authService.getIsAuthenticated().subscribe((isAuthenticated) => {
+      if (isAuthenticated) {
+        this.updateFavorites();
+      } else {
+        this.favorieService.resetFavoriteCount();
       }
     });
 
@@ -49,8 +56,6 @@ export class ToolBarComponent implements OnInit, OnDestroy {
         this.cartCounter = count;
       }
     );*/
-
-
   }
 
   ngOnDestroy() {
@@ -77,6 +82,7 @@ export class ToolBarComponent implements OnInit, OnDestroy {
   }
   private updateFavorites(): void {
     const favorites = this.favorieService.getFavorites();
+
     if (favorites instanceof Observable) {
       favorites.subscribe((data) => {
         this.favorieService.favoriteCountSubject.next(data.length);
