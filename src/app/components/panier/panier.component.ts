@@ -1,42 +1,25 @@
 import { Component } from '@angular/core';
 import { Produit } from '../forme-matiere/interface/produit.model';
 import { FormeMatiereService } from '../../services/forme_matiere/forme-matiere.service';
-import { PanierService } from '../../services/panier/panier.service';
-import { CartService } from '../../services/cart/cart.service';
-import { AuthService } from '../../services/auth/auth.service';
+import { PanierService } from 'src/app/services/panier/panier.service';
 
-interface LocalProduct {
-  id: string;
-  range: { start: number; end: number };
-  nom: string;
-  schema: string;
-  image: string;
-}
-interface LocalProducts {
-  [key: string]: LocalProduct[];
-}
 
 @Component({
   selector: 'app-panier',
   templateUrl: './panier.component.html',
-  styleUrls: ['./panier.component.scss'],
+  styleUrls: ['./panier.component.scss']
 })
 export class PanierComponent {
+
   paniers: any[] = [];
   panierProducts: Produit[] = [];
   produits: { [key: string]: Produit[] } = {};
   havedPanier: boolean = false;
-  localProductsWithDataImage: LocalProducts;
 
   constructor(
-    private panierService: PanierService,
-    private formeMatiereService: FormeMatiereService,
-    private authService: AuthService,
-    private cartService: CartService
-  ) {
-    this.localProductsWithDataImage = this.formeMatiereService
-      .produits as LocalProducts;
-  }
+    private cartService: PanierService,
+    private formeMatiereService: FormeMatiereService
+  ) {}
 
   ngOnInit(): void {
     this.produits = this.formeMatiereService.produits;
@@ -44,10 +27,9 @@ export class PanierComponent {
   }
 
   getCart(): any[] {
-    return this.panierService.getCart();
+    return this.cartService.getCart();
   }
 
-  // Sert a l'affichage des informations de produits dans le panier pour un utilisateur non connecter
   mapPanierToProducts(): void {
     this.panierProducts = [];
     this.paniers.forEach((cart) => {
@@ -60,8 +42,6 @@ export class PanierComponent {
             (product as any).quantite = cart.quantite;
             (product as any).longueur = cart.longueur;
             (product as any).choix = cart.choix;
-            (product as any).description = cart.description;
-
             this.panierProducts.push(product);
           }
         }
@@ -70,98 +50,14 @@ export class PanierComponent {
     this.havedPanier = this.panierProducts.length > 0;
   }
 
-  // Sert a l'affichage des informations de produits dans le panier pour un utilisateur connecter
-  mapApiProductToProduit(
-    apiProduct: any,
-    localProducts: LocalProducts
-  ): Produit | null {
-    for (const material in localProducts) {
-      if (localProducts.hasOwnProperty(material)) {
-        const products = localProducts[material];
-        for (const product of products) {
-          if (
-            apiProduct.product.productCode >= (product.range?.start ?? 0) &&
-            apiProduct.product.productCode <= (product.range?.end ?? Infinity)
-          ) {
-            return {
-              id: apiProduct.product.id.toString(),
-              nom: product.nom,
-              schema: product.schema,
-              image: product.image,
-
-              details: apiProduct.product.description,
-              quantite: apiProduct.quantity,
-              longueur: apiProduct.length,
-              description: apiProduct.product.description,
-              basePrice: apiProduct.product.basePrice,
-              unitPriceExclTax: apiProduct.product.unitPriceExclTax,
-              VATRate: apiProduct.product.VATRate,
-              marginPercent: apiProduct.product.marginPercent,
-              sellingPrice: apiProduct.product.sellingPrice,
-              linearWeight: apiProduct.product.linearWeight,
-              thickness: apiProduct.product.thickness,
-              height: apiProduct.product.height,
-              width: apiProduct.product.width,
-              diameter: apiProduct.product.diameter,
-              circumference: apiProduct.product.circumference,
-              sectionArea: apiProduct.product.sectionArea,
-              weight: apiProduct.product.weight,
-              matiere: apiProduct.product.matiere,
-              productCode: apiProduct.product.productCode,
-            };
-          }
-        }
-      }
-    }
-    return null;
-  }
-
   loadCart(): void {
-    if (this.authService.getIsAuthenticated()) {
-      this.cartService.getCartByUserId().subscribe((data) => {
-        this.paniers = data.items;
-        this.panierProducts = [];
-
-        this.paniers.forEach((apiProduct) => {
-          const produit = this.mapApiProductToProduit(
-            apiProduct,
-            this.localProductsWithDataImage
-          );
-
-          if (produit) {
-            this.panierProducts.push(produit);
-          }
-        });
-        this.cartService.updateCartCount(this.panierProducts);
-        this.havedPanier = this.panierProducts.length > 0;
-      });
-    } else {
-      this.paniers = this.getCart();
-      this.mapPanierToProducts();
-    }
-  }
-
-  addCart(item: any): void {
-    if (this.authService.getIsAuthenticated()) {
-      this.cartService
-        .addItemToCart(item.productCode, item.quantite, item.longueur)
-        .subscribe(() => {
-          this.loadCart();
-        });
-    } else {
-      this.panierService.addToCart(item);
-      this.loadCart();
-    }
+    this.paniers = this.getCart();
+    this.mapPanierToProducts();
   }
 
   removeCart(item: any): void {
-    if (this.authService.getIsAuthenticated()) {
-      this.cartService.removeItemFromCart(item.productCode).subscribe(() => {
-        this.loadCart();
-      });
-    } else {
-      this.panierService.removeFromCart(item.cart_id);
-      this.loadCart();
-    }
+    this.cartService.removeFromCart(item.cart_id);
+    this.loadCart();
   }
+
 }

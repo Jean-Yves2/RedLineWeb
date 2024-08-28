@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { localProducts } from '../../services/table_data/localProducts';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PanierService {
   private CART_KEY = 'cart';
-  private cartItemCountSubject = new BehaviorSubject<number>(
-    this.countCartItems(),
-  );
+  private cartItemCountSubject = new BehaviorSubject<number>(this.countCartItems());
   private nextId: number = this.getNextId();
-  localProducts = localProducts;
 
   cartItemCount$ = this.cartItemCountSubject.asObservable();
 
@@ -31,30 +27,14 @@ export class PanierService {
         cartItem.urlPart === item.urlPart &&
         cartItem.longueur === item.longueur &&
         cartItem.quantite === item.quantite &&
-        cartItem.choix === item.choix,
+        cartItem.choix === item.choix
     );
 
     if (!isExisting) {
-      let localProduct = this.localProducts.find(
-        (p) => p.productCode === item.productCode,
-      );
-
-      if (localProduct) {
-        const cartwithId = {
-          ...item,
-          ...localProduct,
-          cart_id: this.nextId++,
-        };
-
-        cart.push(cartwithId);
-        localStorage.setItem(this.CART_KEY, JSON.stringify(cart));
-        this.cartItemCountSubject.next(this.countCartItems());
-      } else {
-        console.error(
-          'Produit local non trouvé pour le code produit:',
-          item.productCode,
-        );
-      }
+      const cartwithId = { ...item, cart_id: this.nextId++ };
+      cart.push(cartwithId);
+      localStorage.setItem(this.CART_KEY, JSON.stringify(cart));
+      this.cartItemCountSubject.next(this.countCartItems());
     } else {
       console.error("L'élément existe déjà dans le Panier.");
     }
@@ -62,7 +42,7 @@ export class PanierService {
 
   removeFromCart(id: number): void {
     let cart = this.getCart();
-    cart = cart.filter((cartItem) => cartItem.cart_id !== id);
+    cart = cart.filter(cartItem => cartItem.cart_id !== id);
     localStorage.setItem(this.CART_KEY, JSON.stringify(cart));
     this.cartItemCountSubject.next(this.countCartItems());
   }
@@ -78,8 +58,6 @@ export class PanierService {
 
   private getNextId(): number {
     const cart = this.getCart();
-    return cart.length
-      ? Math.max(...cart.map((item) => item.cart_id || 0)) + 1
-      : 1;
+    return cart.length ? Math.max(...cart.map(item => item.cart_id || 0)) + 1 : 1;
   }
 }

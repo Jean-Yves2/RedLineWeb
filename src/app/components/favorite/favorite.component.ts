@@ -14,55 +14,44 @@ import { localProducts } from '../../services/table_data/localProducts';
 export class FavoriteComponent implements OnInit {
   favorites: any[] = [];
   favoriteProducts: Produit[] = [];
-  produits: {
-    [key: string]: {
-      id: string;
-      details?: string;
-      range?: { start: number; end: number };
-      nom: string;
-      schema: string;
-      image: string;
-    }[];
-  } = {};
+  produits: { [key: string]: { id: string, details?: string, range?: { start: number, end: number }, nom: string, schema: string, image: string }[] } = {};
   havedFavorites: boolean = false;
 
   constructor(
     private favorieService: FavorieService,
     private formeMatiereService: FormeMatiereService,
-    private authService: AuthService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.produits = this.formeMatiereService.produits;
 
-    if (this.authService.getIsAuthenticated()) {
-      const favorites = this.favorieService.getFavorites();
-      this.favorieService.updateFavoriteCount();
-      if (favorites instanceof Observable) {
-        favorites.subscribe((data) => {
-          this.favorites = data;
-          this.updateFavoritesWithImages();
-        });
+
+      if (this.authService.getIsAuthenticated()) {
+        const favorites = this.favorieService.getFavorites();
+        this.favorieService.updateFavoriteCount();
+        if (favorites instanceof Observable) {
+          favorites.subscribe((data) => {
+            this.favorites = data;
+            this.updateFavoritesWithImages();
+          });
+        } else {
+
+        }
       } else {
+        const localFavorites = this.favorieService.getLocalFavorites();
+        this.favorites = localFavorites;
+        Promise.resolve().then(() => this.updateFavoritesWithImages());
       }
-    } else {
-      const localFavorites = this.favorieService.getLocalFavorites();
-      this.favorites = localFavorites;
-      Promise.resolve().then(() => this.updateFavoritesWithImages());
-    }
+
   }
 
-  findProductByCode(
-    productCode: number,
-  ): { schema: string; image: string } | null {
+
+  findProductByCode(productCode: number): { schema: string, image: string } | null {
     for (const key in this.produits) {
       if (this.produits.hasOwnProperty(key)) {
         for (const product of this.produits[key]) {
-          if (
-            product.range &&
-            productCode >= product.range.start &&
-            productCode <= product.range.end
-          ) {
+          if (product.range && productCode >= product.range.start && productCode <= product.range.end) {
             return { schema: product.schema, image: product.image };
           }
         }
@@ -77,8 +66,7 @@ export class FavoriteComponent implements OnInit {
         const productImageData = this.findProductByCode(favorite.productCode);
         return {
           ...favorite,
-          schema:
-            productImageData?.schema || 'assets/images/default-schema.png',
+          schema: productImageData?.schema || 'assets/images/default-schema.png',
           image: productImageData?.image || 'assets/images/default-image.png',
         };
       });
@@ -88,24 +76,23 @@ export class FavoriteComponent implements OnInit {
         const productImageData = this.findProductByCode(productCode);
         return {
           productCode,
-          schema:
-            productImageData?.schema || 'assets/images/default-schema.png',
+          schema: productImageData?.schema || 'assets/images/default-schema.png',
           image: productImageData?.image || 'assets/images/default-image.png',
         };
       });
     }
   }
 
+
   removeFavorite(item: any): void {
-    if (this.authService.getIsAuthenticated()) {
-      this.favorieService.removeFavorite(item.productCode);
-      this.favorites = this.favorites.filter(
-        (fav) => fav.productCode !== item.productCode,
-      );
-      this.havedFavorites = this.favorites.length === 0;
+
+    if(this.authService.getIsAuthenticated()) {
+    this.favorieService.removeFavorite(item.productCode);
+    this.favorites = this.favorites.filter(fav => fav.productCode !== item.productCode);
+    this.havedFavorites = this.favorites.length === 0;
     } else {
       this.favorieService.removeFromLocalFavorites(item.productCode);
-      this.favorites = this.favorites.filter((fav) => fav !== item);
+      this.favorites = this.favorites.filter(fav => fav !== item);
       this.havedFavorites = this.favorites.length === 0;
     }
   }

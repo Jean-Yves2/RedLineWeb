@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +21,7 @@ export class AuthService {
     );
     this.currentUser = this.currentUserSubject.asObservable();
     this.isAuthenticated = !!storedUser;
+
   }
 
   register(registerForm: any): Observable<any> {
@@ -53,22 +54,13 @@ export class AuthService {
       );
   }
 
-  refreshToken(): Observable<any> {
-    return this.http.post<any>(
-      `${this.apiUrl}/auth/refresh-token`,
-      {},
-      {
-        withCredentials: true,
-      }
-    );
-  }
-
   logout(): void {
     this.http
       .post(`${this.apiUrl}/auth/logout`, {}, { withCredentials: true })
       .subscribe({
         next: () => {
           localStorage.removeItem('currentUser');
+          this.currentUserSubject.next(null);
           this.resetAuthentication();
           this.router.navigate(['/connexion']);
         },
@@ -78,7 +70,7 @@ export class AuthService {
       });
   }
 
-  /* public isLoggedIn(): Observable<boolean> {
+ /* public isLoggedIn(): Observable<boolean> {
     if (this.isAuthenticated) {
       return of(this.isAuthenticated);
     }
@@ -111,8 +103,5 @@ export class AuthService {
   }
   public getIsAuthenticated(): boolean {
     return this.isAuthenticated;
-  }
-  public resetCurrentUser(): void {
-    this.currentUserSubject.next('');
   }
 }

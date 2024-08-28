@@ -106,29 +106,17 @@
       </div>
     </section>
     <section class="container-card_button">
-      <button
-        class="container-card_button_favorie"
-        (click)="addToFavorites()"
-        [disabled]="!isSelection"
-      >
+      <button class="container-card_button_favorie" (click)="addToFavorites()">
         AJOUTER AU FAVORIS
         <img
           class="container-card_button_favorie_image"
           src="../../../assets/images/product/etoile.png"
-          alt="Star Icon"
-        />
+          alt="Star Icon">
       </button>
-      <button
-        class="container-card_button_panier"
-        (click)="addToCart()"
-        [disabled]="!isSelection"
-      >
-        AJOUTER AU PANIER<img
-          class="container-card_button_panier_image"
-          src="../../../assets/images/product/ajouter-au-panier.png"
-          alt="Star Icon"
-        />
-      </button>
+      <button class="container-card_button_panier" (click)="addToCart()">AJOUTER AU PANIER<img
+        class="container-card_button_panier_image"
+        src="../../../assets/images/product/ajouter-au-panier.png"
+        alt="Star Icon"></button>
     </section>
   </div>
 </div>
