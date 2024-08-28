@@ -1,208 +1,226 @@
-@import "../../../styles/theme.scss";
+@import '../../../styles/theme.scss';
 
 :host {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
+  display        : flex;
+  flex-direction : column;
+  width          : 100%;
+  align-items    : center;
 }
 
 .container {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  margin: 1rem;
+  display        : flex;
+  flex           : 1;
+  flex-direction : column;
+  margin         : 1rem;
 
   &-title {
-    background-color: $secondary-color;
+    background-color : $secondary-color;
 
     &_p {
-      border-collapse: collapse;
-      width: 100%;
-      font-family: "bevan";
-      font-size: 1em;
-      color: white;
-      margin-left: 1rem;
-      font-size: 1.2rem;
+      border-collapse : collapse;
+      width           : 100%;
+      font-family     : 'bevan';
+      font-size       : 1em;
+      color           : white;
+      margin-left     : 1rem;
+      font-size       : 1.2rem;
     }
   }
 
   &-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    border: 1px solid #d5d8da;
-    gap: 20px;
+    display         : flex;
+    align-items     : center;
+    justify-content : center;
+    flex-direction  : column;
+    border          : 1px solid #D5D8DA;
+    gap             : 20px;
 
     &_selector {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      flex: 1;
-      width: 100%;
-      column-gap: 1%;
-      margin: 1%;
-      align-items: center;
+
+      display         : flex;
+      flex-direction  : row;
+      justify-content : space-around;
+      flex            : 1;
+      width           : 100%;
+      column-gap      : 1%;
+      margin          : 1%;
+      align-items     : center;
 
       &_image {
-        width: 40%;
-        display: flex;
-        justify-content: space-around;
-        flex-direction: column;
-        height: 100%;
-        flex-wrap: wrap;
-        gap: 3rem;
+
+        width           : 40%;
+        display         : flex;
+        justify-content : space-around;
+        flex-direction  : column;
+        height          : 100%;
+        flex-wrap       : wrap;
+        gap             : 3rem;
 
         &_visuel {
-          display: flex;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          justify-content: space-between;
+
+          display         : flex;
+          align-items     : center;
+          width           : 100%;
+          height          : 100%;
+          justify-content : space-between;
 
           &_illustration,
           &_schema {
-            width: 40%;
-            height: 150px;
-            border: 1px solid $background-color;
+            width  : 40%;
+            height : 150px;
+            border : 1px solid $background-color;
           }
+
         }
 
+
         &_data {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
+
+          display        : flex;
+          flex-direction : column;
+          gap            : 1rem;
 
           &_with,
           &_total,
           &_quantity {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            display         : flex;
+            flex-direction  : row;
+            justify-content : space-between;
           }
 
           &_with_input,
           &_quantity_input {
-            border: 3px solid $background-color;
+            border : 3px solid $background-color;
           }
         }
+
+
       }
 
       &_tab {
-        width: 40%;
+
+        width : 40%;
 
         &_data {
-          border-collapse: collapse;
-          width: 100%;
-          font-family: "Arial", sans-serif;
-          font-size: 1em;
-          background-color: $background-color;
+          border-collapse  : collapse;
+          width            : 100%;
+          font-family      : 'Arial', sans-serif;
+          font-size        : 1em;
+          background-color : $background-color;
 
           thead tr {
-            background-color: $primary-color;
-            color: #fff;
+            background-color : $primary-color;
+            color            : #fff;
           }
 
           th,
           td {
-            padding: 12px;
-            text-align: center;
+            padding    : 12px;
+            text-align : center;
           }
 
           tbody tr:nth-child(odd) {
-            background-color: #f5d17871;
+            background-color : #f5d17871;
           }
 
           tbody tr:nth-child(even) {
-            background-color: #ffffff;
+            background-color : #ffffff;
           }
 
           tbody tr:hover {
-            background-color: #e6e5c8;
+            background-color : #e6e5c8;
           }
+
         }
       }
     }
 
     &_button {
-      display: flex;
-      width: 100%;
-      justify-content: flex-end;
-      gap: 20px;
+      display         : flex;
+      width           : 100%;
+      justify-content : flex-end;
+      gap             : 20px;
 
       &_panier,
       &_favorie {
-        display: flex;
-        justify-content: center;
-        margin: 1%;
+        display         : flex;
+        justify-content : center;
+        margin          : 1%;
 
-        color: white;
-        padding: 5px;
-        border: solid 1px $background-color;
-        border-radius: 5px;
-        font-size: 1.1rem;
+        color         : white;
+        padding       : 5px;
+        border        : solid 1px $background-color;
+        border-radius : 5px;
+        font-size     : 1.1rem;
 
         &:hover {
-          background-color: $primary-color;
+          background-color : $primary-color;
         }
       }
 
       &_favorie {
-        background-color: $third-color;
-        display: flex;
-        justify-content: center;
-        position: relative;
-        padding-right: 50px;
+        background-color : $third-color;
+        display          : flex;
+        justify-content  : center;
+        position         : relative;
+        padding-right    : 50px;
 
         &_image {
-          position: absolute;
-          right: 10px;
-          top: 5px;
-          width: 30px;
+          position : absolute;
+          right    : 10px;
+          top      : 5px;
+          width    : 30px;
+
         }
       }
 
       &_panier {
-        background-color: #f58808;
-        display: flex;
-        justify-content: center;
-        position: relative;
-        padding-right: 50px;
+        background-color : #f58808;
+        display          : flex;
+        justify-content  : center;
+        position         : relative;
+        padding-right    : 50px;
 
         &_image {
-          position: absolute;
-          right: 10px;
-          top: 5px;
-          width: 30px;
+          position : absolute;
+          right    : 10px;
+          top      : 5px;
+          width    : 30px;
+
         }
       }
+
+
+
     }
+
   }
+
 }
 
 //table scroll
 
 .container-card_selector_tab {
-  max-height: 400px;
-  overflow-y: auto;
-  width: 700px;
+  max-height : 400px;
+  overflow-y : auto;
+  width      : 700px;
 }
 
 .container-card_selector_tab_data {
-  width: 100%;
-  border-collapse: collapse;
+  width           : 100%;
+  border-collapse : collapse;
 }
 
+
 .container-card_selector_tab thead {
-  position: sticky;
-  top: 0;
-  background: white;
-  z-index: 1;
+  position   : sticky;
+  top        : 0;
+  background : white;
+  z-index    : 1;
 }
 
 .container-card_selector_tab th,
 .container-card_selector_tab td {
-  padding: 8px;
-  text-align: left;
+  padding    : 8px;
+  text-align : left;
 }

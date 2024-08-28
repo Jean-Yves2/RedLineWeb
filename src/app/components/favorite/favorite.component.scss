@@ -1,4 +1,4 @@
-@import "../../../styles/theme.scss";
+@import '../../../styles/theme.scss';
 
 :host {
   display         : flex;
@@ -35,13 +35,16 @@
   &_design {
     display         : flex;
     border          : solid 1px #d5d8da;
+
     width           : 100%;
     padding         : 10px;
     column-gap      : 20px;
     gap             : 30px;
     flex-wrap       : wrap;
     justify-content : flex-start;
+
     align-items     : center;
+
   }
 
   h1 {
@@ -55,6 +58,7 @@
     flex-direction   : column;
     border           : solid 1px #d5d8da;
     background-color : #d5d8da;
+
     border-radius    : 10px;
     padding          : 10px;
     gap              : 10px;
@@ -68,6 +72,9 @@
       right    : -10px;
       cursor   : pointer;
     }
+
+
+
 
     &_card {
       display        : flex;
@@ -92,7 +99,9 @@
           width         : 100px;
           height        : 100px;
           border-radius : 10px;
+
         }
+
       }
 
       &_data {
@@ -106,6 +115,7 @@
         font-size   : 1.1rem;
 
         color : $third-color;
+
       }
     }
 
@@ -116,6 +126,7 @@
     }
 
     &_empty {
+
       display         : flex;
       justify-content : center;
       align-items     : center;
@@ -132,11 +143,18 @@
       }
 
       &_text {
+
         position : absolute;
       }
+
+
     }
+
   }
+
+
 }
+
 
 .container_div_card_data_quantity,
 .container_div_panier_price,
@@ -146,6 +164,7 @@
   font-size   : 1rem;
   font-weight : bold;
   color       : $third-color;
+
 }
 
 .container_div_panier_button {
@@ -157,6 +176,7 @@
   background-color : $primary-color;
   border-radius    : 5px;
   padding          : 5px;
+
 }
 
 @keyframes rotateImage {
@@ -209,4 +229,5 @@
       width : 70%;
     }
   }
+
 }

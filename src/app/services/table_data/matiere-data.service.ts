@@ -303,7 +303,7 @@ export class MatiereDataService {
         'Cornière à ailes égales ( Epaisseur : 10 mm Hauteur Ailes : 100 mm)',
     },
   ];
-  /*
+    /*
   ! A supprimer
   */
   profile_h_aluminium = [

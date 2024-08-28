@@ -15,7 +15,7 @@ export class FormeMatiereComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private formeMatiereService: FormeMatiereService,
+    private formeMatiereService: FormeMatiereService
   ) {}
 
   ngOnInit(): void {
