@@ -17,20 +17,20 @@
           <img
             class="container_div_card_image_size"
             [src]="product.schema"
-            alt="schema du produit"
+            alt="schema du produit {{ product.name }}"
           />
           <img
             class="container_div_card_image_size"
             [src]="product.image"
-            alt="image du produit"
+            alt="image du produit {{ product.name }}"
           />
         </div>
         <div class="container_div_card_data">
           <span class="container_div_card_data_quantity"
-            >Quantité : {{ product.quantite }}</span
+            >Quantité : 1 {{ product.quantite }}</span
           >
           <span class="container_div_card_data_length"
-            >Longueur : {{ product.longueur }} cm</span
+            >Longueur : {{ product.longueur }}100 cm</span
           >
         </div>
 
@@ -40,7 +40,9 @@
       </div>
       <div class="container_div_panier">
         <button class="container_div_panier_button">Ajouter au panier</button>
-        <span class="container_div_panier_price"> PRIX* TTC : 1080 €</span>
+        <span class="container_div_panier_price">
+          {{ ((i + 1) * 50) / 8 | number : "1.2-2" }} €</span
+        >
       </div>
     </div>
   </div>
