@@ -1,4 +1,4 @@
-const fer_t_aluminium = [
+const fer_t_aluminium= [
   {
     name: 'FER T',
     description: 'Epaisseur : 2 mm Hauteur : 25 mm Largeur : 25 mm',
@@ -17,6 +17,7 @@ const fer_t_aluminium = [
     weight: null,
     matiere: 'Aluminium',
     productCode: 1,
+
   },
   {
     name: 'FER T',
@@ -57,6 +58,8 @@ const fer_t_aluminium = [
     weight: null,
     matiere: 'Aluminium',
     productCode: 3,
+
+
   },
   {
     name: 'FER T',
@@ -76,6 +79,8 @@ const fer_t_aluminium = [
     weight: null,
     matiere: 'Aluminium',
     productCode: 4,
+
+
   },
   {
     name: 'FER T',
@@ -95,6 +100,8 @@ const fer_t_aluminium = [
     weight: null,
     matiere: 'Aluminium',
     productCode: 5,
+
+
   },
   {
     name: 'FER T',
@@ -114,6 +121,8 @@ const fer_t_aluminium = [
     weight: null,
     matiere: 'Aluminium',
     productCode: 6,
+
+
   },
   {
     name: 'FER T',
@@ -133,6 +142,7 @@ const fer_t_aluminium = [
     weight: null,
     matiere: 'Aluminium',
     productCode: 7,
+
   },
   {
     name: 'FER T',
@@ -152,6 +162,7 @@ const fer_t_aluminium = [
     weight: null,
     matiere: 'Aluminium',
     productCode: 8,
+
   },
 ];
 
@@ -173,7 +184,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 9,
+    productCode: 9
   },
   {
     name: 'Cornière à ailes égales',
@@ -192,7 +203,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 10,
+    productCode: 10
   },
   {
     name: 'Cornière à ailes égales',
@@ -211,7 +222,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 11,
+    productCode: 11
   },
   {
     name: 'Cornière à ailes égales',
@@ -230,7 +241,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 12,
+    productCode: 12
   },
   {
     name: 'Cornière à ailes égales',
@@ -249,7 +260,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 13,
+    productCode: 13
   },
   {
     name: 'Cornière à ailes égales',
@@ -268,7 +279,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 14,
+    productCode: 14
   },
   {
     name: 'Cornière à ailes égales',
@@ -287,7 +298,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 15,
+    productCode: 15
   },
   {
     name: 'Cornière à ailes égales',
@@ -306,7 +317,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 16,
+    productCode: 16
   },
   {
     name: 'Cornière à ailes égales',
@@ -325,7 +336,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 17,
+    productCode: 17
   },
   {
     name: 'Cornière à ailes égales',
@@ -344,7 +355,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 18,
+    productCode: 18
   },
   {
     name: 'Cornière à ailes égales',
@@ -363,7 +374,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 19,
+    productCode: 19
   },
   {
     name: 'Cornière à ailes égales',
@@ -382,7 +393,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 20,
+    productCode: 20
   },
   {
     name: 'Cornière à ailes égales',
@@ -401,7 +412,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 21,
+    productCode: 21
   },
   {
     name: 'Cornière à ailes égales',
@@ -420,7 +431,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 22,
+    productCode: 22
   },
   {
     name: 'Cornière à ailes égales',
@@ -439,7 +450,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 23,
+    productCode: 23
   },
   {
     name: 'Cornière à ailes égales',
@@ -458,7 +469,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 24,
+    productCode: 24
   },
   {
     name: 'Cornière à ailes égales',
@@ -477,7 +488,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 25,
+    productCode: 25
   },
   {
     name: 'Cornière à ailes égales',
@@ -496,7 +507,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 26,
+    productCode: 26
   },
   {
     name: 'Cornière à ailes égales',
@@ -515,7 +526,7 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 27,
+    productCode: 27
   },
   {
     name: 'Cornière à ailes égales',
@@ -534,9 +545,9 @@ const corniere_egale_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 28,
-  },
-];
+    productCode: 28
+  }
+]
 
 const tube_rectangulaire_aluminium = [
   {
@@ -556,7 +567,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 29,
+    productCode: 29
   },
   {
     name: 'Tube rectangulaire',
@@ -575,7 +586,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 30,
+    productCode: 30
   },
   {
     name: 'Tube rectangulaire',
@@ -594,7 +605,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 31,
+    productCode: 31
   },
   {
     name: 'Tube rectangulaire',
@@ -613,7 +624,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 32,
+    productCode: 32
   },
   {
     name: 'Tube rectangulaire',
@@ -632,7 +643,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 33,
+    productCode: 33
   },
   {
     name: 'Tube rectangulaire',
@@ -651,7 +662,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 34,
+    productCode: 34
   },
   {
     name: 'Tube rectangulaire',
@@ -670,7 +681,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 35,
+    productCode: 35
   },
   {
     name: 'Tube rectangulaire',
@@ -689,7 +700,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 36,
+    productCode: 36
   },
   {
     name: 'Tube rectangulaire',
@@ -708,7 +719,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 37,
+    productCode: 37
   },
   {
     name: 'Tube rectangulaire',
@@ -727,7 +738,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 38,
+    productCode: 38
   },
   {
     name: 'Tube rectangulaire',
@@ -746,7 +757,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 39,
+    productCode: 39
   },
   {
     name: 'Tube rectangulaire',
@@ -765,7 +776,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 40,
+    productCode: 40
   },
   {
     name: 'Tube rectangulaire',
@@ -784,7 +795,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 41,
+    productCode: 41
   },
   {
     name: 'Tube rectangulaire',
@@ -803,7 +814,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 42,
+    productCode: 42
   },
   {
     name: 'Tube rectangulaire',
@@ -822,7 +833,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 43,
+    productCode: 43
   },
   {
     name: 'Tube rectangulaire',
@@ -841,7 +852,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 44,
+    productCode: 44
   },
   {
     name: 'Tube rectangulaire',
@@ -860,7 +871,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 45,
+    productCode: 45
   },
   {
     name: 'Tube rectangulaire',
@@ -879,7 +890,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 46,
+    productCode: 46
   },
   {
     name: 'Tube rectangulaire',
@@ -898,7 +909,7 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 47,
+    productCode: 47
   },
   {
     name: 'Tube rectangulaire',
@@ -917,9 +928,9 @@ const tube_rectangulaire_aluminium = [
     sectionArea: 0,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 48,
-  },
-];
+    productCode: 48
+  }
+]
 
 const tube_carré_aluminium = [
   {
@@ -939,7 +950,7 @@ const tube_carré_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 57,
+    productCode: 57
   },
   {
     name: 'Tube carré',
@@ -958,7 +969,7 @@ const tube_carré_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 58,
+    productCode: 58
   },
   {
     name: 'Tube carré',
@@ -977,7 +988,7 @@ const tube_carré_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 59,
+    productCode: 59
   },
   {
     name: 'Tube carré',
@@ -996,7 +1007,7 @@ const tube_carré_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 60,
+    productCode: 60
   },
   {
     name: 'Tube carré',
@@ -1015,7 +1026,7 @@ const tube_carré_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 61,
+    productCode: 61
   },
   {
     name: 'Tube carré',
@@ -1034,7 +1045,7 @@ const tube_carré_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 62,
+    productCode: 62
   },
   {
     name: 'Tube carré',
@@ -1053,7 +1064,7 @@ const tube_carré_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 63,
+    productCode: 63
   },
   {
     name: 'Tube carré',
@@ -1072,9 +1083,9 @@ const tube_carré_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 64,
-  },
-];
+    productCode: 64
+  }
+]
 
 const barre_carree_plein_aluminium = [
   {
@@ -1094,7 +1105,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 65,
+    productCode: 65
   },
   {
     name: 'Barre carrée pleine',
@@ -1113,7 +1124,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 66,
+    productCode: 66
   },
   {
     name: 'Barre carrée pleine',
@@ -1132,7 +1143,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 67,
+    productCode: 67
   },
   {
     name: 'Barre carrée pleine',
@@ -1151,7 +1162,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 68,
+    productCode: 68
   },
   {
     name: 'Barre carrée pleine',
@@ -1170,7 +1181,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 69,
+    productCode: 69
   },
   {
     name: 'Barre carrée pleine',
@@ -1189,7 +1200,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 70,
+    productCode: 70
   },
   {
     name: 'Barre carrée pleine',
@@ -1208,7 +1219,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 71,
+    productCode: 71
   },
   {
     name: 'Barre carrée pleine',
@@ -1227,7 +1238,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 72,
+    productCode: 72
   },
   {
     name: 'Barre carrée pleine',
@@ -1246,7 +1257,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 73,
+    productCode: 73
   },
   {
     name: 'Barre carrée pleine',
@@ -1265,7 +1276,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 74,
+    productCode: 74
   },
   {
     name: 'Barre carrée pleine',
@@ -1284,7 +1295,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 75,
+    productCode: 75
   },
   {
     name: 'Barre carrée pleine',
@@ -1303,7 +1314,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 76,
+    productCode: 76
   },
   {
     name: 'Barre carrée pleine',
@@ -1322,7 +1333,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 77,
+    productCode: 77
   },
   {
     name: 'Barre carrée pleine',
@@ -1341,7 +1352,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 78,
+    productCode: 78
   },
   {
     name: 'Barre carrée pleine',
@@ -1360,7 +1371,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 79,
+    productCode: 79
   },
   {
     name: 'Barre carrée pleine',
@@ -1379,7 +1390,7 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 80,
+    productCode: 80
   },
   {
     name: 'Barre carrée pleine',
@@ -1398,9 +1409,11 @@ const barre_carree_plein_aluminium = [
     sectionArea: null,
     weight: null,
     matiere: 'Aluminium',
-    productCode: 81,
-  },
-];
+    productCode: 81
+  }
+]
+
+
 
 //Inox
 
@@ -1422,7 +1435,7 @@ const corniere_ailes_égales_inox = [
     sectionArea: 1.13,
     weight: null,
     matiere: 'Inox',
-    productCode: 82,
+    productCode: 82
   },
   {
     name: 'Cornière à ailes égales',
@@ -1441,7 +1454,7 @@ const corniere_ailes_égales_inox = [
     sectionArea: 1.43,
     weight: null,
     matiere: 'Inox',
-    productCode: 83,
+    productCode: 83
   },
   {
     name: 'Cornière à ailes égales',
@@ -1460,7 +1473,7 @@ const corniere_ailes_égales_inox = [
     sectionArea: 1.74,
     weight: null,
     matiere: 'Inox',
-    productCode: 84,
+    productCode: 84
   },
   {
     name: 'Cornière à ailes égales',
@@ -1479,7 +1492,7 @@ const corniere_ailes_égales_inox = [
     sectionArea: 3.08,
     weight: null,
     matiere: 'Inox',
-    productCode: 85,
+    productCode: 85
   },
   {
     name: 'Cornière à ailes égales',
@@ -1498,7 +1511,7 @@ const corniere_ailes_égales_inox = [
     sectionArea: 4.8,
     weight: null,
     matiere: 'Inox',
-    productCode: 86,
+    productCode: 86
   },
   {
     name: 'Cornière à ailes égales',
@@ -1517,7 +1530,7 @@ const corniere_ailes_égales_inox = [
     sectionArea: 6.91,
     weight: null,
     matiere: 'Inox',
-    productCode: 87,
+    productCode: 87
   },
   {
     name: 'Cornière à ailes égales',
@@ -1536,7 +1549,7 @@ const corniere_ailes_égales_inox = [
     sectionArea: 9.4,
     weight: null,
     matiere: 'Inox',
-    productCode: 88,
+    productCode: 88
   },
   {
     name: 'Cornière à ailes égales',
@@ -1555,7 +1568,7 @@ const corniere_ailes_égales_inox = [
     sectionArea: 12.3,
     weight: null,
     matiere: 'Inox',
-    productCode: 89,
+    productCode: 89
   },
   {
     name: 'Cornière à ailes égales',
@@ -1574,9 +1587,9 @@ const corniere_ailes_égales_inox = [
     sectionArea: 19.2,
     weight: null,
     matiere: 'Inox',
-    productCode: 90,
-  },
-];
+    productCode: 90
+  }
+]
 
 const fer_T_inox = [
   {
@@ -1596,7 +1609,7 @@ const fer_T_inox = [
     sectionArea: 0,
     weight: null,
     matiere: 'Inox',
-    productCode: 91,
+    productCode: 91
   },
   {
     name: 'FER T',
@@ -1615,7 +1628,7 @@ const fer_T_inox = [
     sectionArea: 0,
     weight: null,
     matiere: 'Inox',
-    productCode: 92,
+    productCode: 92
   },
   {
     name: 'FER T',
@@ -1634,7 +1647,7 @@ const fer_T_inox = [
     sectionArea: 0,
     weight: null,
     matiere: 'Inox',
-    productCode: 93,
+    productCode: 93
   },
   {
     name: 'FER T',
@@ -1653,7 +1666,7 @@ const fer_T_inox = [
     sectionArea: 0,
     weight: null,
     matiere: 'Inox',
-    productCode: 94,
+    productCode: 94
   },
   {
     name: 'FER T',
@@ -1672,7 +1685,7 @@ const fer_T_inox = [
     sectionArea: 0,
     weight: null,
     matiere: 'Inox',
-    productCode: 95,
+    productCode: 95
   },
   {
     name: 'FER T',
@@ -1691,7 +1704,7 @@ const fer_T_inox = [
     sectionArea: 0,
     weight: null,
     matiere: 'Inox',
-    productCode: 96,
+    productCode: 96
   },
   {
     name: 'FER T',
@@ -1710,7 +1723,7 @@ const fer_T_inox = [
     sectionArea: 0,
     weight: null,
     matiere: 'Inox',
-    productCode: 97,
+    productCode: 97
   },
   {
     name: 'FER T',
@@ -1729,7 +1742,7 @@ const fer_T_inox = [
     sectionArea: 0,
     weight: null,
     matiere: 'Inox',
-    productCode: 98,
+    productCode: 98
   },
   {
     name: 'FER T',
@@ -1748,9 +1761,9 @@ const fer_T_inox = [
     sectionArea: 0,
     weight: null,
     matiere: 'Inox',
-    productCode: 99,
-  },
-];
+    productCode: 99
+  }
+]
 
 const tube_rond_inox = [
   {
@@ -1770,7 +1783,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 100,
+    productCode: 100
   },
   {
     name: 'Tube rond',
@@ -1789,7 +1802,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 101,
+    productCode: 101
   },
   {
     name: 'Tube rond',
@@ -1808,7 +1821,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 102,
+    productCode: 102
   },
   {
     name: 'Tube rond',
@@ -1827,7 +1840,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 103,
+    productCode: 103
   },
   {
     name: 'Tube rond',
@@ -1846,7 +1859,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 104,
+    productCode: 104
   },
   {
     name: 'Tube rond',
@@ -1865,7 +1878,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 105,
+    productCode: 105
   },
   {
     name: 'Tube rond',
@@ -1884,7 +1897,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 106,
+    productCode: 106
   },
   {
     name: 'Tube rond',
@@ -1903,7 +1916,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 107,
+    productCode: 107
   },
   {
     name: 'Tube rond',
@@ -1922,7 +1935,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 108,
+    productCode: 108
   },
   {
     name: 'Tube rond',
@@ -1941,7 +1954,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 109,
+    productCode: 109
   },
   {
     name: 'Tube rond',
@@ -1960,7 +1973,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 110,
+    productCode: 110
   },
   {
     name: 'Tube rond',
@@ -1979,7 +1992,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 111,
+    productCode: 111
   },
   {
     name: 'Tube rond',
@@ -1998,7 +2011,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 112,
+    productCode: 112
   },
   {
     name: 'Tube rond',
@@ -2017,7 +2030,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 113,
+    productCode: 113
   },
   {
     name: 'Tube rond',
@@ -2036,7 +2049,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 114,
+    productCode: 114
   },
   {
     name: 'Tube rond',
@@ -2055,7 +2068,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 115,
+    productCode: 115
   },
   {
     name: 'Tube rond',
@@ -2074,7 +2087,7 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 116,
+    productCode: 116
   },
   {
     name: 'Tube rond',
@@ -2093,9 +2106,9 @@ const tube_rond_inox = [
     sectionArea: null,
     weight: null,
     matiere: 'Inox',
-    productCode: 117,
-  },
-];
+    productCode: 117
+  }
+]
 
 const barre_ronde_plein_inox = [
   {
@@ -2115,7 +2128,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 0.28,
     weight: null,
     matiere: 'Inox',
-    productCode: 118,
+    productCode: 118
   },
   {
     name: 'Barre ronde pleine',
@@ -2134,7 +2147,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 0.5,
     weight: null,
     matiere: 'Inox',
-    productCode: 119,
+    productCode: 119
   },
   {
     name: 'Barre ronde pleine',
@@ -2153,7 +2166,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 0.79,
     weight: null,
     matiere: 'Inox',
-    productCode: 120,
+    productCode: 120
   },
   {
     name: 'Barre ronde pleine',
@@ -2172,7 +2185,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 1.13,
     weight: null,
     matiere: 'Inox',
-    productCode: 121,
+    productCode: 121
   },
   {
     name: 'Barre ronde pleine',
@@ -2191,7 +2204,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 1.54,
     weight: null,
     matiere: 'Inox',
-    productCode: 122,
+    productCode: 122
   },
   {
     name: 'Barre ronde pleine',
@@ -2210,7 +2223,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 2.01,
     weight: null,
     matiere: 'Inox',
-    productCode: 123,
+    productCode: 123
   },
   {
     name: 'Barre ronde pleine',
@@ -2229,7 +2242,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 2.54,
     weight: null,
     matiere: 'Inox',
-    productCode: 124,
+    productCode: 124
   },
   {
     name: 'Barre ronde pleine',
@@ -2248,7 +2261,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 3.14,
     weight: null,
     matiere: 'Inox',
-    productCode: 125,
+    productCode: 125
   },
   {
     name: 'Barre ronde pleine',
@@ -2267,7 +2280,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 4.91,
     weight: null,
     matiere: 'Inox',
-    productCode: 126,
+    productCode: 126
   },
   {
     name: 'Barre ronde pleine',
@@ -2286,7 +2299,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 7.07,
     weight: null,
     matiere: 'Inox',
-    productCode: 127,
+    productCode: 127
   },
   {
     name: 'Barre ronde pleine',
@@ -2305,7 +2318,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 12.6,
     weight: null,
     matiere: 'Inox',
-    productCode: 128,
+    productCode: 128
   },
   {
     name: 'Barre ronde pleine',
@@ -2324,7 +2337,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 19.6,
     weight: null,
     matiere: 'Inox',
-    productCode: 129,
+    productCode: 129
   },
   {
     name: 'Barre ronde pleine',
@@ -2343,7 +2356,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 28.3,
     weight: null,
     matiere: 'Inox',
-    productCode: 130,
+    productCode: 130
   },
   {
     name: 'Barre ronde pleine',
@@ -2362,7 +2375,7 @@ const barre_ronde_plein_inox = [
     sectionArea: 50.3,
     weight: null,
     matiere: 'Inox',
-    productCode: 131,
+    productCode: 131
   },
   {
     name: 'Barre ronde pleine',
@@ -2381,9 +2394,9 @@ const barre_ronde_plein_inox = [
     sectionArea: 78.5,
     weight: null,
     matiere: 'Inox',
-    productCode: 132,
-  },
-];
+    productCode: 132
+  }
+]
 
 const fer_plat_inox = [
   {
@@ -2403,7 +2416,7 @@ const fer_plat_inox = [
     sectionArea: null,
     weight: null,
     material: 'Inox',
-    productCode: 133,
+    productCode: 133
   },
   {
     name: 'Fer plat',
@@ -2422,7 +2435,7 @@ const fer_plat_inox = [
     sectionArea: null,
     weight: null,
     material: 'Inox',
-    productCode: 134,
+    productCode: 134
   },
   {
     name: 'Fer plat',
@@ -2441,7 +2454,7 @@ const fer_plat_inox = [
     sectionArea: null,
     weight: null,
     material: 'Inox',
-    productCode: 135,
+    productCode: 135
   },
   {
     name: 'Fer plat',
@@ -2460,7 +2473,7 @@ const fer_plat_inox = [
     sectionArea: null,
     weight: null,
     material: 'Inox',
-    productCode: 136,
+    productCode: 136
   },
   {
     name: 'Fer plat',
@@ -2479,7 +2492,7 @@ const fer_plat_inox = [
     sectionArea: null,
     weight: null,
     material: 'Inox',
-    productCode: 137,
+    productCode: 137
   },
   {
     name: 'Fer plat',
@@ -2498,7 +2511,7 @@ const fer_plat_inox = [
     sectionArea: null,
     weight: null,
     material: 'Inox',
-    productCode: 138,
+    productCode: 138
   },
   {
     name: 'Fer plat',
@@ -2517,7 +2530,7 @@ const fer_plat_inox = [
     sectionArea: null,
     weight: null,
     material: 'Inox',
-    productCode: 139,
+    productCode: 139
   },
   {
     name: 'Fer plat',
@@ -2536,7 +2549,7 @@ const fer_plat_inox = [
     sectionArea: null,
     weight: null,
     material: 'Inox',
-    productCode: 140,
+    productCode: 140
   },
   {
     name: 'Fer plat',
@@ -2555,7 +2568,7 @@ const fer_plat_inox = [
     sectionArea: null,
     weight: null,
     material: 'Inox',
-    productCode: 141,
+    productCode: 141
   },
   {
     name: 'Fer plat',
@@ -2574,9 +2587,9 @@ const fer_plat_inox = [
     sectionArea: null,
     weight: null,
     material: 'Inox',
-    productCode: 142,
-  },
-];
+    productCode: 142
+  }
+]
 
 // Acier
 
@@ -2594,7 +2607,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 0.97,
     material: 'Acier',
-    productCode: 142,
+    productCode: 142
   },
   {
     name: 'Cornière à ailes égales',
@@ -2609,7 +2622,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 1.23,
     material: 'Acier',
-    productCode: 143,
+    productCode: 143
   },
   {
     name: 'Cornière à ailes égales',
@@ -2624,7 +2637,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 1.5,
     material: 'Acier',
-    productCode: 144,
+    productCode: 144
   },
   {
     name: 'Cornière à ailes égales',
@@ -2639,7 +2652,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 2.04,
     material: 'Acier',
-    productCode: 145,
+    productCode: 145
   },
   {
     name: 'Cornière à ailes égales',
@@ -2654,7 +2667,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 2.66,
     material: 'Acier',
-    productCode: 146,
+    productCode: 146
   },
   {
     name: 'Cornière à ailes égales',
@@ -2669,7 +2682,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 3.37,
     material: 'Acier',
-    productCode: 147,
+    productCode: 147
   },
   {
     name: 'Cornière à ailes égales',
@@ -2684,7 +2697,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 4.15,
     material: 'Acier',
-    productCode: 148,
+    productCode: 148
   },
   {
     name: 'Cornière à ailes égales',
@@ -2699,7 +2712,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 5.96,
     material: 'Acier',
-    productCode: 149,
+    productCode: 149
   },
   {
     name: 'Cornière à ailes égales',
@@ -2714,7 +2727,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 8.12,
     material: 'Acier',
-    productCode: 150,
+    productCode: 150
   },
   {
     name: 'Cornière à ailes égales',
@@ -2729,7 +2742,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 10.59,
     material: 'Acier',
-    productCode: 151,
+    productCode: 151
   },
   {
     name: 'Cornière à ailes égales',
@@ -2744,7 +2757,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 13.42,
     material: 'Acier',
-    productCode: 152,
+    productCode: 152
   },
   {
     name: 'Cornière à ailes égales',
@@ -2759,7 +2772,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 16.5,
     material: 'Acier',
-    productCode: 153,
+    productCode: 153
   },
   {
     name: 'Cornière à ailes égales',
@@ -2774,7 +2787,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 23.76,
     material: 'Acier',
-    productCode: 154,
+    productCode: 154
   },
   {
     name: 'Cornière à ailes égales',
@@ -2789,7 +2802,7 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 37.18,
     material: 'Acier',
-    productCode: 155,
+    productCode: 155
   },
   {
     name: 'Cornière à ailes égales',
@@ -2804,9 +2817,9 @@ const cornieres_ailes_egales_acier = [
     width: null,
     linearWeight: 65.89,
     material: 'Acier',
-    productCode: 156,
-  },
-];
+    productCode: 156
+  }
+]
 
 const cornieres_ailes_inegales_acier = [
   {
@@ -2822,7 +2835,7 @@ const cornieres_ailes_inegales_acier = [
     width: 20,
     linearWeight: 1.61,
     material: 'Acier',
-    productCode: 157,
+    productCode: 157
   },
   {
     name: 'Cornière à ailes inégales',
@@ -2837,7 +2850,7 @@ const cornieres_ailes_inegales_acier = [
     width: 25,
     linearWeight: 2.12,
     material: 'Acier',
-    productCode: 158,
+    productCode: 158
   },
   {
     name: 'Cornière à ailes inégales',
@@ -2852,7 +2865,7 @@ const cornieres_ailes_inegales_acier = [
     width: 30,
     linearWeight: 2.46,
     material: 'Acier',
-    productCode: 159,
+    productCode: 159
   },
   {
     name: 'Cornière à ailes inégales',
@@ -2867,7 +2880,7 @@ const cornieres_ailes_inegales_acier = [
     width: 30,
     linearWeight: 3.26,
     material: 'Acier',
-    productCode: 160,
+    productCode: 160
   },
   {
     name: 'Cornière à ailes inégales',
@@ -2882,7 +2895,7 @@ const cornieres_ailes_inegales_acier = [
     width: 40,
     linearWeight: 4.14,
     material: 'Acier',
-    productCode: 161,
+    productCode: 161
   },
   {
     name: 'Cornière à ailes inégales',
@@ -2897,7 +2910,7 @@ const cornieres_ailes_inegales_acier = [
     width: 50,
     linearWeight: 6.86,
     material: 'Acier',
-    productCode: 162,
+    productCode: 162
   },
   {
     name: 'Cornière à ailes inégales',
@@ -2912,7 +2925,7 @@ const cornieres_ailes_inegales_acier = [
     width: 60,
     linearWeight: 8.1,
     material: 'Acier',
-    productCode: 163,
+    productCode: 163
   },
   {
     name: 'Cornière à ailes inégales',
@@ -2927,7 +2940,7 @@ const cornieres_ailes_inegales_acier = [
     width: 75,
     linearWeight: 12.98,
     material: 'Acier',
-    productCode: 164,
+    productCode: 164
   },
   {
     name: 'Cornière à ailes inégales',
@@ -2942,7 +2955,7 @@ const cornieres_ailes_inegales_acier = [
     width: 80,
     linearWeight: 19.58,
     material: 'Acier',
-    productCode: 165,
+    productCode: 165
   },
   {
     name: 'Cornière à ailes inégales',
@@ -2957,7 +2970,7 @@ const cornieres_ailes_inegales_acier = [
     width: 90,
     linearWeight: 21.89,
     material: 'Acier',
-    productCode: 166,
+    productCode: 166
   },
   {
     name: 'Cornière à ailes inégales',
@@ -2972,9 +2985,9 @@ const cornieres_ailes_inegales_acier = [
     width: 100,
     linearWeight: 34.76,
     material: 'Acier',
-    productCode: 167,
-  },
-];
+    productCode: 167
+  }
+]
 
 const fer_t_acier = [
   {
@@ -2990,7 +3003,7 @@ const fer_t_acier = [
     width: 20,
     linearWeight: 0.97,
     material: 'Acier',
-    productCode: 168,
+    productCode: 168
   },
   {
     name: 'FER T',
@@ -3005,7 +3018,7 @@ const fer_t_acier = [
     width: 30,
     linearWeight: 1.95,
     material: 'Acier',
-    productCode: 169,
+    productCode: 169
   },
   {
     name: 'FER T',
@@ -3020,7 +3033,7 @@ const fer_t_acier = [
     width: 40,
     linearWeight: 3.26,
     material: 'Acier',
-    productCode: 170,
+    productCode: 170
   },
   {
     name: 'FER T',
@@ -3035,7 +3048,7 @@ const fer_t_acier = [
     width: 50,
     linearWeight: 4.88,
     material: 'Acier',
-    productCode: 171,
+    productCode: 171
   },
   {
     name: 'FER T',
@@ -3050,7 +3063,7 @@ const fer_t_acier = [
     width: 60,
     linearWeight: 6.85,
     material: 'Acier',
-    productCode: 172,
+    productCode: 172
   },
   {
     name: 'FER T',
@@ -3065,7 +3078,7 @@ const fer_t_acier = [
     width: 80,
     linearWeight: 11.77,
     material: 'Acier',
-    productCode: 173,
+    productCode: 173
   },
   {
     name: 'FER T',
@@ -3080,7 +3093,7 @@ const fer_t_acier = [
     width: 100,
     linearWeight: 18.04,
     material: 'Acier',
-    productCode: 174,
+    productCode: 174
   },
   {
     name: 'FER T',
@@ -3095,9 +3108,9 @@ const fer_t_acier = [
     width: 120,
     linearWeight: 31.02,
     material: 'Acier',
-    productCode: 175,
-  },
-];
+    productCode: 175
+  }
+]
 
 const tube_carre_acier = [
   {
@@ -3113,7 +3126,7 @@ const tube_carre_acier = [
     width: 20,
     linearWeight: 0.96,
     material: 'Acier',
-    productCode: 176,
+    productCode: 176
   },
   {
     name: 'Tube carré',
@@ -3128,7 +3141,7 @@ const tube_carre_acier = [
     width: 20,
     linearWeight: 1.24,
     material: 'Acier',
-    productCode: 177,
+    productCode: 177
   },
   {
     name: 'Tube carré',
@@ -3143,7 +3156,7 @@ const tube_carre_acier = [
     width: 25,
     linearWeight: 1.22,
     material: 'Acier',
-    productCode: 178,
+    productCode: 178
   },
   {
     name: 'Tube carré',
@@ -3158,7 +3171,7 @@ const tube_carre_acier = [
     width: 25,
     linearWeight: 1.58,
     material: 'Acier',
-    productCode: 179,
+    productCode: 179
   },
   {
     name: 'Tube carré',
@@ -3173,7 +3186,7 @@ const tube_carre_acier = [
     width: 30,
     linearWeight: 1.47,
     material: 'Acier',
-    productCode: 180,
+    productCode: 180
   },
   {
     name: 'Tube carré',
@@ -3188,7 +3201,7 @@ const tube_carre_acier = [
     width: 30,
     linearWeight: 1.94,
     material: 'Acier',
-    productCode: 181,
+    productCode: 181
   },
   {
     name: 'Tube carré',
@@ -3203,7 +3216,7 @@ const tube_carre_acier = [
     width: 30,
     linearWeight: 2.66,
     material: 'Acier',
-    productCode: 182,
+    productCode: 182
   },
   {
     name: 'Tube carré',
@@ -3218,7 +3231,7 @@ const tube_carre_acier = [
     width: 35,
     linearWeight: 2.28,
     material: 'Acier',
-    productCode: 183,
+    productCode: 183
   },
   {
     name: 'Tube carré',
@@ -3233,9 +3246,9 @@ const tube_carre_acier = [
     width: 35,
     linearWeight: 3.31,
     material: 'Acier',
-    productCode: 184,
-  },
-];
+    productCode: 184
+  }
+]
 
 const tube_rectangulaire_acier = [
   {
@@ -3251,7 +3264,7 @@ const tube_rectangulaire_acier = [
     width: 20,
     linearWeight: 1.58,
     material: 'Acier',
-    productCode: 185,
+    productCode: 185
   },
   {
     name: 'Tube rectangulaire',
@@ -3266,7 +3279,7 @@ const tube_rectangulaire_acier = [
     width: 20,
     linearWeight: 1.76,
     material: 'Acier',
-    productCode: 186,
+    productCode: 186
   },
   {
     name: 'Tube rectangulaire',
@@ -3281,7 +3294,7 @@ const tube_rectangulaire_acier = [
     width: 20,
     linearWeight: 1.94,
     material: 'Acier',
-    productCode: 187,
+    productCode: 187
   },
   {
     name: 'Tube rectangulaire',
@@ -3296,7 +3309,7 @@ const tube_rectangulaire_acier = [
     width: 27,
     linearWeight: 2.18,
     material: 'Acier',
-    productCode: 188,
+    productCode: 188
   },
   {
     name: 'Tube rectangulaire',
@@ -3311,7 +3324,7 @@ const tube_rectangulaire_acier = [
     width: 30,
     linearWeight: 2.63,
     material: 'Acier',
-    productCode: 189,
+    productCode: 189
   },
   {
     name: 'Tube rectangulaire',
@@ -3326,7 +3339,7 @@ const tube_rectangulaire_acier = [
     width: 30,
     linearWeight: 3.81,
     material: 'Acier',
-    productCode: 190,
+    productCode: 190
   },
   {
     name: 'Tube rectangulaire',
@@ -3341,7 +3354,7 @@ const tube_rectangulaire_acier = [
     width: 30,
     linearWeight: 2.97,
     material: 'Acier',
-    productCode: 191,
+    productCode: 191
   },
   {
     name: 'Tube rectangulaire',
@@ -3356,7 +3369,7 @@ const tube_rectangulaire_acier = [
     width: 40,
     linearWeight: 3.32,
     material: 'Acier',
-    productCode: 192,
+    productCode: 192
   },
   {
     name: 'Tube rectangulaire',
@@ -3371,7 +3384,7 @@ const tube_rectangulaire_acier = [
     width: 40,
     linearWeight: 4.84,
     material: 'Acier',
-    productCode: 193,
+    productCode: 193
   },
   {
     name: 'Tube rectangulaire',
@@ -3386,7 +3399,7 @@ const tube_rectangulaire_acier = [
     width: 40,
     linearWeight: 4,
     material: 'Acier',
-    productCode: 194,
+    productCode: 194
   },
   {
     name: 'Tube rectangulaire',
@@ -3401,7 +3414,7 @@ const tube_rectangulaire_acier = [
     width: 40,
     linearWeight: 5.87,
     material: 'Acier',
-    productCode: 195,
+    productCode: 195
   },
   {
     name: 'Tube rectangulaire',
@@ -3416,7 +3429,7 @@ const tube_rectangulaire_acier = [
     width: 40,
     linearWeight: 7.66,
     material: 'Acier',
-    productCode: 196,
+    productCode: 196
   },
   {
     name: 'Tube rectangulaire',
@@ -3431,9 +3444,9 @@ const tube_rectangulaire_acier = [
     width: 40,
     linearWeight: 8.94,
     material: 'Acier',
-    productCode: 197,
-  },
-];
+    productCode: 197
+  }
+]
 
 //Galva
 
@@ -3455,7 +3468,7 @@ const cornieres_ailes_egales_galva = [
     sectionArea: 1.74,
     weight: null,
     material: 'Galvanisé',
-    productCode: 197,
+    productCode: 197
   },
   {
     name: 'Cornière à ailes égales',
@@ -3474,7 +3487,7 @@ const cornieres_ailes_egales_galva = [
     sectionArea: 2.35,
     weight: null,
     material: 'Galvanisé',
-    productCode: 198,
+    productCode: 198
   },
   {
     name: 'Cornière à ailes égales',
@@ -3493,7 +3506,7 @@ const cornieres_ailes_egales_galva = [
     sectionArea: 3.08,
     weight: null,
     material: 'Galvanisé',
-    productCode: 199,
+    productCode: 199
   },
   {
     name: 'Cornière à ailes égales',
@@ -3512,9 +3525,9 @@ const cornieres_ailes_egales_galva = [
     sectionArea: 4.8,
     weight: null,
     material: 'Galvanisé',
-    productCode: 200,
-  },
-];
+    productCode: 200
+  }
+]
 
 const tubes_ronds_galva = [
   {
@@ -3534,7 +3547,7 @@ const tubes_ronds_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 201,
+    productCode: 201
   },
   {
     name: 'Tube rond SENDZINIR NF EN 10305-3 S4',
@@ -3553,7 +3566,7 @@ const tubes_ronds_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 202,
+    productCode: 202
   },
   {
     name: 'Tube rond SENDZINIR NF EN 10305-3 S4',
@@ -3572,7 +3585,7 @@ const tubes_ronds_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 203,
+    productCode: 203
   },
   {
     name: 'Tube rond SENDZINIR NF EN 10305-3 S4',
@@ -3591,7 +3604,7 @@ const tubes_ronds_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 204,
+    productCode: 204
   },
   {
     name: 'Tube rond SENDZINIR NF EN 10305-3 S4',
@@ -3610,7 +3623,7 @@ const tubes_ronds_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 205,
+    productCode: 205
   },
   {
     name: 'Tube rond SENDZINIR NF EN 10305-3 S4',
@@ -3629,7 +3642,7 @@ const tubes_ronds_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 206,
+    productCode: 206
   },
   {
     name: 'Tube rond SENDZINIR NF EN 10305-3 S4',
@@ -3648,7 +3661,7 @@ const tubes_ronds_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 207,
+    productCode: 207
   },
   {
     name: 'Tube rond SENDZINIR NF EN 10305-3 S4',
@@ -3667,7 +3680,7 @@ const tubes_ronds_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 208,
+    productCode: 208
   },
   {
     name: 'Tube rond SENDZINIR NF EN 10305-3 S4',
@@ -3686,7 +3699,7 @@ const tubes_ronds_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 209,
+    productCode: 209
   },
   {
     name: 'Tube rond SENDZINIR NF EN 10305-3 S4',
@@ -3705,7 +3718,7 @@ const tubes_ronds_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 210,
+    productCode: 210
   },
   {
     name: 'Tube rond SENDZINIR NF EN 10305-3 S4',
@@ -3724,9 +3737,9 @@ const tubes_ronds_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 211,
-  },
-];
+    productCode: 211
+  }
+]
 
 const tube_carre_galva = [
   {
@@ -3746,7 +3759,7 @@ const tube_carre_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 212,
+    productCode: 212
   },
   {
     name: 'Tube carré SENDZINIR NF EN 10305-3 S4',
@@ -3765,7 +3778,7 @@ const tube_carre_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 213,
+    productCode: 213
   },
   {
     name: 'Tube carré SENDZINIR NF EN 10305-3 S4',
@@ -3784,7 +3797,7 @@ const tube_carre_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 214,
+    productCode: 214
   },
   {
     name: 'Tube carré SENDZINIR NF EN 10305-3 S4',
@@ -3803,7 +3816,7 @@ const tube_carre_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 215,
+    productCode: 215
   },
   {
     name: 'Tube carré SENDZINIR NF EN 10305-3 S4',
@@ -3822,7 +3835,7 @@ const tube_carre_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 216,
+    productCode: 216
   },
   {
     name: 'Tube carré SENDZINIR NF EN 10305-3 S4',
@@ -3841,7 +3854,7 @@ const tube_carre_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 217,
+    productCode: 217
   },
   {
     name: 'Tube carré SENDZINIR NF EN 10305-3 S4',
@@ -3860,7 +3873,7 @@ const tube_carre_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 218,
+    productCode: 218
   },
   {
     name: 'Tube carré SENDZINIR NF EN 10305-3 S4',
@@ -3879,7 +3892,7 @@ const tube_carre_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 219,
+    productCode: 219
   },
   {
     name: 'Tube carré SENDZINIR NF EN 10305-3 S4',
@@ -3898,7 +3911,7 @@ const tube_carre_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 220,
+    productCode: 220
   },
   {
     name: 'Tube carré SENDZINIR NF EN 10305-3 S4',
@@ -3917,7 +3930,7 @@ const tube_carre_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 221,
+    productCode: 221
   },
   {
     name: 'Tube carré SENDZINIR NF EN 10305-3 S4',
@@ -3936,9 +3949,9 @@ const tube_carre_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 222,
-  },
-];
+    productCode: 222
+  }
+]
 const tube_rectangulaire_galva = [
   {
     name: 'Tube rectangulaire SENDZINIR NF EN 10305-3 S4',
@@ -3957,7 +3970,7 @@ const tube_rectangulaire_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 223,
+    productCode: 223
   },
   {
     name: 'Tube rectangulaire SENDZINIR NF EN 10305-3 S4',
@@ -3976,7 +3989,7 @@ const tube_rectangulaire_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 224,
+    productCode: 224
   },
   {
     name: 'Tube rectangulaire SENDZINIR NF EN 10305-3 S4',
@@ -3995,7 +4008,7 @@ const tube_rectangulaire_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 225,
+    productCode: 225
   },
   {
     name: 'Tube rectangulaire SENDZINIR NF EN 10305-3 S4',
@@ -4014,7 +4027,7 @@ const tube_rectangulaire_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 226,
+    productCode: 226
   },
   {
     name: 'Tube rectangulaire SENDZINIR NF EN 10305-3 S4',
@@ -4033,7 +4046,7 @@ const tube_rectangulaire_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 227,
+    productCode: 227
   },
   {
     name: 'Tube rectangulaire SENDZINIR NF EN 10305-3 S4',
@@ -4052,7 +4065,7 @@ const tube_rectangulaire_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 228,
+    productCode: 228
   },
   {
     name: 'Tube rectangulaire SENDZINIR NF EN 10305-3 S4',
@@ -4071,7 +4084,7 @@ const tube_rectangulaire_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 229,
+    productCode: 229
   },
   {
     name: 'Tube rectangulaire SENDZINIR NF EN 10305-3 S4',
@@ -4090,7 +4103,7 @@ const tube_rectangulaire_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 230,
+    productCode: 230
   },
   {
     name: 'Tube rectangulaire SENDZINIR NF EN 10305-3 S4',
@@ -4109,9 +4122,9 @@ const tube_rectangulaire_galva = [
     sectionArea: null,
     weight: null,
     material: 'Galvanisé',
-    productCode: 231,
-  },
-];
+    productCode: 231
+  }
+]
 
 const tolle_perforee_galva = [
   {
@@ -4131,7 +4144,7 @@ const tolle_perforee_galva = [
     sectionArea: null,
     weight: 12.98,
     material: 'Galvanisé',
-    productCode: 232,
+    productCode: 232
   },
   {
     name: 'Tôle perforée',
@@ -4150,7 +4163,7 @@ const tolle_perforee_galva = [
     sectionArea: null,
     weight: 17.27,
     material: 'Galvanisé',
-    productCode: 233,
+    productCode: 233
   },
   {
     name: 'Tôle perforée',
@@ -4169,9 +4182,10 @@ const tolle_perforee_galva = [
     sectionArea: null,
     weight: 12.98,
     material: 'Galvanisé',
-    productCode: 234,
-  },
-];
+    productCode: 234
+  }
+]
 //fer_t_aluminium, corniere_egale_aluminium,tube_rectangulaire_aluminium,tube_carré_aluminium,barre_carree_plein_aluminium,corniere_ailes_égales_inox ,fer_T_inox,tube_rond_inox,cornieres_ailes_egales_acier,cornieres_ailes_inegales_acier,fer_t_acier,tube_carre_acier,tube_rectangulaire_acier,cornieres_ailes_egales_galva,tubes_ronds_galva,tube_carre_galva,tube_rectangulaire_galva,tolle_perforee_galva
+
 
 // Ceux qui

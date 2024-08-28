@@ -1,4 +1,4 @@
-@import "../../../styles/theme.scss";
+@import '../../../styles/theme.scss';
 
 :host {
   display: flex;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.container {
+.container{
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -19,7 +19,7 @@
     flex: 1;
     flex-direction: row;
 
-    .tab {
+    .tab{
       display: flex;
       border: 1px solid $background-color;
       width: 100px;
@@ -34,44 +34,47 @@
       border-bottom: 2px solid $secondary-color;
     }
   }
-  .product-list {
+  .product-list{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     border: 1px solid $background-color;
 
-    .product-item {
+    .product-item{
       width: 100%;
 
-      a {
+      a{
         display: flex;
         flex-direction: row;
         align-items: center;
-        border: 1px solid #f88a0a;
+        border: 1px solid #F88A0A;
         border-radius: 5px;
         width: 98%;
         margin: 5px;
         padding: 5px;
         justify-content: space-between;
 
-        .product-description {
+        .product-description{
           display: flex;
           column-gap: 50%;
           width: 68%;
         }
+
+
       }
     }
-    img {
+    img{
       border: 1px solid black;
       max-width: 120px;
       height: auto;
     }
-    .product-icons {
+    .product-icons{
       display: flex;
       height: 100px;
       justify-content: space-evenly;
       width: 30%;
     }
   }
+
 }

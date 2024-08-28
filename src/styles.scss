@@ -1,5 +1,6 @@
 @import '/src/styles/theme.scss';
 @import 'src/tailwind.css';
+
 body {
   background-color: white;
   display: flex;
@@ -7,9 +8,7 @@ body {
   margin: 0;
 }
 
-html,
-body,
-app-root {
+html, body, app-root {
   height: 100%;
   margin: 0;
 }
@@ -19,3 +18,5 @@ app-root {
   flex-direction: column;
   min-height: 100vh;
 }
+
+
