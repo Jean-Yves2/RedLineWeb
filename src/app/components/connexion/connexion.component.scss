@@ -1,4 +1,4 @@
-@import "../../../styles/theme.scss";
+@import '../../../styles/theme.scss';
 
 :host {
   display: flex;
@@ -6,11 +6,13 @@
   flex-direction: column;
 }
 
-.btn-connexion {
+
+.btn-connexion{
   background-color: $secondary-color;
 }
 
-.form_error {
+
+.form_error{
   color: red;
   font-size: 1em;
   margin-top: 10px;

@@ -19,7 +19,7 @@ export class ConnexionComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private favorieService: FavorieService,
+    private favorieService: FavorieService
   ) {
     if (this.authService.currentUserValue) {
       this.router.navigate(['/']);
@@ -46,7 +46,7 @@ export class ConnexionComponent {
     this.authService
       .login(
         this.formControls['email'].value,
-        this.formControls['password'].value,
+        this.formControls['password'].value
       )
       .subscribe({
         next: (user) => {
