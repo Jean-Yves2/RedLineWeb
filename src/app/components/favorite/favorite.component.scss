@@ -34,13 +34,17 @@
 
   &_design {
     display         : flex;
-    border          : solid 1px #D5D8DA;
+    border          : solid 1px #d5d8da;
+
     width           : 100%;
     padding         : 10px;
     column-gap      : 20px;
     gap             : 30px;
     flex-wrap       : wrap;
     justify-content : flex-start;
+
+    align-items     : center;
+
   }
 
   h1 {
@@ -52,14 +56,14 @@
     position         : relative;
     display          : flex;
     flex-direction   : column;
-    border           : solid 1px #D5D8DA;
-    background-color : #D5D8DA;
+    border           : solid 1px #d5d8da;
+    background-color : #d5d8da;
+
     border-radius    : 10px;
     padding          : 10px;
     gap              : 10px;
     margin           : 10px;
     width            : 320px;
-
 
     &_delete {
       position : absolute;
@@ -91,7 +95,6 @@
         gap             : 25px;
         justify-content : space-around;
 
-
         &_size {
           width         : 100px;
           height        : 100px;
@@ -112,17 +115,14 @@
         font-size   : 1.1rem;
 
         color : $third-color;
-        ;
+
       }
     }
 
     &_panier {
-
       display         : flex;
       justify-content : space-between;
       align-items     : center;
-
-
     }
 
     &_empty {
@@ -175,7 +175,8 @@
   border           : solid 1px $primary-color;
   background-color : $primary-color;
   border-radius    : 5px;
-  padding          : 5px
+  padding          : 5px;
+
 }
 
 @keyframes rotateImage {
@@ -186,4 +187,47 @@
   to {
     transform : rotate(360deg);
   }
+}
+
+@media (max-width: 768px) {
+  .container {
+    &_design {
+      flex-direction  : column;
+      justify-content : center;
+      align-items     : center;
+    }
+
+    &_div {
+      width : 50%;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    &_design {
+      flex-direction  : column;
+      justify-content : center;
+      align-items     : center;
+    }
+
+    &_div {
+      width : 70%;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .container {
+    &_design {
+      flex-direction  : column;
+      justify-content : center;
+      align-items     : center;
+    }
+
+    &_div {
+      width : 70%;
+    }
+  }
+
 }
