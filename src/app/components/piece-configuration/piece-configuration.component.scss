@@ -1,66 +1,65 @@
-@import '../../../styles/theme.scss';
+@import "../../../styles/theme.scss";
 
-.page-content{
+.page-content {
   display: flex;
   flex-direction: column;
-  border : 2px solid #A1A1A1;
+  border: 2px solid #a1a1a1;
   align-items: center;
   padding: 20px;
   margin: 20px;
   font-family: $font-family-inter;
   row-gap: 15px;
 
-  h1{
+  h1 {
     font-size: 1.3rem;
     font-weight: bold;
   }
-  &_configuration{
+  &_configuration {
     display: flex;
     flex-direction: row;
     gap: 20px;
 
-    &_card{
-      color:white;
+    &_card {
+      color: white;
       background-color: $secondary-color;
       font-family: $font-family-bevan;
 
-      &_img{
-        border: 1px solid #A1A1A1;
+      &_img {
+        border: 1px solid #a1a1a1;
       }
-      &_btn{
+      &_btn {
         padding: 10px;
       }
-
     }
   }
-  hr{
+  hr {
     width: 100%;
-    border: 1px solid #A1A1A1;
+    border: 1px solid #a1a1a1;
     margin: 20px 0;
   }
-  &_description{
+  &_description {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    h2{
+    h2 {
       font-size: 1.5rem;
       font-weight: bold;
     }
 
-    ul{
+    ul {
       display: flex;
       flex-direction: column;
       row-gap: 20px;
       font-family: $font-family-inter;
       font-size: 1.2rem;
-      li{
+      li {
         .circle-button {
           display: inline-flex;
           align-items: center;
           justify-content: center;
           width: 25px;
           height: 25px;
-          background-color:$secondary-color;
+          background-color: $secondary-color;
           border-radius: 50%;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -74,8 +73,3 @@
     }
   }
 }
-
-
-
-
-

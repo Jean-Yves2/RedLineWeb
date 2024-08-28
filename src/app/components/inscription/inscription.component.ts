@@ -16,7 +16,7 @@ export class InscriptionComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -77,7 +77,7 @@ export class InscriptionComponent implements OnInit {
               if (subFormControl && subFormControl.invalid) {
                 console.error(
                   `Invalid field: ${control}.${subControl}`,
-                  subFormControl.errors
+                  subFormControl.errors,
                 );
               }
             }

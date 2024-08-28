@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { MatiereDataService } from '../../services/table_data/matiere-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormeMatiereService } from '../../services/forme_matiere/forme-matiere.service';
 import { Produit } from '../forme-matiere/interface/produit.model';
 import { FavorieService } from '../../services/favorie/favorie.service';
-import { PanierService } from '../../services/panier/panier.service';
 import { ProductService } from '../../services/product/product.service';
 import { Product } from '../../services/product/product.model.dto';
 import { AuthService } from '../../services/auth/auth.service';
 import { Inject } from '@angular/core';
+import { CartService } from '../../services/cart/cart.service';
 
 interface Ligne {
   epaisseur: number | undefined;
@@ -37,8 +36,9 @@ interface FavoriteItem {
 export class ProductComponent {
   produits: { [key: string]: Produit[] } = {};
   selectedItem: any = null;
-   url : string | undefined ;
-   teste : any;
+  url: string | undefined;
+  teste: any;
+  isSelection = false;
 
   fetchedproducts: Product[] = [];
   resolveproducts: Product[] = [];
@@ -48,7 +48,7 @@ export class ProductComponent {
     private activatedRoutes: ActivatedRoute,
     private formeMatiereService: FormeMatiereService,
     @Inject(FavorieService) private favorieService: FavorieService,
-    private cartService: PanierService,
+    private cartService: CartService,
     private productService: ProductService,
     private authService: AuthService
   ) {}
@@ -56,18 +56,12 @@ export class ProductComponent {
   ngOnInit(): void {
     this.produits = this.formeMatiereService.getProduits();
     this.activatedRoutes.url.subscribe((urlSegments) => {
-
       const url = urlSegments.map((segment) => segment.path).join('/');
       const secondPart = url.split('/')[1];
 
-
-        this.fetchProducts(secondPart , url);
-
+      this.fetchProducts(secondPart, url);
     });
-
-
   }
-
 
   lignes: Ligne[] = [];
 
@@ -103,30 +97,29 @@ export class ProductComponent {
   updateSelection: Ligne | null = null;
 
   fetchProducts(type: string, oneUrl: string): void {
-
-      if (this.authService.getIsAuthenticated()) {
-        this.productService.getProductsByType(type).subscribe({
-          next: (data) => {
-            this.fetchedproducts = data;
-            this.chooseData(oneUrl);
-          },
-          error: (err) => {
-            this.errorMessage = 'Failed to load products';
-            console.error(err);
-          },
-        });
-      } else {
-        this.fetchedproducts = this.productService.getLocalProductsByType(type);
-        this.chooseData(oneUrl);
-      }
-
+    if (this.authService.getIsAuthenticated()) {
+      this.productService.getProductsByType(type).subscribe({
+        next: (data) => {
+          this.fetchedproducts = data;
+          this.chooseData(oneUrl);
+        },
+        error: (err) => {
+          this.errorMessage = 'Failed to load products';
+          console.error(err);
+        },
+      });
+    } else {
+      this.fetchedproducts = this.productService.getLocalProductsByType(type);
+      this.chooseData(oneUrl);
+    }
   }
-
 
   calcule(): void {
     this.updateSelectedItem();
     if (this.updateSelection) {
-      const poidsUnitaire = this.updateSelection.masse ? this.updateSelection.masse * this.longueur : 0;
+      const poidsUnitaire = this.updateSelection.masse
+        ? this.updateSelection.masse * this.longueur
+        : 0;
       this.resultat = poidsUnitaire * this.quantite;
     }
   }
@@ -145,14 +138,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: item.width,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -176,14 +169,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -207,14 +200,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: item.width,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -238,14 +231,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -268,14 +261,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherHauteur = true;
@@ -295,14 +288,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -326,14 +319,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: item.width,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -356,15 +349,15 @@ export class ProductComponent {
         this.lignes = this.fetchedproducts.map((item, index) => ({
           epaisseur: item.thickness,
           hauteur: item.height,
-          largeur:0,
-          masse : item.linearWeight,
-          additionalData1:item.diameter,
+          largeur: 0,
+          masse: item.linearWeight,
+          additionalData1: item.diameter,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -386,14 +379,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
-          additionalData1:item.diameter,
+          masse: item.linearWeight,
+          additionalData1: item.diameter,
           additionalData2: item.circumference,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherHauteur = false;
@@ -417,20 +410,19 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: item.width,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
-        this.afficherEpaisseur = true;;
+        this.afficherEpaisseur = true;
         this.afficherLargeur = true;
         this.afficherMasse = true;
-
 
         this.titreEpaisseur = `B<br /> Epaisseur `;
         this.titreLargeur = `A <br /> Largeur`;
@@ -447,14 +439,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -478,16 +470,15 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
-            additionalData1: 0,
-            additionalData2: 0,
-            additionalData3: 0,
-            additionalData4: 0,
-            choix: index,
-            urlPart: this.activatedRoutes.snapshot.url[1].path,
-            productCode: item.productCode
-          })
-        );
+          masse: item.linearWeight,
+          additionalData1: 0,
+          additionalData2: 0,
+          additionalData3: 0,
+          additionalData4: 0,
+          choix: index,
+          urlPart: this.activatedRoutes.snapshot.url[1].path,
+          productCode: item.productCode,
+        }));
 
         this.afficherEpaisseur = true;
         this.afficherHauteur = true;
@@ -510,14 +501,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -543,14 +534,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -574,14 +565,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -605,14 +596,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -634,14 +625,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
-          additionalData1:  item.diameter,
+          masse: item.linearWeight,
+          additionalData1: item.diameter,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -665,14 +656,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -695,14 +686,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: item.width,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -726,14 +717,14 @@ export class ProductComponent {
           epaisseur: item.thickness,
           hauteur: item.height,
           largeur: 0,
-          masse : item.linearWeight,
+          masse: item.linearWeight,
           additionalData1: 0,
           additionalData2: 0,
           additionalData3: 0,
           additionalData4: 0,
           choix: index,
           urlPart: this.activatedRoutes.snapshot.url[1].path,
-          productCode: item.productCode
+          productCode: item.productCode,
         }));
 
         this.afficherEpaisseur = true;
@@ -761,8 +752,9 @@ export class ProductComponent {
       urlPart: item.urlPart,
       longueur: this.longueur,
       quantite: this.quantite,
-      productCode: item.productCode
+      productCode: item.productCode,
     };
+    this.isSelection = true;
   }
   updateSelectedItem(): void {
     if (this.selectedItem) {
@@ -775,6 +767,7 @@ export class ProductComponent {
     this.updateSelectedItem();
     if (this.selectedItem) {
       this.favorieService.addFavorite(this.selectedItem.productCode);
+      this.isSelection = false;
     }
   }
   removeFromFavorites(item: any): void {
@@ -794,17 +787,29 @@ export class ProductComponent {
 
   addToCart(): void {
     this.updateSelectedItem();
-    this.cartService.addToCart(this.selectedItem);
-  }
+    console.log('selectedItem :', this.selectedItem);
 
-  removeFromCart(item: any): void {
-    this.cartService.removeFromCart(item);
-  }
+    if (this.selectedItem) {
+      console.log('selectedItem :', this.selectedItem);
 
-  getCartItems(): any[] {
-    return this.cartService.getCart();
-  }
+      this.cartService
+        .addItemToCart(
+          this.selectedItem.productCode,
+          this.selectedItem.quantite,
+          this.selectedItem.longueur
+        )
+        .subscribe({
+          next: () => {
+            console.log('Produit ajouté au panier');
+          },
+          error: (err) => {
+            console.error(err);
+          },
+        });
 
+      this.isSelection = false;
+    }
+  }
 
   findProductById(id: string, produits: { [key: string]: any[] }): any | null {
     for (const key in produits) {
@@ -817,7 +822,4 @@ export class ProductComponent {
     }
     return null;
   }
-
-
-
 }

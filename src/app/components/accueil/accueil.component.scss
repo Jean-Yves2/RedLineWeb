@@ -1,8 +1,8 @@
-@import '../../../styles/theme.scss';
-.accueil-content{
+@import "../../../styles/theme.scss";
+.accueil-content {
   display: flex;
   flex-direction: column;
-  flex:1;
+  flex: 1;
   width: 100%;
   width: 100%;
   justify-content: center;
@@ -10,7 +10,7 @@
   gap: 20px;
   font-family: $font-family-bevan;
 
-  &_header{
+  &_header {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -22,28 +22,28 @@
     padding: 20px;
     row-gap: 10px;
 
-    &_title{
+    &_title {
       font-size: 1.5em;
       font-weight: bold;
       margin-bottom: 10px;
     }
-    &_description{
+    &_description {
       font-family: $font-family-inter;
       font-size: 1.5rem;
     }
 
-    &_button{
+    &_button {
       background-color: $secondary-color;
       color: $white;
       padding: 10px 20px;
       box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 1);
       cursor: pointer;
       transition: background-color 0.3s;
-      &:hover{
+      &:hover {
         background-color: darken($secondary-color, 10%);
       }
     }
-    &_cover{
+    &_cover {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -53,48 +53,47 @@
       z-index: -1;
     }
   }
-  &_presentation{
+  &_presentation {
     padding-top: 20px;
     display: flex;
     flex-direction: row;
     column-gap: 30px;
     width: 85%;
 
-    &_title{
+    &_title {
       font-size: 1.5em;
       font-weight: bold;
       margin-bottom: 10px;
     }
 
-    &_description{
+    &_description {
       display: flex;
       row-gap: 20px;
       align-content: flex-start;
       flex-wrap: wrap;
       font-size: 1.5rem;
-      &_texte{
+      &_texte {
         font-family: $font-family-inter;
-        color:#545454;
+        color: #545454;
       }
-      &_btn{
+      &_btn {
         background-color: $secondary-color;
         color: $white;
         padding: 10px 20px;
         box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 1);
         cursor: pointer;
         transition: background-color 0.3s;
-        &:hover{
+        &:hover {
           background-color: darken($secondary-color, 10%);
         }
       }
     }
   }
-  &_config{
+  &_config {
     display: flex;
     height: 500px;
 
-    &_content{
-
+    &_content {
       display: flex;
       flex-direction: column;
       gap: 100px;
@@ -103,7 +102,7 @@
       height: 500px;
       font-family: $font-family-bevan;
 
-      &_title{
+      &_title {
         color: $secondary-color;
         font-size: 1.5em;
         font-weight: bold;
@@ -112,12 +111,12 @@
         text-underline-offset: 10px;
       }
 
-      ul{
+      ul {
         display: flex;
         flex-direction: column;
         gap: 20px;
 
-        li{
+        li {
           color: $white;
           border: 1px solid $secondary-color;
           background-color: $primary-color;
@@ -126,7 +125,7 @@
       }
     }
 
-    &_image{
+    &_image {
       transform: scale(0.75);
       transform-origin: 0 0;
       z-index: 1;

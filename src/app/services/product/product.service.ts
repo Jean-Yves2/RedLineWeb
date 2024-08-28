@@ -4,8 +4,7 @@ import { catchError, Observable, of, switchMap } from 'rxjs';
 import { Product } from './product.model.dto';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../auth/auth.service';
-import {localProducts} from '../table_data/localProducts';
-
+import { localProducts } from '../table_data/localProducts';
 
 @Injectable({
   providedIn: 'root',
@@ -14,24 +13,27 @@ export class ProductService {
   private apiUrl = environment.apiUrl;
   localProducts: Product[] = localProducts as unknown as Product[];
 
-  constructor(private http: HttpClient , private authService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+  ) {}
 
   getProductsByType(type: string): Observable<Product[]> {
-
-        if (this.authService.getIsAuthenticated()) {
-          return this.http.get<Product[]>(`${this.apiUrl}/products/${type}`);
-        } else {
-          this.localProducts = localProducts as unknown as Product[];
-          const { min, max } = this.getRangeByType(type);
-          const filteredProducts = this.localProducts.filter(product =>
-            product.productCode !== undefined && product.productCode >= min && product.productCode <= max
-          );
-          return of(filteredProducts);
-        }
-
-
+    if (this.authService.getIsAuthenticated()) {
+      return this.http.get<Product[]>(`${this.apiUrl}/products/${type}`);
+    } else {
+      this.localProducts = localProducts as unknown as Product[];
+      const { min, max } = this.getRangeByType(type);
+      const filteredProducts = this.localProducts.filter(
+        (product) =>
+          product.productCode !== undefined &&
+          product.productCode >= min &&
+          product.productCode <= max,
+      );
+      return of(filteredProducts);
     }
-  private getRangeByType(type: string): { min: number, max: number } {
+  }
+  private getRangeByType(type: string): { min: number; max: number } {
     switch (type) {
       case 'alu1':
         return { min: 1, max: 8 };
@@ -69,8 +71,11 @@ export class ProductService {
   }
   getLocalProductsByType(type: string): Product[] {
     const { min, max } = this.getRangeByType(type);
-    return this.localProducts.filter(product =>
-      product.productCode !== undefined && product.productCode >= min && product.productCode <= max
+    return this.localProducts.filter(
+      (product) =>
+        product.productCode !== undefined &&
+        product.productCode >= min &&
+        product.productCode <= max,
     );
   }
 }

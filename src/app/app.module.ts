@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,10 @@ import { CommercialServiceComponent } from './components/commercial-service/comm
 import { ApprovisionnementComponent } from './components/approvisionnement/approvisionnement.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { PanierComponent } from './components/panier/panier.component';
+import { CartComponent } from './components/cart/cart.component';
+import { TokenInterceptor } from './interceptors/token.interceptor.service';
+import { AuthService } from './services/auth/auth.service';
+import { DossierClientComponent } from './components/dossier-client/dossier-client.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,8 @@ import { PanierComponent } from './components/panier/panier.component';
     ApprovisionnementComponent,
     FavoriteComponent,
     PanierComponent,
+    CartComponent,
+    DossierClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +58,14 @@ import { PanierComponent } from './components/panier/panier.component';
     NgIconsModule.withIcons({ bootstrapCart3 }),
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

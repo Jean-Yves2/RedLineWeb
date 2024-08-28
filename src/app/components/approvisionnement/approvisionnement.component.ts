@@ -39,7 +39,7 @@ export class ApprovisionnementComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private fournisseurService: FournisseurService,
-    private entrepotService: EntrepotService
+    private entrepotService: EntrepotService,
   ) {
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
@@ -85,8 +85,8 @@ export class ApprovisionnementComponent implements OnInit {
             this.getWarehouseAddress(warehouse.addressId).then((address) => {
               warehouse.address = address;
               return warehouse;
-            })
-          )
+            }),
+          ),
         ).then((updatedWarehouses) => {
           this.allWarehouse = updatedWarehouses;
         });
@@ -98,7 +98,7 @@ export class ApprovisionnementComponent implements OnInit {
       this.entrepotService.getWarehouse().subscribe({
         next: (warehouses) => {
           this.allWarehouse = warehouses.filter(
-            (warehouse: { deletedAt: any }) => !warehouse.deletedAt
+            (warehouse: { deletedAt: any }) => !warehouse.deletedAt,
           );
           resolve();
         },
@@ -123,7 +123,7 @@ export class ApprovisionnementComponent implements OnInit {
       this.fournisseurService.getFournisseurs().subscribe({
         next: (suppliers) => {
           this.activeSuppliers = suppliers.filter(
-            (supplier: { deletedAt: any }) => !supplier.deletedAt
+            (supplier: { deletedAt: any }) => !supplier.deletedAt,
           );
           resolve();
         },
@@ -137,7 +137,7 @@ export class ApprovisionnementComponent implements OnInit {
       this.fournisseurService.getFournisseurs().subscribe({
         next: (suppliers) => {
           this.inactiveSuppliers = suppliers.filter(
-            (supplier: { deletedAt: any }) => supplier.deletedAt
+            (supplier: { deletedAt: any }) => supplier.deletedAt,
           );
           resolve();
         },
@@ -173,11 +173,11 @@ export class ApprovisionnementComponent implements OnInit {
     const startIndex = (page - 1) * this.pageSize;
     const endIndex = Math.min(
       startIndex + this.pageSize,
-      this.activeSuppliers.length
+      this.activeSuppliers.length,
     );
     this.paginatedActiveSupplier = this.activeSuppliers.slice(
       startIndex,
-      endIndex
+      endIndex,
     );
   }
 
