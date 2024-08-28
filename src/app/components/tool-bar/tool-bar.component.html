@@ -1,4 +1,4 @@
-<div class="nav-bar" *ngIf="!isInternal">
+<div class="nav-bar flex flex-col" *ngIf="!isInternal">
   <nav class="nav-bar_section">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
@@ -63,17 +63,20 @@
               <a
                 routerLink="/matiere"
                 class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                >Matière</a
+                >Boutique</a
               >
               <a
                 routerLink="/favoris"
-                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white , favorieLink"
+
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white favorieLink"
+
                 >Favoris <div class="favorieLink_counter">{{favoriteCounter}}</div></a
               >
               <a
                 routerLink="/panier"
-                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white , favorieLink"
-                >Panier <img> <div class="favorieLink_counter">{{cartCounter}}</div></a
+                class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white favorieLink"
+                >Panier <div class="favorieLink_counter">{{cartCounter}}</div></a
+
               >
               <a
                 routerLink="/apropos"
@@ -142,7 +145,7 @@
                 <img
                   class="h-8 w-8 rounded-full"
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
+                  alt="User profile"
                 />
               </button>
             </div>
