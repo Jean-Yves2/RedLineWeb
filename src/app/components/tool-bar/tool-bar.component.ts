@@ -30,7 +30,6 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
       this.isInternal = this.authService.isInternal();
-      const testFavorite = this.favorieService.getFavorites();
       if (user) {
         this.updateFavorites();
       }
@@ -64,11 +63,9 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     }
   }
 
-  isCommercial(): boolean {
-    return (
-      this.currentUser?.user.role === 'COMMERCIAL' ||
-      this.currentUser?.user.role === 'SUPPLY_MANAGER'
-    );
+  isCommercialOrManager(): boolean {
+    const role = this.currentUser?.role;
+    return role === 'COMMERCIAL' || role === 'SUPPLY_MANAGER';
   }
 
   isLoggedIn(): boolean {
@@ -81,6 +78,10 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     this.router.navigate(['/connexion']);
   }
   private updateFavorites(): void {
+    if (this.isCommercialOrManager()) {
+      return;
+    }
+
     const favorites = this.favorieService.getFavorites();
 
     if (favorites instanceof Observable) {
