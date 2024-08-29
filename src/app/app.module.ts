@@ -24,6 +24,7 @@ import { CommercialServiceComponent } from './components/commercial-service/comm
 import { ApprovisionnementComponent } from './components/approvisionnement/approvisionnement.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { PanierComponent } from './components/panier/panier.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { PanierComponent } from './components/panier/panier.component';
     ApprovisionnementComponent,
     FavoriteComponent,
     PanierComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
