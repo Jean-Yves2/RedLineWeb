@@ -14,4 +14,10 @@ export class UserService {
   getUsers(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/user`, { withCredentials: true });
   }
+
+  getMyProfile(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/user/profil`, {
+      withCredentials: true,
+    });
+  }
 }
