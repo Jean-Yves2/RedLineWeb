@@ -19,7 +19,7 @@ export class CommercialServiceComponent implements OnInit {
   paginatedUsers: any[] = [];
   currentPage = 1;
   totalPages = 1;
-  pageSize = 10;
+  pageSize = 9;
   sortDirection: 'asc' | 'desc' = 'asc';
   searchTerm: string = '';
   activContainer: string | null = null;
@@ -43,7 +43,7 @@ export class CommercialServiceComponent implements OnInit {
     });
 
     // Charger les clients ou devis en fonction de la section active
-    this.showActiveContainer('dossier'); // Par défaut afficher Clients
+    this.showActiveContainer('Clients'); // Par défaut afficher Clients
   }
 
   fetchUsers() {
@@ -76,7 +76,6 @@ export class CommercialServiceComponent implements OnInit {
     this.commercialService.getAllQuotesWithoutException().subscribe({
       next: (data) => {
         this.allQuotes = data;
-        console.log('All quotes : ', this.allQuotes);
       },
       error: (error) => {
         console.error('Erreur lors de la récupération des devis', error);

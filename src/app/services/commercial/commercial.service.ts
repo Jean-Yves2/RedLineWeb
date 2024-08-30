@@ -22,4 +22,10 @@ export class CommercialService {
       withCredentials: true,
     });
   }
+
+  public getUserFavorites(id: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/favorites/${id}`, {
+      withCredentials: true,
+    });
+  }
 }
