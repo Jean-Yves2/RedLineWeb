@@ -24,7 +24,7 @@ export class CommercialServiceComponent implements OnInit {
   searchTerm: string = '';
   activContainer: string | null = null;
   myProfil: any;
-  allQuotes: any;
+
   selectedClient: any;
 
   constructor(
@@ -43,7 +43,7 @@ export class CommercialServiceComponent implements OnInit {
     });
 
     // Charger les clients ou devis en fonction de la section active
-    this.showActiveContainer('Clients'); // Par défaut afficher Clients
+    this.showActiveContainer('Devis'); // Par défaut afficher Clients
   }
 
   fetchUsers() {
@@ -68,17 +68,6 @@ export class CommercialServiceComponent implements OnInit {
       },
       error: (error) => {
         console.error('Erreur lors de la récupération de mon profil', error);
-      },
-    });
-  }
-
-  getAllQuotesWithoutException() {
-    this.commercialService.getAllQuotesWithoutException().subscribe({
-      next: (data) => {
-        this.allQuotes = data;
-      },
-      error: (error) => {
-        console.error('Erreur lors de la récupération des devis', error);
       },
     });
   }
@@ -151,8 +140,6 @@ export class CommercialServiceComponent implements OnInit {
     // Charger les données en fonction de la section active
     if (container === 'Clients' && !this.users.length) {
       this.fetchUsers();
-    } else if (container === 'Devis' && !this.allQuotes) {
-      this.getAllQuotesWithoutException();
     } else if (container === 'Profil' && !this.myProfil) {
       this.fetchMyProfile();
     }

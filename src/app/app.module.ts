@@ -28,6 +28,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DossierClientComponent } from './components/dossier-client/dossier-client.component';
 import { AuthService } from './services/auth/auth.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { DevisComponent } from './components/devis/devis.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     PanierComponent,
     NotFoundComponent,
     DossierClientComponent,
+    DevisComponent,
   ],
   imports: [
     BrowserModule,

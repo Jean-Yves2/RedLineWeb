@@ -1,0 +1,42 @@
+<section
+  *ngIf="activContainer === 'Devis'"
+  class="allSectionContainer , container-devis"
+>
+  <span class="container-devis_title">Devis</span>
+  <div class="container-devis_head">
+    <div class="container-devis_head_user">Utilisateur</div>
+    <div class="container-devis_head_numdevi">Numero de devis</div>
+    <div class="container-devis_head_status">Status</div>
+  </div>
+
+  <div
+    class="container-devis_card"
+    *ngFor="let quote of allQuotes; let i = index"
+    [ngClass]="{ 'dark-background': i % 2 === 0 }"
+  >
+    <div class="container-devis_card_user">
+      <div class="container-devis_card_user_name-container">
+        <div class="container-devis_card_user_cercle">
+          <span class="container-devis_card_user_cercle_span">{{
+            quote.client.firstName.charAt(0)
+          }}</span>
+        </div>
+        <span class="container-devis_card_user_name"
+          >{{ quote.client.firstName }} {{ quote.client.lastName }}</span
+        >
+      </div>
+
+      <span class="container-devis_card_user_numdevi"> {{ quote.id }}</span>
+      <span
+        class="container-devis_card_user_status"
+        [ngClass]="{
+          pending: quote.status === 'PENDING',
+          'in-process': quote.status === 'IN_PROCESS',
+          closed: quote.status === 'CLOSED'
+        }"
+      >
+        {{ quote.status }}</span
+      >
+    </div>
+  </div>
+</section>
