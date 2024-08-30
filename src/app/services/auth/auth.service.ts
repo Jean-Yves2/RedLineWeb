@@ -72,6 +72,12 @@ export class AuthService {
       });
   }
 
+  refreshToken(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/refresh-token`, {
+      withCredentials: true,
+    });
+  }
+
   public isInternal(): boolean {
     const user = this.currentUserSubject.value;
     return (
