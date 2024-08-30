@@ -9,6 +9,7 @@ import { CommercialService } from '../../services/commercial/commercial.service'
 export class DossierClientComponent implements OnInit {
   activContainerDossier: string | null = null;
   userOrder: any;
+  selectedClientFavorie: any;
 
   constructor(private commercialService: CommercialService) {}
 
@@ -48,7 +49,7 @@ export class DossierClientComponent implements OnInit {
   }
 
   getSelectedClient() {
-    return JSON.parse(localStorage.getItem('selectedClient.id') || '{}');
+    return JSON.parse(localStorage.getItem('selectedClient') || '{}');
   }
   getClientId(): number | null {
     const client = this.getSelectedClient();
@@ -68,5 +69,24 @@ export class DossierClientComponent implements OnInit {
     } else if (container === 'Menu') {
     } else if (container === 'Dossier') {
     }
+  }
+
+  getUserFavorites() {
+    const id = this.getClientId();
+    console.log('ID client:', this.getClientId());
+    if (id === null) {
+      console.error(
+        'Impossible de récupérer les favoris: ID client non trouvé'
+      );
+      return;
+    }
+    this.commercialService.getUserFavorites(id).subscribe({
+      next: (data) => {
+        console.log("Favoris de l'utilisateur : ", data);
+      },
+      error: (error) => {
+        console.error('Erreur lors de la récupération des favoris', error);
+      },
+    });
   }
 }

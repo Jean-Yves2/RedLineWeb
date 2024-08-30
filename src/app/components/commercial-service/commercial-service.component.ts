@@ -170,5 +170,6 @@ export class CommercialServiceComponent implements OnInit {
   updateClient() {
     this.selectedClient = this.getSelectedClient();
     console.log('Client sélectionné updated : ', this.selectedClient);
+    console.log('Client sélectionné updated id : ', this.selectedClient.id);
   }
 }
