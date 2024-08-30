@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,8 @@ import { FavoriteComponent } from './components/favorite/favorite.component';
 import { PanierComponent } from './components/panier/panier.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DossierClientComponent } from './components/dossier-client/dossier-client.component';
+import { AuthService } from './services/auth/auth.service';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,14 @@ import { DossierClientComponent } from './components/dossier-client/dossier-clie
     NgIconsModule.withIcons({ bootstrapCart3 }),
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
