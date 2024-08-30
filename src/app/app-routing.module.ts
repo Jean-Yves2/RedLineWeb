@@ -20,8 +20,6 @@ const routes: Routes = [
   {
     path: 'accueil',
     component: AccueilComponent,
-    canActivate: [RoleGuard],
-    data: { roles: ['USER', 'ADMIN'] },
   },
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'inscription', component: InscriptionComponent },
@@ -30,27 +28,19 @@ const routes: Routes = [
   {
     path: 'matiere',
     component: MatiereComponent,
-    canActivate: [RoleGuard],
-    data: { roles: ['COMMERCIAL'] },
   },
   { path: 'offres', component: OffresComponent },
   {
     path: 'piece-configuration',
     component: PieceConfigurationComponent,
-    canActivate: [RoleGuard],
-    data: { roles: ['USER'] },
   },
   {
     path: 'matiere/:category',
     component: FormeMatiereComponent,
-    canActivate: [RoleGuard],
-    data: { roles: ['USER'] },
   },
   {
     path: 'products/:id',
     component: ProductComponent,
-    canActivate: [RoleGuard],
-    data: { roles: ['USER'] },
   },
   {
     path: 'commercial',
@@ -67,14 +57,10 @@ const routes: Routes = [
   {
     path: 'favoris',
     component: FavoriteComponent,
-    canActivate: [RoleGuard],
-    data: { roles: ['USER'] },
   },
   {
     path: 'panier',
     component: PanierComponent,
-    canActivate: [RoleGuard],
-    data: { roles: ['USER'] },
   },
   { path: '404', component: NotFoundComponent },
   {
