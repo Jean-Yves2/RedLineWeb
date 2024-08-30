@@ -1,0 +1,115 @@
+<section class="container-dossier">
+  <section class="container-dossier" *ngIf="activContainerDossier === 'Menu'">
+    <div
+      class="container-historique dossier_card"
+      (click)="showActiveContainerDossier('Historique')"
+    >
+      <img src="assets/images/dossier/historique.png" />
+      <div class="container-historique_title">Historique</div>
+    </div>
+    <div
+      class="container-favorie dossier_card"
+      (click)="getUserFavorites()"
+      (click)="showActiveContainerDossier('Favorie')"
+    >
+      <img src="assets/images/dossier/star.png" />
+      <div class="container-favorie_title">Favorie</div>
+    </div>
+    <div
+      class="container-panier dossier_card"
+      (click)="showActiveContainerDossier('Panier')"
+    >
+      <img src="assets/images/dossier/panier.png" />
+      <div class="container-panier_title">Panier</div>
+    </div>
+  </section>
+  <section
+    class="container-dossier_historique"
+    *ngIf="activContainerDossier === 'Historique'"
+  >
+    <div class="container-dossier_historique_head">
+      <h2 class="container-dossier_historique_head_title">Historique</h2>
+      <button
+        class="container-dossier_menu-button"
+        (click)="showActiveContainerDossier('Menu')"
+      >
+        Menu Dossier
+      </button>
+    </div>
+
+    <div class="container-dossier_historique_body">
+      <div class="container-dossier_historique_body_card"></div>
+    </div>
+  </section>
+  <section
+    class="container-dossier_favorie"
+    *ngIf="activContainerDossier === 'Favorie'"
+  >
+    <div class="container-dossier_favorie_head">
+      <h2 class="container-dossier_favorie_head_title">Favorie</h2>
+      <button
+        class="container-dossier_menu-button"
+        (click)="showActiveContainerDossier('Menu')"
+      >
+        Menu Dossier
+      </button>
+    </div>
+
+    <div class="container-dossier_favorie_user-name">
+      <span>{{ selectedUser.firstName }} {{ selectedUser.lastName }} </span>
+    </div>
+
+    <div class="container-dossier_favorie_body">
+      <div class="container-dossier_favorie_body_head_card">
+        <div class="container-dossier_favorie_body_head_card-matiere">
+          Matière
+        </div>
+        <div class="container-dossier_favorie_body_head_card-name">Nom</div>
+        <div class="container-dossier_favorie_body_head_card-description">
+          Description
+        </div>
+        <div class="container-dossier_favorie_body_head_card-productCode">
+          Code
+        </div>
+      </div>
+      <div
+        class="container-dossier_favorie_body_card"
+        *ngFor="let favorie of selectedClientFavorie; let i = index"
+        [ngClass]="{ 'dark-background': i % 2 === 0 }"
+      >
+        <div
+          class="container-dossier_favorie_body_card-matiere {{
+            favorie.matiere
+          }}"
+        >
+          {{ favorie.matiere }}
+        </div>
+        <div class="container-dossier_favorie_body_card-name">
+          {{ favorie.name }}
+        </div>
+        <div class="container-dossier_favorie_body_card-description">
+          {{ favorie.description }}
+        </div>
+        <div class="container-dossier_favorie_body_card-productCode">
+          {{ favorie.productCode }}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section
+    class="container-dossier_panier"
+    *ngIf="activContainerDossier === 'Panier'"
+  >
+    <div class="container-dossier_panier_head">
+      <h2 class="container-dossier_panier_head_title">Panier</h2>
+      <button
+        class="container-dossier_menu-button"
+        (click)="showActiveContainerDossier('Menu')"
+      >
+        Menu Dossier
+      </button>
+    </div>
+
+    <p>Panier</p>
+  </section>
+</section>

@@ -1,0 +1,228 @@
+@import "../../../styles/theme.scss";
+
+:host {
+  display        : flex;
+  flex           : 1;
+  height         : 100%;
+  width          : 100%;
+  flex-direction : row;
+}
+
+.container-dossier {
+  display         : flex;
+  width           : 100%;
+  height          : 100%;
+  flex-direction  : row;
+  justify-content : space-around;
+  align-items     : center;
+  flex-wrap       : wrap;
+
+  .dossier_card {
+    display          : flex;
+    height           : 400px;
+    width            : 400px;
+    color            : white;
+    background-color : #375362;
+    border-radius    : 50px;
+    align-items      : center;
+    justify-content  : center;
+    row-gap          : 2rem;
+    flex-direction   : column;
+  }
+
+  .container-dossier_historique,
+  .container-dossier_favorie,
+  .container-dossier_panier {
+    display        : flex;
+    height         : 100%;
+    width          : 100%;
+    padding        : 2rem;
+    flex-direction : column;
+
+    font-family : inter, sans-serif;
+    font-size   : 1.5rem;
+    font-weight : bold;
+    color       : $third-color;
+    row-gap     : 30px;
+
+    &_head {
+      display         : flex;
+      flex-direction  : row;
+      align-items     : center;
+      justify-content : flex-start;
+
+      &_title {
+        display       : flex;
+        color         : Black;
+        padding-right : 5rem;
+        font-size     : 2rem;
+
+      }
+    }
+
+    &_body {
+
+      display : flex;
+      border  : 1px solid $third-color;
+      width   : 100%;
+
+      &_card {}
+    }
+
+
+
+  }
+
+  &_menu-button {
+    display          : flex;
+    padding          : 1rem;
+    background-color : $secondary-color;
+    border-radius    : 5px;
+    height           : 50px;
+    justify-content  : center;
+    align-items      : center;
+    color            : black;
+
+  }
+
+
+
+  .container-panier_title,
+  .container-favorie_title,
+  .container-historique_title {
+    font-family : inter, sans-serif;
+    font-size   : 2rem;
+    font-weight : bold;
+  }
+}
+
+/*
+*  Section container-dossier_favorie
+*/
+
+.container-dossier_favorie {
+  display        : flex;
+  border         : 1px solid #375362;
+  width          : 100%;
+  flex-wrap      : wrap;
+  flex-direction : column;
+  align-content  : center;
+
+
+  &_body {
+    width          : 98%;
+    display        : flex;
+    border         : 1px solid #375362;
+    width          : 100%;
+    flex-direction : column;
+    flex-wrap      : wrap;
+
+    width   : 100%;
+    padding : 20PX;
+
+
+    &_head_card {
+      display         : flex;
+      justify-content : space-around;
+      width           : 100%;
+      padding-bottom  : 25px;
+
+      &-matiere {
+        width : 10%;
+      }
+
+      &-name {
+        width : 35%;
+      }
+
+      &-description {
+        width : 35%;
+      }
+
+      &-productCode {
+        width : 10%;
+      }
+    }
+
+
+
+    &_card {
+      display         : flex;
+      justify-content : space-around;
+      width           : 100%;
+      align-items     : center;
+      padding-top     : 1rem;
+      padding-bottom  : 1rem;
+
+
+
+      &-matiere {
+        width           : 10%;
+        border          : 1px solid #375362;
+        display         : flex;
+        justify-content : center;
+        padding         : 0.5rem;
+        border-radius   : 5px;
+      }
+
+
+
+      &-name {
+        width : 35%;
+      }
+
+      &-description {
+        width : 35%;
+      }
+
+      &-productCode {
+        display      : flex;
+        width        : 10%;
+        padding-left : 2rem;
+      }
+
+      /*
+      ? Matiere décoration
+      */
+
+      .Aluminium {
+        background-color : rgb(66, 76, 121);
+        color            : white;
+      }
+
+      .Galavanisé {
+        background-color : #375362;
+        color            : white;
+      }
+
+      .Acier {
+        background-color : #523407;
+        color            : white;
+      }
+
+      .Inox {
+        background-color : #808080;
+        color            : white;
+      }
+    }
+  }
+
+  &_user-name {
+    font-family : inter, sans-serif;
+    font-size   : 2rem;
+    font-weight : bold;
+    color       : rgb(39, 38, 41);
+  }
+
+}
+
+.container-dossier_favorie_body_card {
+  &:hover {
+    background-color : #f8890a32;
+
+  }
+}
+
+.dark-background {
+  background-color : #f1f1f1;
+}

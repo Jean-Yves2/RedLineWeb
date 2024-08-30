@@ -30,10 +30,16 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
       this.isInternal = this.authService.isInternal();
-      const testFavorite = this.favorieService.getFavorites();
-      this.updateFavorites();
       if (user) {
         this.updateFavorites();
+      }
+    });
+
+    this.authService.getIsAuthenticated().subscribe((isAuthenticated) => {
+      if (isAuthenticated) {
+        this.updateFavorites();
+      } else {
+        this.favorieService.resetFavoriteCount();
       }
     });
 
@@ -49,8 +55,6 @@ export class ToolBarComponent implements OnInit, OnDestroy {
         this.cartCounter = count;
       }
     );*/
-
-
   }
 
   ngOnDestroy() {
@@ -59,11 +63,9 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     }
   }
 
-  isCommercial(): boolean {
-    return (
-      this.currentUser?.user.role === 'COMMERCIAL' ||
-      this.currentUser?.user.role === 'SUPPLY_MANAGER'
-    );
+  isCommercialOrManager(): boolean {
+    const role = this.currentUser?.role;
+    return role === 'COMMERCIAL' || role === 'SUPPLY_MANAGER';
   }
 
   isLoggedIn(): boolean {
@@ -76,7 +78,12 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     this.router.navigate(['/connexion']);
   }
   private updateFavorites(): void {
+    if (this.isCommercialOrManager()) {
+      return;
+    }
+
     const favorites = this.favorieService.getFavorites();
+
     if (favorites instanceof Observable) {
       favorites.subscribe((data) => {
         this.favorieService.favoriteCountSubject.next(data.length);
