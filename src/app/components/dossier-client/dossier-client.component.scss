@@ -116,15 +116,16 @@
     width          : 100%;
     flex-direction : column;
     flex-wrap      : wrap;
-    row-gap        : 20px;
-    width          : 100%;
-    padding        : 20PX;
+
+    width   : 100%;
+    padding : 20PX;
 
 
     &_head_card {
       display         : flex;
       justify-content : space-around;
       width           : 100%;
+      padding-bottom  : 25px;
 
       &-matiere {
         width : 10%;
@@ -143,10 +144,17 @@
       }
     }
 
+
+
     &_card {
       display         : flex;
       justify-content : space-around;
       width           : 100%;
+      align-items     : center;
+      padding-top     : 1rem;
+      padding-bottom  : 1rem;
+
+
 
       &-matiere {
         width           : 10%;
@@ -206,4 +214,15 @@
     color       : rgb(39, 38, 41);
   }
 
+}
+
+.container-dossier_favorie_body_card {
+  &:hover {
+    background-color : #f8890a32;
+
+  }
+}
+
+.dark-background {
+  background-color : #f1f1f1;
 }

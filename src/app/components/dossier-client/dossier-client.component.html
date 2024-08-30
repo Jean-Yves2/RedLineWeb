@@ -74,7 +74,8 @@
       </div>
       <div
         class="container-dossier_favorie_body_card"
-        *ngFor="let favorie of selectedClientFavorie"
+        *ngFor="let favorie of selectedClientFavorie; let i = index"
+        [ngClass]="{ 'dark-background': i % 2 === 0 }"
       >
         <div
           class="container-dossier_favorie_body_card-matiere {{
