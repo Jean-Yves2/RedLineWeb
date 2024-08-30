@@ -42,7 +42,7 @@
     </div>
   </section>
   <section
-    class="container-dossier_historique"
+    class="container-dossier_favorie"
     *ngIf="activContainerDossier === 'Favorie'"
   >
     <div class="container-dossier_favorie_head">
@@ -55,10 +55,48 @@
       </button>
     </div>
 
-    <p>Favorie</p>
+    <div class="container-dossier_favorie_user-name">
+      <span>{{ selectedUser.firstName }} {{ selectedUser.lastName }} </span>
+    </div>
+
+    <div class="container-dossier_favorie_body">
+      <div class="container-dossier_favorie_body_head_card">
+        <div class="container-dossier_favorie_body_head_card-matiere">
+          Matière
+        </div>
+        <div class="container-dossier_favorie_body_head_card-name">Nom</div>
+        <div class="container-dossier_favorie_body_head_card-description">
+          Description
+        </div>
+        <div class="container-dossier_favorie_body_head_card-productCode">
+          Code
+        </div>
+      </div>
+      <div
+        class="container-dossier_favorie_body_card"
+        *ngFor="let favorie of selectedClientFavorie"
+      >
+        <div
+          class="container-dossier_favorie_body_card-matiere {{
+            favorie.matiere
+          }}"
+        >
+          {{ favorie.matiere }}
+        </div>
+        <div class="container-dossier_favorie_body_card-name">
+          {{ favorie.name }}
+        </div>
+        <div class="container-dossier_favorie_body_card-description">
+          {{ favorie.description }}
+        </div>
+        <div class="container-dossier_favorie_body_card-productCode">
+          {{ favorie.productCode }}
+        </div>
+      </div>
+    </div>
   </section>
   <section
-    class="container-dossier_historique"
+    class="container-dossier_panier"
     *ngIf="activContainerDossier === 'Panier'"
   >
     <div class="container-dossier_panier_head">

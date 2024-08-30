@@ -95,3 +95,115 @@
     font-weight : bold;
   }
 }
+
+/*
+*  Section container-dossier_favorie
+*/
+
+.container-dossier_favorie {
+  display        : flex;
+  border         : 1px solid #375362;
+  width          : 100%;
+  flex-wrap      : wrap;
+  flex-direction : column;
+  align-content  : center;
+
+
+  &_body {
+    width          : 98%;
+    display        : flex;
+    border         : 1px solid #375362;
+    width          : 100%;
+    flex-direction : column;
+    flex-wrap      : wrap;
+    row-gap        : 20px;
+    width          : 100%;
+    padding        : 20PX;
+
+
+    &_head_card {
+      display         : flex;
+      justify-content : space-around;
+      width           : 100%;
+
+      &-matiere {
+        width : 10%;
+      }
+
+      &-name {
+        width : 35%;
+      }
+
+      &-description {
+        width : 35%;
+      }
+
+      &-productCode {
+        width : 10%;
+      }
+    }
+
+    &_card {
+      display         : flex;
+      justify-content : space-around;
+      width           : 100%;
+
+      &-matiere {
+        width           : 10%;
+        border          : 1px solid #375362;
+        display         : flex;
+        justify-content : center;
+        padding         : 0.5rem;
+        border-radius   : 5px;
+      }
+
+
+
+      &-name {
+        width : 35%;
+      }
+
+      &-description {
+        width : 35%;
+      }
+
+      &-productCode {
+        display      : flex;
+        width        : 10%;
+        padding-left : 2rem;
+      }
+
+      /*
+      ? Matiere décoration
+      */
+
+      .Aluminium {
+        background-color : rgb(66, 76, 121);
+        color            : white;
+      }
+
+      .Galavanisé {
+        background-color : #375362;
+        color            : white;
+      }
+
+      .Acier {
+        background-color : #523407;
+        color            : white;
+      }
+
+      .Inox {
+        background-color : #808080;
+        color            : white;
+      }
+    }
+  }
+
+  &_user-name {
+    font-family : inter, sans-serif;
+    font-size   : 2rem;
+    font-weight : bold;
+    color       : rgb(39, 38, 41);
+  }
+
+}

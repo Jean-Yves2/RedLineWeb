@@ -10,11 +10,13 @@ export class DossierClientComponent implements OnInit {
   activContainerDossier: string | null = null;
   userOrder: any;
   selectedClientFavorie: any;
+  selectedUser: any;
 
   constructor(private commercialService: CommercialService) {}
 
   ngOnInit(): void {
     this.showActiveContainerDossier('Menu');
+    this.selectedUser = this.getSelectedClient();
   }
 
   getOrdersByCustomerId(id: number) {
@@ -82,6 +84,7 @@ export class DossierClientComponent implements OnInit {
     }
     this.commercialService.getUserFavorites(id).subscribe({
       next: (data) => {
+        this.selectedClientFavorie = data;
         console.log("Favoris de l'utilisateur : ", data);
       },
       error: (error) => {
