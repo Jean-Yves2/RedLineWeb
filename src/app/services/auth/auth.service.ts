@@ -86,6 +86,9 @@ export class AuthService {
   }
 
   public getIsAuthenticated(): Observable<boolean> {
+    this.isAuthenticated$.subscribe((value) => {
+      console.log('getIsAuthenticated:', value);
+    });
     return this.isAuthenticated$;
   }
 }
