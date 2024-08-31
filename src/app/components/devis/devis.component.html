@@ -108,8 +108,12 @@
       type="number"
       name="discountPercent"
       placeholder="Réduction (%)"
+      [(ngModel)]="globalDiscount"
+      (ngModelChange)="updateGlobalDiscount($event)"
     /><br />
     <button (click)="setStage(1)">Annulez</button>
-    <button (click)="submitGlobalDiscount()">Confirmez</button>
+    <button (click)="submitGlobalDiscount()" [disabled]="!isDiscountValid()">
+      Confirmez
+    </button>
   </div>
 </section>

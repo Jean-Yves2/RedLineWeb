@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommercialService } from '../../services/commercial/commercial.service';
+import { DevisService } from '../../services/devis/devis.service';
 
 @Component({
   selector: 'app-devis',
@@ -13,9 +14,15 @@ export class DevisComponent implements OnInit {
   userQuoteWithQuoteLines: any;
   stage: number = 1;
 
+  //Global discount
+  globalDiscount: number = 0;
+
   discountsByProduct: { [productId: number]: number } = {};
 
-  constructor(private commercialService: CommercialService) {}
+  constructor(
+    private commercialService: CommercialService,
+    private devisService: DevisService
+  ) {}
 
   ngOnInit(): void {
     this.showActiveContainer('Devis');
@@ -110,7 +117,29 @@ export class DevisComponent implements OnInit {
   }
 
   // Fonction pour la gestion des remises globales
+
+  updateGlobalDiscount(discount: number): void {
+    this.globalDiscount = discount;
+    console.log('this.globalDiscount', this.globalDiscount);
+  }
+
+  isDiscountValid(): boolean {
+    return this.globalDiscount >= 0 && this.globalDiscount <= 100;
+  }
   submitGlobalDiscount(): void {
-    console.log(this.userQuoteWithQuoteLines.id);
+    console.log('userQuoteWithQuoteLines.id', this.userQuoteWithQuoteLines.id);
+    this.devisService
+      .postGlobalDiscount(this.globalDiscount, this.userQuoteWithQuoteLines.id)
+      .subscribe({
+        next: (data) => {
+          console.log('Remise globale appliquée avec succès', data);
+        },
+        error: (error) => {
+          console.error(
+            "Erreur lors de l'application de la remise globale",
+            error
+          );
+        },
+      });
   }
 }
