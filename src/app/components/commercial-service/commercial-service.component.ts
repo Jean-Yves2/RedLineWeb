@@ -50,6 +50,7 @@ export class CommercialServiceComponent implements OnInit {
     this.userService.getUsers().subscribe({
       next: (data) => {
         this.users = data;
+        console.log('Utilisateurs : ', this.users);
         this.filteredUsers = this.users;
         this.totalPages = Math.ceil(this.filteredUsers.length / this.pageSize);
         this.setPage(this.currentPage);

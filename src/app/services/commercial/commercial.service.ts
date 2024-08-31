@@ -23,8 +23,14 @@ export class CommercialService {
     });
   }
 
-  public getUserFavorites(id: number): Observable<any[]> {
+  getUserFavorites(id: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/favorites/${id}`, {
+      withCredentials: true,
+    });
+  }
+
+  getQuoteByIdWithQuoteLines(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/quote/user/${id}`, {
       withCredentials: true,
     });
   }

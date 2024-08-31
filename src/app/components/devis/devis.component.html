@@ -13,6 +13,8 @@
     class="container-devis_card"
     *ngFor="let quote of allQuotes; let i = index"
     [ngClass]="{ 'dark-background': i % 2 === 0 }"
+    (click)="setSelectedClient(quote)"
+    (click)="showActiveContainer('userDevis')"
   >
     <div class="container-devis_card_user">
       <div class="container-devis_card_user_name-container">
@@ -38,5 +40,76 @@
         {{ quote.status }}</span
       >
     </div>
+  </div>
+</section>
+<section class="container_userDevis" *ngIf="activContainer === 'userDevis'">
+  <div
+    class="container_userDevis-card"
+    *ngFor="let quoteLine of userQuoteWithQuoteLines.quoteLines"
+  >
+    <div class="container_userDevis_card-product">
+      <h2>{{ quoteLine.product.name }}</h2>
+      <p>Description: {{ quoteLine.product.description }}</p>
+      <p>Prix de Base: {{ quoteLine.product.basePrice }}€</p>
+      <p>Prix de vente: {{ quoteLine.product.sellingPrice }}€</p>
+      <p>Quantité: {{ quoteLine.quantity }}</p>
+      <p>
+        Total:
+        {{ quoteLine.product.sellingPrice * quoteLine.quantity }}€
+      </p>
+      <p>Matériel: {{ quoteLine.product.matiere }}</p>
+      <div *ngIf="stage === 4">
+        <label>Remise : </label>
+        <input
+          type="number"
+          name="discountPercent"
+          [(ngModel)]="discountsByProduct[quoteLine.product.id]"
+          (ngModelChange)="updateDiscount(quoteLine.product.id, $event)"
+          placeholder="Remise en %"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="container_userDevis-input">
+    <div class="container_userDevis-input-total">
+      <h3>Total: {{ calculateTotal() }}€</h3>
+    </div>
+    <div
+      class="container_userDevis-input-button"
+      *ngIf="stage === 1"
+      (click)="setStage(2)"
+    >
+      <button>Faire une remise</button>
+    </div>
+    <div
+      class="container_userDevis-input-button"
+      *ngIf="stage === 2"
+      (click)="setStage(3)"
+    >
+      <button>Global</button>
+    </div>
+
+    <div
+      class="container_userDevis-input-button"
+      *ngIf="stage === 2"
+      (click)="setStage(4)"
+    >
+      <button>Par produit</button>
+    </div>
+    <div class="container_userDevis-input-button" *ngIf="stage === 4">
+      <button [disabled]="!areAllDiscountsFilled()" (click)="submitDiscounts()">
+        Confirmez
+      </button>
+    </div>
+  </div>
+  <div *ngIf="stage === 3">
+    <label> Veuillez entrer la réduction: </label>
+    <input
+      type="number"
+      name="discountPercent"
+      placeholder="Réduction (%)"
+    /><br />
+    <button (click)="setStage(1)">Annulez</button>
+    <button (click)="submitGlobalDiscount()">Confirmez</button>
   </div>
 </section>
