@@ -5,6 +5,7 @@ import { UserService } from '../../services/user/user-service.service';
 import { FournisseurService } from '../../services/fournisseur/fournisseur.service';
 import { EntrepotService } from '../../services/entrepot/entrepot.service';
 import { NgForm } from '@angular/forms';
+import { SupplyService } from '../../services/supply/supply.service';
 
 @Component({
   selector: 'app-approvisionnement',
@@ -52,9 +53,8 @@ export class ApprovisionnementComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userService: UserService,
-    private fournisseurService: FournisseurService,
-    private entrepotService: EntrepotService
+    private entrepotService: EntrepotService,
+    private supplyService: SupplyService
   ) {
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
@@ -83,7 +83,7 @@ export class ApprovisionnementComponent implements OnInit {
   }
 
   fetchSuppliers(): Promise<void> {
-    return this.fournisseurService
+    return this.supplyService
       .getFournisseurs()
       .toPromise()
       .then((suppliers) => {
@@ -135,7 +135,7 @@ export class ApprovisionnementComponent implements OnInit {
 
   getActiveSuppliers(): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.fournisseurService.getFournisseurs().subscribe({
+      this.supplyService.getFournisseurs().subscribe({
         next: (suppliers) => {
           this.activeSuppliers = suppliers.filter(
             (supplier: { deletedAt: any }) => !supplier.deletedAt
@@ -149,7 +149,7 @@ export class ApprovisionnementComponent implements OnInit {
 
   getInactiveSuppliers(): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.fournisseurService.getFournisseurs().subscribe({
+      this.supplyService.getFournisseurs().subscribe({
         next: (suppliers) => {
           this.inactiveSuppliers = suppliers.filter(
             (supplier: { deletedAt: any }) => supplier.deletedAt
@@ -233,9 +233,33 @@ export class ApprovisionnementComponent implements OnInit {
   addSupplier(form: NgForm) {
     if (form.valid) {
       console.log('Fournisseur ajouté:', this.newSupplier);
+      this.supplyService.postCreateSupply(this.newSupplier).subscribe({
+        next: () => {
+          this.fetchSuppliers()
+            .then(() => {
+              return this.getActiveSuppliers();
+            })
+            .then(() => {
+              this.setPage(this.currentPage);
+            })
+            .then(() => {
+              return this.getInactiveSuppliers();
+            })
+            .then(() => {
+              this.closeModal();
+            })
+            .catch((error: any) => {
+              console.error('Error fetching suppliers', error);
+            });
+        },
+        error: (err) => {
+          console.error('Error adding supplier', err);
+        },
+      });
+
       this.closeModal();
     } else {
-      console.log('Le formulaire est invalide.');
+      console.error('Le formulaire est invalide.');
     }
   }
 
