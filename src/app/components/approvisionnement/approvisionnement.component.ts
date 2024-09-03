@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user-service.service';
 import { FournisseurService } from '../../services/fournisseur/fournisseur.service';
 import { EntrepotService } from '../../services/entrepot/entrepot.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-approvisionnement',
@@ -34,6 +35,20 @@ export class ApprovisionnementComponent implements OnInit {
 
   allWarehouse: any[] = [];
 
+  // Modal
+
+  isModalOpen = true; // true juste pour les tests
+  newSupplier = {
+    name: '',
+    email: '',
+    siret: '',
+    phone: '',
+    street: '',
+    city: '',
+    postalCode: '',
+    country: '',
+  };
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -49,7 +64,7 @@ export class ApprovisionnementComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showActiveContainer('Stocks');
+    this.showActiveContainer('Fournisseurs');
     this.fetchSuppliers()
       .then(() => {
         return this.getActiveSuppliers();
@@ -194,6 +209,34 @@ export class ApprovisionnementComponent implements OnInit {
       day: 'numeric',
     };
     return date.toLocaleDateString('fr-FR', options);
+  }
+
+  // Logic for the modal
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+    this.newSupplier = {
+      name: '',
+      email: '',
+      siret: '',
+      phone: '',
+      street: '',
+      city: '',
+      postalCode: '',
+      country: '',
+    };
+  }
+
+  addSupplier(form: NgForm) {
+    if (form.valid) {
+      console.log('Fournisseur ajouté:', this.newSupplier);
+      this.closeModal();
+    } else {
+      console.log('Le formulaire est invalide.');
+    }
   }
 
   //  Stocks management
