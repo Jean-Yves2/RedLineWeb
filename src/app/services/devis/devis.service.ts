@@ -12,12 +12,8 @@ export class DevisService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  postGlobalDiscount(discount: number, quoteId: number): Observable<any> {
-    console.log('postGlobalDiscount', discount, quoteId);
-    const body = {
-      discount,
-      quoteId,
-    };
+  postGlobalDiscount(quoteId: number, discount: number): Observable<any> {
+    const body = { quoteId, discount };
     const options = {
       withCredentials: true,
     };
@@ -33,12 +29,14 @@ export class DevisService {
     productDiscounts: { [productId: number]: number }
   ): Observable<any> {
     const body = {
-      quoteId,
-      productDiscounts,
+      quoteId: quoteId,
+      productDiscounts: productDiscounts,
     };
+
     const options = {
       withCredentials: true,
     };
+
     return this.http.post(
       `${this.apiUrl}/commercial/discount/product`,
       body,
