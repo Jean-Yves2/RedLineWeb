@@ -23,11 +23,6 @@ export class DossierClientComponent implements OnInit {
     this.commercialService.getOrdersByCustomerId(id).subscribe({
       next: (data) => {
         this.userOrder = data;
-        console.log('Commande récupérée avec succès', data);
-        console.log(
-          'Détails de la commande:',
-          this.userOrder[0].orderLines[0].product.name
-        );
       },
       error: (error) => {
         console.error('Erreur lors de la récupération de la commande', error);
@@ -36,16 +31,11 @@ export class DossierClientComponent implements OnInit {
   }
 
   extractProductDetails() {
-    console.log('Extraction des détails des produits');
     if (!this.userOrder || !this.userOrder.orderLines) return;
-    console.log('Lignes de commande:', this.userOrder.orderLines);
     this.userOrder.orderLines.forEach((orderLine: { product: any }) => {
       const product = orderLine.product;
       if (product) {
         const { name, description, matiere } = product;
-        console.log(`Nom: ${name}`);
-        console.log(`Description: ${description}`);
-        console.log(`Matière: ${matiere}`);
       }
     });
   }
@@ -59,7 +49,6 @@ export class DossierClientComponent implements OnInit {
   }
 
   showActiveContainerDossier(container: string) {
-    console.log(`Section activée: ${container}`);
     this.activContainerDossier = container;
 
     if (container === 'Historique') {
@@ -75,7 +64,6 @@ export class DossierClientComponent implements OnInit {
 
   getUserFavorites() {
     const id = this.getClientId();
-    console.log('ID client:', this.getClientId());
     if (id === null) {
       console.error(
         'Impossible de récupérer les favoris: ID client non trouvé'
@@ -85,7 +73,6 @@ export class DossierClientComponent implements OnInit {
     this.commercialService.getUserFavorites(id).subscribe({
       next: (data) => {
         this.selectedClientFavorie = data;
-        console.log("Favoris de l'utilisateur : ", data);
       },
       error: (error) => {
         console.error('Erreur lors de la récupération des favoris', error);

@@ -132,13 +132,11 @@ export class DevisComponent implements OnInit {
 
   // Global discounts
   submitGlobalDiscount(): void {
-    console.log('userQuoteWithQuoteLines.id', this.userQuoteWithQuoteLines.id);
     this.devisService
       .postGlobalDiscount(this.globalDiscount, this.userQuoteWithQuoteLines.id)
       .subscribe({
         next: (data) => {
           this.userQuoteWithQuoteLines(this.selectedClient.id);
-          console.log('Remise globale appliquée avec succès');
         },
         error: (error) => {
           console.error(

@@ -787,11 +787,8 @@ export class ProductComponent {
 
   addToCart(): void {
     this.updateSelectedItem();
-    console.log('selectedItem :', this.selectedItem);
 
     if (this.selectedItem) {
-      console.log('selectedItem :', this.selectedItem);
-
       this.cartService
         .addItemToCart(
           this.selectedItem.productCode,

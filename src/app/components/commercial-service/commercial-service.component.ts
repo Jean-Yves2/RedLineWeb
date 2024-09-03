@@ -50,7 +50,6 @@ export class CommercialServiceComponent implements OnInit {
     this.userService.getUsers().subscribe({
       next: (data) => {
         this.users = data;
-        console.log('Utilisateurs : ', this.users);
         this.filteredUsers = this.users;
         this.totalPages = Math.ceil(this.filteredUsers.length / this.pageSize);
         this.setPage(this.currentPage);
@@ -65,7 +64,6 @@ export class CommercialServiceComponent implements OnInit {
     this.userService.getMyProfile().subscribe({
       next: (data) => {
         this.myProfil = data;
-        console.log('Mon profil : ', this.myProfil);
       },
       error: (error) => {
         console.error('Erreur lors de la récupération de mon profil', error);
@@ -157,7 +155,5 @@ export class CommercialServiceComponent implements OnInit {
 
   updateClient() {
     this.selectedClient = this.getSelectedClient();
-    console.log('Client sélectionné updated : ', this.selectedClient);
-    console.log('Client sélectionné updated id : ', this.selectedClient.id);
   }
 }

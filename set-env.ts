@@ -12,12 +12,12 @@ const environmentFileContent = `
   };
 `;
 
-mkdir(dirname(filePath), { recursive: true }, (err) => {
+mkdir(dirname(filePath), { recursive: true }, (err: any) => {
   if (err) {
     return console.error('Erreur lors de la création du répertoire:', err);
   }
 
-  writeFile(filePath, environmentFileContent, (err) => {
+  writeFile(filePath, environmentFileContent, (err: any) => {
     if (err) {
       console.log(err);
     } else {
