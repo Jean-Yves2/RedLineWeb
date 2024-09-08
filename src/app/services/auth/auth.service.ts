@@ -12,7 +12,9 @@ export class AuthService {
   private apiUrl = environment.apiUrl;
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
-  private isAuthenticated: boolean = false;
+
+  private isAuthenticatedSubject: BehaviorSubject<boolean>;
+  public isAuthenticated$: Observable<boolean>;
 
   constructor(private http: HttpClient, private router: Router) {
     const storedUser = JSON.parse(localStorage.getItem('currentUser')!);
@@ -20,8 +22,8 @@ export class AuthService {
       JSON.parse(localStorage.getItem('currentUser')!)
     );
     this.currentUser = this.currentUserSubject.asObservable();
-    this.isAuthenticated = !!storedUser;
-
+    this.isAuthenticatedSubject = new BehaviorSubject<boolean>(!!storedUser);
+    this.isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
   }
 
   register(registerForm: any): Observable<any> {
@@ -38,8 +40,6 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<any> {
-    console.log('API URL:', this.apiUrl);
-
     return this.http
       .post<any>(
         `${this.apiUrl}/auth/login`,
@@ -50,7 +50,7 @@ export class AuthService {
         tap((response) => {
           localStorage.setItem('currentUser', JSON.stringify(response.user));
           this.currentUserSubject.next(response.user);
-          this.trueAuthentication();
+          this.isAuthenticatedSubject.next(true);
         }),
         catchError((error) => of(error))
       );
@@ -63,7 +63,7 @@ export class AuthService {
         next: () => {
           localStorage.removeItem('currentUser');
           this.currentUserSubject.next(null);
-          this.resetAuthentication();
+          this.isAuthenticatedSubject.next(false);
           this.router.navigate(['/connexion']);
         },
         error: (error) => {
@@ -72,24 +72,11 @@ export class AuthService {
       });
   }
 
- /* public isLoggedIn(): Observable<boolean> {
-    if (this.isAuthenticated) {
-      return of(this.isAuthenticated);
-    }
-
-    return this.http
-      .get<{ isAuthenticated: boolean }>(`${environment.apiUrl}/auth/check-auth`, { withCredentials: true })
-      .pipe(
-        map((response) => {
-          this.isAuthenticated = response.isAuthenticated;
-          return this.isAuthenticated;
-        }),
-        catchError(() => {
-          this.isAuthenticated = false;
-          return of(false);
-        })
-      );
-  }*/
+  refreshToken(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/refresh-token`, {
+      withCredentials: true,
+    });
+  }
 
   public isInternal(): boolean {
     const user = this.currentUserSubject.value;
@@ -97,13 +84,11 @@ export class AuthService {
       user && (user.role === 'SUPPLY_MANAGER' || user.role === 'COMMERCIAL')
     );
   }
-  public resetAuthentication(): void {
-    this.isAuthenticated = false;
-  }
-  public trueAuthentication(): void {
-    this.isAuthenticated = true;
-  }
-  public getIsAuthenticated(): boolean {
-    return this.isAuthenticated;
+
+  public getIsAuthenticated(): Observable<boolean> {
+    this.isAuthenticated$.subscribe((value) => {
+      console.log('getIsAuthenticated:', value);
+    });
+    return this.isAuthenticated$;
   }
 }

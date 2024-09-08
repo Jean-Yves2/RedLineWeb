@@ -54,19 +54,22 @@
   </div>
   <div class="container-menu_bottom">
     <hr />
-    <div class="container-menu-deconnexion">
+    <button
+      class="container-menu-deconnexion buttonToActivePage"
+      (click)="logout()"
+    >
       <img
         class="icon , icon-deconnexion"
         src="assets/images/commercial/deconnecter.png"
         alt="icon deconnexion"
       />
-      <button class="menu-span" (click)="logout()">Déconnexion</button>
+      <span class="menu-span">Déconnexion</span>
       <img
         class="icon_direction"
         src="assets/images/commercial/angle-droit.png"
         alt="logo angle-droit"
       />
-    </div>
+    </button>
     <hr />
     <button (click)="showActiveContainer('Profil')" class="buttonToActivePage">
       <div class="container-menu-profil">
@@ -121,7 +124,11 @@
     />
   </div>
   <div class="container-data_list">
-    <div *ngFor="let user of paginatedUsers" class="container-data_list_card">
+    <div
+      *ngFor="let user of paginatedUsers; let i = index"
+      class="container-data_list_card"
+      [ngClass]="{ 'dark-background': i % 2 === 0 }"
+    >
       <section class="container-data_list_card_left">
         <div class="container-data_list_card_cercle">
           <span class="container-data_list_card_cercle_span">
@@ -133,7 +140,11 @@
         </span>
       </section>
       <section class="container-data_list_card_right">
-        <button class="container-data_list_card_button">
+        <button
+          class="container-data_list_card_button"
+          (click)="setSelectedClient(user)"
+          (click)="showActiveContainer('dossier')"
+        >
           Voir ce dossier client
         </button>
         <span class="container-data_list_card_type">{{ user.userType }}</span>
@@ -161,9 +172,39 @@
     </button>
   </div>
 </section>
-<section *ngIf="activContainer === 'Devis'" class="allSectionContainer">
-  <p>Devis</p>
+
+<section
+  *ngIf="activContainer === 'Profil'"
+  class="allSectionContainer , container-profil"
+>
+  <span class="container-profil_title">Profil</span>
+  <div class="container-profil_card">
+    <div class="container-profil_card_design">
+      <div class="container-profil_card_design_head">
+        <span class="container-profil_card_design_head_title">{{
+          myProfil.firstName.charAt(0)
+        }}</span>
+      </div>
+      <div class="container-profil_card_design_decor1"></div>
+      <div class="container-profil_card_design_decor2"></div>
+      <div class="container-profil_card_design_decor3"></div>
+      <div class="container-profil_card_design_decor4"></div>
+      <div class="container-profil_card_design_data">
+        <p>Nom : {{ myProfil.firstName }}</p>
+        <p>Prénom : {{ myProfil.lastName }}</p>
+        <p>Role : Commercial</p>
+        <p>Email : VulcanoRosso</p>
+        <p>Numéro de téléphone : VulcanoRosso</p>
+        <p>Adresse : VulcanoRosso</p>
+        <p>Code Postal : VulcanoRosso</p>
+        <p>Ville : VulcanoRosso</p>
+        <p>Pays : VulcanoRosso</p>
+
+        <p>Besoin de modification <br />contacter l’administrateur</p>
+        <p>Site web : VulcanoRosso</p>
+      </div>
+    </div>
+  </div>
 </section>
-<section *ngIf="activContainer === 'Profil'" class="allSectionContainer">
-  <p>Profil</p>
-</section>
+<app-devis *ngIf="activContainer === 'Devis'"></app-devis>
+<app-dossier-client *ngIf="activContainer === 'dossier'"></app-dossier-client>

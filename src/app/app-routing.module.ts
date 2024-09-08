@@ -13,22 +13,60 @@ import { CommercialServiceComponent } from './components/commercial-service/comm
 import { ApprovisionnementComponent } from './components/approvisionnement/approvisionnement.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { PanierComponent } from './components/panier/panier.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
-  { path: 'accueil', component: AccueilComponent },
+  {
+    path: 'accueil',
+    component: AccueilComponent,
+  },
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'connexion', component: ConnexionComponent },
   { path: 'apropos', component: AproposComponent },
-  { path: 'matiere', component: MatiereComponent },
+  {
+    path: 'matiere',
+    component: MatiereComponent,
+  },
   { path: 'offres', component: OffresComponent },
-  { path: 'piece-configuration', component: PieceConfigurationComponent },
-  { path: 'matiere/:category', component: FormeMatiereComponent },
-  { path: 'products/:id', component: ProductComponent },
-  { path: 'commercial', component: CommercialServiceComponent },
-  { path: 'approvisionnement', component: ApprovisionnementComponent },
-  { path: 'favoris', component: FavoriteComponent },
-  { path: 'panier', component: PanierComponent },
+  {
+    path: 'piece-configuration',
+    component: PieceConfigurationComponent,
+  },
+  {
+    path: 'matiere/:category',
+    component: FormeMatiereComponent,
+  },
+  {
+    path: 'products/:id',
+    component: ProductComponent,
+  },
+  {
+    path: 'commercial',
+    component: CommercialServiceComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['COMMERCIAL'] },
+  },
+  {
+    path: 'approvisionnement',
+    component: ApprovisionnementComponent,
+    canActivate: [RoleGuard],
+    data: { roles: ['SUPPLY_MANAGER'] },
+  },
+  {
+    path: 'favoris',
+    component: FavoriteComponent,
+  },
+  {
+    path: 'panier',
+    component: PanierComponent,
+  },
+  { path: '404', component: NotFoundComponent },
+  {
+    path: '**',
+    redirectTo: '/404',
+  },
 ];
 
 @NgModule({

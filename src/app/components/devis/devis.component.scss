@@ -1,0 +1,203 @@
+@import "../../../styles/theme.scss";
+
+:host {
+  // display        : flex;
+  flex               : 1;
+  // height         : 100%;
+  // width          : 100%;
+  // flex-direction : row;
+}
+
+
+.container-devis {
+  display        : flex;
+  flex           : 1;
+  height         : 100%;
+  width          : 100%;
+  flex-direction : column;
+  padding        : 2rem;
+
+  &_title {
+    display     : flex;
+    font-family : bevan;
+    font-size   : 2rem;
+    font-weight : bold;
+    text-align  : center;
+    width       : 100%;
+  }
+
+  &_head {
+    display         : flex;
+    flex-direction  : row;
+    justify-content : space-between;
+    width           : 100%;
+
+    font-family    : bevan;
+    font-size      : 1.5rem;
+    font-weight    : bold;
+    color          : $third-color;
+    padding-top    : 30px;
+    padding-bottom : 30px;
+
+    &_user {
+      display      : flex;
+      padding-left : 2%;
+
+    }
+
+    &_numdevi {
+      display : flex;
+    }
+
+    &_status {
+      display       : flex;
+      padding-right : 5%;
+    }
+  }
+
+  &_card {
+    display : flex;
+    cursor  : pointer;
+
+    &:hover {
+
+      background-color : rgba(255, 166, 0, 0.238);
+    }
+
+    &_user {
+      display         : flex;
+      flex-direction  : row;
+      align-items     : center;
+      justify-content : space-between;
+      padding-bottom  : 20px;
+      padding-top     : 20px;
+      width           : 100%;
+
+      font-family : inter, sans-serif;
+      font-size   : 1.5rem;
+      font-weight : bold;
+      color       : $third-color;
+
+      &_name-container {
+        display      : flex;
+        width        : 30%;
+        padding-left : 2%;
+      }
+
+      &_cercle {
+        display          : flex;
+        border           : solid 1px $secondary-color;
+        height           : 40px;
+        width            : 40px;
+        border-radius    : 20px;
+        background-color : white;
+        align-items      : center;
+        justify-content  : center;
+
+        &_span {
+          font-family : bevan;
+          font-size   : 2rem;
+          font-weight : bold;
+          color       : $secondary-color;
+        }
+      }
+
+      &_name {
+
+        font-family  : inter, sans-serif;
+        font-size    : 1.5rem;
+        padding-left : 30px;
+      }
+
+      &_numdevi {
+        width           : 30%;
+        display         : flex;
+        justify-content : center;
+      }
+
+      &_status {
+        width           : 30%;
+        display         : flex;
+        justify-content : flex-end;
+        padding-right   : 5%;
+      }
+    }
+
+  }
+
+
+}
+
+.pending {
+  color : orange;
+}
+
+.in-process {
+  color : blue;
+}
+
+.closed {
+  color : green;
+}
+
+.dark-background {
+  background-color : #f1f1f1;
+}
+
+/*
+?  container userDevis
+*/
+
+.container_userDevis {
+  display        : flex;
+  width          : 100%;
+  flex           : 1;
+  flex-direction : row;
+  flex-wrap      : wrap;
+
+  &-card {
+    width : 510px;
+
+    border      : 1px solid #ccc;
+    padding     : 10px;
+    margin      : 10px;
+    font-family : Regular, sans-serif;
+
+
+    &-product {}
+
+    h2 {
+      font-size : 1.3em;
+    }
+
+    p {
+      margin : 5px 0;
+    }
+  }
+
+  &-input {
+    width           : 100%;
+    display         : flex;
+    align-content   : center;
+    justify-content : flex-end;
+    column-gap      : 10%;
+    padding-right   : 10%;
+    align-items     : center;
+    font-family     : bevan;
+    font-size       : 1.5rem;
+
+    &-total {}
+
+    &-button {
+
+      font-weight : bold;
+
+      color            : $primary-color;
+      border-radius    : 5px;
+      background-color : $secondary-color;
+      padding          : 10px;
+
+      cursor : pointer;
+    }
+  }
+}
