@@ -8,6 +8,7 @@ import { Product } from '../../services/product/product.model.dto';
 import { AuthService } from '../../services/auth/auth.service';
 import { Inject } from '@angular/core';
 import { CartService } from '../../services/cart/cart.service';
+import { Subscription } from 'rxjs';
 
 interface Ligne {
   epaisseur: number | undefined;
@@ -43,6 +44,7 @@ export class ProductComponent {
   fetchedproducts: Product[] = [];
   resolveproducts: Product[] = [];
   errorMessage: string = '';
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private activatedRoutes: ActivatedRoute,
@@ -97,21 +99,36 @@ export class ProductComponent {
   updateSelection: Ligne | null = null;
 
   fetchProducts(type: string, oneUrl: string): void {
-    if (this.authService.getIsAuthenticated()) {
-      this.productService.getProductsByType(type).subscribe({
-        next: (data) => {
-          this.fetchedproducts = data;
+    const authSubscription = this.authService.isAuthenticated$.subscribe({
+      next: (isAuthenticated) => {
+        if (isAuthenticated) {
+          const productsSubscription = this.productService
+            .getProductsByType(type)
+            .subscribe({
+              next: (data) => {
+                this.fetchedproducts = data;
+                this.chooseData(oneUrl);
+              },
+              error: (err) => {
+                this.errorMessage = 'Failed to load products';
+                console.error(err);
+              },
+            });
+          this.subscriptions.add(productsSubscription);
+        } else {
+          this.fetchedproducts =
+            this.productService.getLocalProductsByType(type);
           this.chooseData(oneUrl);
-        },
-        error: (err) => {
-          this.errorMessage = 'Failed to load products';
-          console.error(err);
-        },
-      });
-    } else {
-      this.fetchedproducts = this.productService.getLocalProductsByType(type);
-      this.chooseData(oneUrl);
-    }
+        }
+      },
+      error: (err) => {
+        console.error(
+          "Erreur lors de la récupération du statut d'authentification : ",
+          err
+        );
+      },
+    });
+    this.subscriptions.add(authSubscription);
   }
 
   calcule(): void {
