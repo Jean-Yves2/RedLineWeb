@@ -119,8 +119,138 @@
       Fournisseurs suspendus
     </button>
   </div>
+  <!-- Modal -->
+  <div class="modal" *ngIf="isModalOpen">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2 class="modal-title">Ajouter un Fournisseur</h2>
+
+      <form class="modal-form" #f="ngForm" (ngSubmit)="addSupplier(f)">
+        <label for="name">Nom du Fournisseur:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="newSupplier.name"
+          #name="ngModel"
+          required
+          placeholder="GARGANTUA"
+        />
+        <div *ngIf="name.invalid && name.touched" class="error">
+          Le nom est requis.
+        </div>
+
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="newSupplier.email"
+          #email="ngModel"
+          required
+          email
+          placeholder="Jery@gmail.com"
+        />
+        <div *ngIf="email.invalid && email.touched" class="error">
+          {{
+            email.errors?.['required']
+              ? "L'email est requis."
+              : "L'email est invalide."
+          }}
+        </div>
+
+        <label for="siret">SIRET:</label>
+        <input
+          type="text"
+          id="siret"
+          name="siret"
+          [(ngModel)]="newSupplier.siret"
+          #siret="ngModel"
+          required
+          pattern="[0-9]{14}"
+          placeholder="12345678912345"
+        />
+        <div *ngIf="siret.invalid && siret.touched" class="error">
+          Le numéro SIRET est requis et doit contenir 14 chiffres.
+        </div>
+
+        <label for="phone">Téléphone:</label>
+        <input
+          type="text"
+          id="phone"
+          name="phone"
+          [(ngModel)]="newSupplier.phone"
+          #phone="ngModel"
+          required
+          pattern="^(\+?\d{1,4}[\s-]?)?(\(?\d{1,4}\)?[\s-]?)?\d{1,4}[\s-]?\d{1,4}[\s-]?\d{1,9}$"
+          placeholder="+(33)06 00 00 00 00"
+        />
+        <div *ngIf="phone.invalid && phone.touched" class="error">
+          Numéro de téléphone valide requis.
+        </div>
+
+        <label for="street">Rue:</label>
+        <input
+          type="text"
+          id="street"
+          name="street"
+          [(ngModel)]="newSupplier.street"
+          #street="ngModel"
+          required
+          placeholder="Rue de la paix"
+        />
+        <div *ngIf="street.invalid && street.touched" class="error">
+          La rue est requise.
+        </div>
+
+        <label for="city">Ville:</label>
+        <input
+          type="text"
+          id="city"
+          name="city"
+          [(ngModel)]="newSupplier.city"
+          #city="ngModel"
+          required
+          placeholder="Paris"
+        />
+        <div *ngIf="city.invalid && city.touched" class="error">
+          La ville est requise.
+        </div>
+
+        <label for="postalCode">Code Postal:</label>
+        <input
+          type="text"
+          id="postalCode"
+          name="postalCode"
+          [(ngModel)]="newSupplier.postalCode"
+          #postalCode="ngModel"
+          placeholder="75000"
+          required
+        />
+        <div *ngIf="postalCode.invalid && postalCode.touched" class="error">
+          Code postal valide requis (5 chiffres).
+        </div>
+
+        <label for="country">Pays:</label>
+        <input
+          type="text"
+          id="country"
+          name="country"
+          [(ngModel)]="newSupplier.country"
+          #country="ngModel"
+          required
+          placeholder="France"
+        />
+        <div *ngIf="country.invalid && country.touched" class="error">
+          Le pays est requis.
+        </div>
+        <button type="submit" [disabled]="f.invalid">Ajouter</button>
+      </form>
+    </div>
+  </div>
+
   <div class="container-fournisseur_section">
-    <button class="container-fournisseur_section_add">
+    <button class="container-fournisseur_section_add" (click)="openModal()">
       Ajouter un Fournisseur
     </button>
     <div class="regulator">

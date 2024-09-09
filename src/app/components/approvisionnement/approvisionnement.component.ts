@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user-service.service';
 import { FournisseurService } from '../../services/fournisseur/fournisseur.service';
 import { EntrepotService } from '../../services/entrepot/entrepot.service';
+import { NgForm } from '@angular/forms';
+import { SupplyService } from '../../services/supply/supply.service';
 
 @Component({
   selector: 'app-approvisionnement',
@@ -34,12 +36,25 @@ export class ApprovisionnementComponent implements OnInit {
 
   allWarehouse: any[] = [];
 
+  // Modal
+
+  isModalOpen = true; // true juste pour les tests
+  newSupplier = {
+    name: '',
+    email: '',
+    siret: '',
+    phone: '',
+    street: '',
+    city: '',
+    postalCode: '',
+    country: '',
+  };
+
   constructor(
     private authService: AuthService,
     private router: Router,
-    private userService: UserService,
-    private fournisseurService: FournisseurService,
-    private entrepotService: EntrepotService
+    private entrepotService: EntrepotService,
+    private supplyService: SupplyService
   ) {
     this.authService.currentUser.subscribe((user) => {
       this.currentUser = user;
@@ -49,7 +64,7 @@ export class ApprovisionnementComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showActiveContainer('Stocks');
+    this.showActiveContainer('Fournisseurs');
     this.fetchSuppliers()
       .then(() => {
         return this.getActiveSuppliers();
@@ -68,7 +83,7 @@ export class ApprovisionnementComponent implements OnInit {
   }
 
   fetchSuppliers(): Promise<void> {
-    return this.fournisseurService
+    return this.supplyService
       .getFournisseurs()
       .toPromise()
       .then((suppliers) => {
@@ -120,7 +135,7 @@ export class ApprovisionnementComponent implements OnInit {
 
   getActiveSuppliers(): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.fournisseurService.getFournisseurs().subscribe({
+      this.supplyService.getFournisseurs().subscribe({
         next: (suppliers) => {
           this.activeSuppliers = suppliers.filter(
             (supplier: { deletedAt: any }) => !supplier.deletedAt
@@ -134,7 +149,7 @@ export class ApprovisionnementComponent implements OnInit {
 
   getInactiveSuppliers(): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.fournisseurService.getFournisseurs().subscribe({
+      this.supplyService.getFournisseurs().subscribe({
         next: (suppliers) => {
           this.inactiveSuppliers = suppliers.filter(
             (supplier: { deletedAt: any }) => supplier.deletedAt
@@ -194,6 +209,58 @@ export class ApprovisionnementComponent implements OnInit {
       day: 'numeric',
     };
     return date.toLocaleDateString('fr-FR', options);
+  }
+
+  // Logic for the modal
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+    this.newSupplier = {
+      name: '',
+      email: '',
+      siret: '',
+      phone: '',
+      street: '',
+      city: '',
+      postalCode: '',
+      country: '',
+    };
+  }
+
+  addSupplier(form: NgForm) {
+    if (form.valid) {
+      console.log('Fournisseur ajouté:', this.newSupplier);
+      this.supplyService.postCreateSupply(this.newSupplier).subscribe({
+        next: () => {
+          this.fetchSuppliers()
+            .then(() => {
+              return this.getActiveSuppliers();
+            })
+            .then(() => {
+              this.setPage(this.currentPage);
+            })
+            .then(() => {
+              return this.getInactiveSuppliers();
+            })
+            .then(() => {
+              this.closeModal();
+            })
+            .catch((error: any) => {
+              console.error('Error fetching suppliers', error);
+            });
+        },
+        error: (err) => {
+          console.error('Error adding supplier', err);
+        },
+      });
+
+      this.closeModal();
+    } else {
+      console.error('Le formulaire est invalide.');
+    }
   }
 
   //  Stocks management
