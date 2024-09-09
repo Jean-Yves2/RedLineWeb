@@ -25,71 +25,103 @@ export class FavorieService {
   }
 
   addFavorite(productCode: number): void {
-    if (this.authService.getIsAuthenticated()) {
-      this.http
-        .post<void>(
-          `${this.apiUrl}/favorites/${productCode}`,
-          { productCode },
-          { withCredentials: true }
-        )
-        .pipe(
-          switchMap(() => this.updateFavorites()),
-          tap(() => this.updateFavoriteCount()),
-          catchError((error) => {
-            console.error('Error adding favorite', error);
-            return of([]);
-          })
-        )
-        .subscribe();
-    } else {
-      this.saveToLocalFavorites(productCode);
-      this.updateFavoriteCount();
-    }
+    this.authService.isAuthenticated$.subscribe({
+      next: (isAuthenticated) => {
+        if (isAuthenticated) {
+          this.http
+            .post<void>(
+              `${this.apiUrl}/favorites/${productCode}`,
+              { productCode },
+              { withCredentials: true }
+            )
+            .pipe(
+              switchMap(() => this.updateFavorites()),
+              tap(() => this.updateFavoriteCount()),
+              catchError((error) => {
+                console.error('Error adding favorite', error);
+                return of(null);
+              })
+            )
+            .subscribe();
+        } else {
+          this.saveToLocalFavorites(productCode);
+          this.updateFavoriteCount();
+        }
+      },
+      error: (error) => {
+        console.error('Error checking authentication status', error);
+      },
+    });
   }
 
   removeFavorite(productCode: number): void {
-    if (this.authService.getIsAuthenticated()) {
-      this.http
-        .delete<void>(`${this.apiUrl}/favorites/${productCode}`, {
-          withCredentials: true,
-        })
-        .pipe(
-          switchMap(() => this.updateFavorites()),
-          tap(() => this.updateFavoriteCount()),
-          catchError((error) => {
-            console.error('Error removing favorite', error);
-            return of([]);
-          })
-        )
-        .subscribe();
-    } else {
-      this.removeFromLocalFavorites(productCode);
-    }
+    this.authService.isAuthenticated$.subscribe({
+      next: (isAuthenticated) => {
+        if (isAuthenticated) {
+          this.http
+            .delete<void>(`${this.apiUrl}/favorites/${productCode}`, {
+              withCredentials: true,
+            })
+            .pipe(
+              switchMap(() => this.updateFavorites()),
+              tap(() => this.updateFavoriteCount()),
+              catchError((error) => {
+                console.error('Error removing favorite', error);
+                return of(null);
+              })
+            )
+            .subscribe();
+        } else {
+          this.removeFromLocalFavorites(productCode);
+          this.updateFavoriteCount();
+        }
+      },
+      error: (error) => {
+        console.error('Error checking authentication status', error);
+      },
+    });
   }
 
-  getFavorites(): Observable<any[]> | number[] {
-    if (this.authService.getIsAuthenticated()) {
-      return this.http.get<any[]>(`${this.apiUrl}/favorites`, {
-        withCredentials: true,
-      });
-    } else {
-      return this.getLocalFavorites();
-    }
+  getFavorites(): Observable<any[]> {
+    return this.authService.isAuthenticated$.pipe(
+      switchMap((isAuthenticated) => {
+        if (isAuthenticated) {
+          return this.http.get<any[]>(`${this.apiUrl}/favorites`, {
+            withCredentials: true,
+          });
+        } else {
+          return of(this.getLocalFavorites());
+        }
+      }),
+      catchError((error) => {
+        console.error('Error fetching favorites', error);
+        return of([]);
+      })
+    );
   }
 
   updateFavoriteCount(): void {
-    const isAuthenticated = this.authService.getIsAuthenticated();
-    if (isAuthenticated) {
-      const favorites$ = this.getFavorites();
-      if (favorites$ instanceof Observable) {
-        favorites$.subscribe((data) => {
-          this.favoriteCountSubject.next(data.length);
-        });
-      }
-    } else {
-      const favorites = this.getLocalFavorites();
-      this.favoriteCountSubject.next(favorites.length);
-    }
+    this.authService.isAuthenticated$.subscribe({
+      next: (isAuthenticated) => {
+        if (isAuthenticated) {
+          this.getFavorites().subscribe({
+            next: (data) => {
+              this.favoriteCountSubject.next(data.length);
+            },
+            error: (error) => {
+              console.error('Error updating favorite count', error);
+              this.favoriteCountSubject.next(0);
+            },
+          });
+        } else {
+          const favorites = this.getLocalFavorites();
+          this.favoriteCountSubject.next(favorites.length);
+        }
+      },
+      error: (error) => {
+        console.error('Error checking authentication status', error);
+      },
+    });
   }
 
   public getLocalFavorites(): number[] {
@@ -118,12 +150,20 @@ export class FavorieService {
 
   /**/
   public updateFavorites(): Observable<any[]> {
-    if (this.authService.getIsAuthenticated()) {
-      return this.http.get<any[]>(`${this.apiUrl}/favorites`, {
-        withCredentials: true,
-      });
-    } else {
-      return of(this.getLocalFavorites());
-    }
+    return this.authService.isAuthenticated$.pipe(
+      switchMap((isAuthenticated) => {
+        if (isAuthenticated) {
+          return this.http.get<any[]>(`${this.apiUrl}/favorites`, {
+            withCredentials: true,
+          });
+        } else {
+          return of(this.getLocalFavorites());
+        }
+      }),
+      catchError((error) => {
+        console.error('Erreur lors de la mise à jour des favoris', error);
+        return of([]);
+      })
+    );
   }
 }

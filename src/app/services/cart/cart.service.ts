@@ -42,10 +42,25 @@ export class CartService {
     });
   }
 
-  updateCartCount(tableOfProducts: any): void {
-    if (this.authService.getIsAuthenticated()) {
-      this.cartCountSubject.next(tableOfProducts.length);
-    } else {
-    }
+  updateCartCount(tableOfProducts: any[]): void {
+    this.authService.isAuthenticated$.subscribe({
+      next: (isAuthenticated) => {
+        if (isAuthenticated) {
+          this.cartCountSubject.next(tableOfProducts.length);
+        } else {
+          // Vous pouvez ajouter une logique ici si nécessaire pour les utilisateurs non authentifiés
+          // Par exemple, stocker le compte dans un autre endroit ou afficher un message
+          console.log(
+            'Utilisateur non authentifié. Mise à jour du panier non effectuée.'
+          );
+        }
+      },
+      error: (error) => {
+        console.error(
+          "Erreur lors de la vérification du statut d'authentification",
+          error
+        );
+      },
+    });
   }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { FavorieService } from '../../services/favorie/favorie.service';
-import { Observable, Subscription } from 'rxjs';
+import { catchError, of, Subscription, switchMap } from 'rxjs';
 import { PanierService } from '../../services/panier/panier.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { PanierService } from '../../services/panier/panier.service';
   styleUrls: ['./tool-bar.component.scss'],
 })
 export class ToolBarComponent implements OnInit, OnDestroy {
+  private subscriptions: Subscription = new Subscription();
   isInternal: boolean = false;
   currentUser: any;
   favoriteCounter: number = 0;
@@ -26,38 +27,44 @@ export class ToolBarComponent implements OnInit, OnDestroy {
     private panierService: PanierService
   ) {}
 
-  ngOnInit() {
-    this.authService.currentUser.subscribe((user) => {
-      this.currentUser = user;
-      this.isInternal = this.authService.isInternal();
-      if (user) {
-        this.updateFavorites();
-      }
-    });
-
-    this.authService.getIsAuthenticated().subscribe((isAuthenticated) => {
-      if (isAuthenticated) {
-        this.updateFavorites();
-      } else {
-        this.favorieService.resetFavoriteCount();
-      }
-    });
-
-    this.favoritesSubscription = this.favorieService.favoriteCount$.subscribe(
-      (count) => {
-        this.favoriteCounter = count;
-      }
+  ngOnInit(): void {
+    this.subscriptions.add(
+      this.authService.currentUser.subscribe((user) => {
+        this.currentUser = user;
+        this.isInternal = this.authService.isInternal();
+        if (user) {
+          this.updateFavorites();
+        }
+      })
     );
+
+    this.subscriptions.add(
+      this.authService.isAuthenticated$.subscribe((isAuthenticated) => {
+        if (isAuthenticated) {
+          this.updateFavorites();
+        } else {
+          this.favorieService.resetFavoriteCount();
+        }
+      })
+    );
+
+    this.subscriptions.add(
+      this.favorieService.favoriteCount$.subscribe((count) => {
+        this.favoriteCounter = count;
+      })
+    );
+
     this.favorieService.updateFavoriteCount();
 
-    /*this.cartSubscription = this.panierService.cartItemCount$.subscribe(
-      (count) => {
+    this.subscriptions.add(
+      this.panierService.cartItemCount$.subscribe((count) => {
         this.cartCounter = count;
-      }
-    );*/
+      })
+    );
   }
 
   ngOnDestroy() {
+    this.subscriptions.unsubscribe();
     if (this.favoritesSubscription) {
       this.favoritesSubscription.unsubscribe();
     }
@@ -82,14 +89,26 @@ export class ToolBarComponent implements OnInit, OnDestroy {
       return;
     }
 
-    const favorites = this.favorieService.getFavorites();
+    const favorites$ = this.favorieService.getFavorites();
 
-    if (favorites instanceof Observable) {
-      favorites.subscribe((data) => {
-        this.favorieService.favoriteCountSubject.next(data.length);
-      });
-    } else {
-      this.favorieService.favoriteCountSubject.next(favorites.length);
-    }
+    favorites$
+      .pipe(
+        switchMap((favorites) => {
+          if (Array.isArray(favorites)) {
+            this.favorieService.favoriteCountSubject.next(favorites.length);
+            return of(favorites);
+          } else {
+            console.error('Les favoris récupérés ne sont pas un tableau');
+            this.favorieService.favoriteCountSubject.next(0);
+            return of([]);
+          }
+        }),
+        catchError((error) => {
+          console.error('Erreur lors de la mise à jour des favoris', error);
+          this.favorieService.favoriteCountSubject.next(0);
+          return of([]);
+        })
+      )
+      .subscribe();
   }
 }
